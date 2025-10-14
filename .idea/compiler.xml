@@ -10,8 +10,10 @@
         <module name="core" />
         <module name="infra" />
         <module name="negocio" />
-        <module name="persistencia" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="persistencia" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

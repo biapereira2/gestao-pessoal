@@ -8,7 +8,6 @@
 
     <modules>
         <module>core</module>
-        <module>infra</module>
         <module>app</module>
     </modules>
 

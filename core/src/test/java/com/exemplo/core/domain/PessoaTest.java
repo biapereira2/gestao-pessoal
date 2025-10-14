@@ -1,4 +1,4 @@
-package src.test.java.com.exemplo.core.domain;
+package com.exemplo.core.domain;
 
 public class PessoaTest {
 }
