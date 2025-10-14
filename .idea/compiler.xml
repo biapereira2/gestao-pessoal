@@ -9,6 +9,8 @@
         <module name="app" />
         <module name="core" />
         <module name="infra" />
+        <module name="negocio" />
+        <module name="persistencia" />
       </profile>
     </annotationProcessing>
   </component>
