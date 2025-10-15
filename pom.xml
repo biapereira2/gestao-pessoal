@@ -1,19 +1,28 @@
-<project>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.exemplo</groupId>
-    <artifactId>gestao-pessoal</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>gestao-pessoal</groupId>
+    <artifactId>gestao-pessoal-projeto-raiz</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>core</module>
-        <module>app</module>
+        <module>pai</module>
+        <module>dominio-compartilhado</module>
+        <module>dominio-habito</module>
+        <module>dominio-engajamento</module>
+        <module>dominio-relatorio</module>
+        <module>aplicacao</module>
     </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>5.10.1</junit.version>
     </properties>
+
 </project>
