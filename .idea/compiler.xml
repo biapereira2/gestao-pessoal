@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="dominio-habito" />
+        <module name="core" />
+        <module name="dominio-relatorio" />
+        <module name="dominio-compartilhado" />
+        <module name="aplicacao" />
+        <module name="dominio-engajamento" />
+        <module name="infra" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="app" target="17" />
+      <module name="negocio" target="17" />
+      <module name="persistencia" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
