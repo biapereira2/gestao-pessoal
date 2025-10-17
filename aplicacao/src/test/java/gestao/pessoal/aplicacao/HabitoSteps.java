@@ -8,11 +8,51 @@ import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// =================================================================
+// IMPLEMENTAÇÃO MOCK (FAKE REPOSITÓRIO)
+// Classe interna que simula o banco de dados para a Entidade Habito.
+// =================================================================
+class FakeRepositorioHabito implements RepositorioHabito {
+
+    private final Map<UUID, Habito> habitos = new HashMap<>();
+
+    @Override
+    public void salvar(Habito habito) {
+        habitos.put(habito.getId(), habito);
+    }
+
+    @Override
+    public Optional<Habito> buscarPorId(UUID habitoId) {
+        return Optional.ofNullable(habitos.get(habitoId));
+    }
+
+    @Override
+    public List<Habito> listarTodosPorUsuario(UUID usuarioId) {
+        return habitos.values()
+                .stream()
+                .filter(habito -> habito.getUsuarioId().equals(usuarioId))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void excluir(UUID habitoId) {
+        habitos.remove(habitoId);
+    }
+}
+
+
+// =================================================================
+// STEPS DEFINITION (MAPEAMENTO DO GHERKIN)
+// =================================================================
 public class HabitoSteps {
 
     private HabitoService habitoService;
@@ -20,9 +60,12 @@ public class HabitoSteps {
     private Usuario usuario;
     private Exception excecaoLancada;
 
-    // Este método é executado antes de cada cenário
+    // Construtor: Inicializa o Service e o Repositório Mock
     public HabitoSteps() {
-        this.repositorioHabito = new HabitoRepositorioEmMemoria();
+        // --- CORREÇÃO DE NOMENCLATURA: USANDO A CLASSE INTERNA FakeRepositorioHabito ---
+        this.repositorioHabito = new FakeRepositorioHabito();
+        // --- FIM DA CORREÇÃO ---
+
         this.habitoService = new HabitoService(this.repositorioHabito);
         this.excecaoLancada = null; // Reseta a exceção para cada cenário
     }
@@ -30,6 +73,7 @@ public class HabitoSteps {
     // --- DADO (Given) ---
     @Dado("que sou um usuário autenticado")
     public void que_sou_um_usuario_autenticado() {
+        // CORREÇÃO: Usando a palavra chave 'new' para instanciar o Usuario
         this.usuario = new Usuario("Usuário Teste", "teste@email.com", "123456");
     }
 
