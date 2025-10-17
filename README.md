@@ -40,16 +40,9 @@ Ajudar o usuário a estabelecer hábitos consistentes, monitorar seu progresso e
 
 ## 🛠 Tecnologias
 
-- **Back-end:** Python (Django) ou Java (Spring Boot)  
+- **Back-end:** Java (Spring Boot)  
 - **Banco de Dados:** SQLite / PostgreSQL  
 - **Testes:** Cucumber para BDD  
-- **Frontend:** HTML, CSS, JavaScript (ou framework de sua escolha)  
+- **Frontend:** React.js 
 
 ---
-
-## 📁 Estrutura do Projeto
-
-- `models/` → Modelos de dados (Usuário, Hábito, Cumprimento, Streaks)  
-- `views/` → Lógica de visualização e dashboard  
-- `static/` → Arquivos de estilo e scripts  
-- `templates/` → Protótipos de interface do usuário
