@@ -53,6 +53,12 @@
             <version>1.9.3</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>gestao-pessoal</groupId>
+            <artifactId>dominio-habito</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
