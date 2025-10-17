@@ -15,6 +15,8 @@ public class Meta {
     private LocalDate prazo;
     private boolean concluida;
     private int quantidade;
+    private int habitosCompletos;
+    private boolean alertaProximoFalha;
 
     public Meta(UUID usuarioId, UUID habitoId, Tipo tipo, String descricao, int quantidade) {
         if (descricao == null || descricao.trim().isEmpty()) {
@@ -32,11 +34,14 @@ public class Meta {
         this.habitoId = habitoId;
         this.tipo = tipo;
         this.descricao = descricao;
-        this.prazo = LocalDate.now().plusDays(30);
+        this.prazo = LocalDate.now().plusDays(tipo == Tipo.SEMANAL ? 7 : tipo == Tipo.MENSAL ? 30 : 1);
         this.concluida = false;
         this.quantidade = quantidade;
+        this.habitosCompletos = 0;
+        this.alertaProximoFalha = false;
     }
 
+    // --- Métodos de negócio ---
     public void concluir() {
         if (this.concluida) {
             throw new IllegalStateException("A meta já foi concluída.");
@@ -51,11 +56,26 @@ public class Meta {
         this.quantidade = novaQuantidade;
     }
 
-    public boolean estaPertoDeFalhar() {
-        return !concluida && prazo.minusDays(3).isBefore(LocalDate.now());
+    public void dispararAlertaSeNecessario() {
+        double percentual = (double) habitosCompletos / quantidade;
+
+        switch (tipo) {
+            case SEMANAL:
+                alertaProximoFalha = percentual < 0.5; // alerta se menos de 50% completado
+                break;
+            case MENSAL:
+                alertaProximoFalha = percentual < 0.25; // alerta se menos de 25% completado
+                break;
+            default:
+                alertaProximoFalha = false;
+        }
     }
 
-    // Getters
+    public boolean estaPertoDeFalhar() {
+        return alertaProximoFalha;
+    }
+
+    // --- Getters e Setters ---
     public UUID getId() { return id; }
     public UUID getUsuarioId() { return usuarioId; }
     public UUID getHabitoId() { return habitoId; }
@@ -64,4 +84,9 @@ public class Meta {
     public LocalDate getPrazo() { return prazo; }
     public boolean isConcluida() { return concluida; }
     public int getQuantidade() { return quantidade; }
+    public int getHabitosCompletos() { return habitosCompletos; }
+    public void setHabitosCompletos(int habitosCompletos) { this.habitosCompletos = habitosCompletos; }
+    public boolean isAlertaProximoFalha() { return alertaProximoFalha; }
+    public void setPrazo(LocalDate prazo) { this.prazo = prazo; }
+
 }
