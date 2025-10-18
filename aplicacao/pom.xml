@@ -16,49 +16,50 @@
 
     <dependencies>
         <!-- Dependência do seu módulo de interfaces e entidades -->
-        <dependency>
-            <groupId>gestao-pessoal</groupId>
-            <artifactId>dominio-compartilhado</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
+            <!-- Dependências normais -->
+            <dependency>
+                <groupId>gestao-pessoal</groupId>
+                <artifactId>dominio-compartilhado</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-        <!-- Dependência do JUnit Jupiter (para asserções) -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <scope>test</scope>
-        </dependency>
+            <dependency>
+                <groupId>gestao-pessoal</groupId>
+                <artifactId>dominio-habito</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-        <!-- Dependências do CUCUMBER -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>7.16.1</version>
-            <scope>test</scope>
-        </dependency>
+            <!-- Dependências de teste -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <scope>test</scope>
+            </dependency>
 
-        <!-- Engine que permite ao JUnit Platform encontrar e executar testes Cucumber -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit-platform-engine</artifactId>
-            <version>7.16.1</version>
-            <scope>test</scope>
-        </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <scope>test</scope>
+            </dependency>
 
-        <!-- JUnit Platform Suite para rodar o CucumberRunnerTest -->
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-suite</artifactId>
-            <version>1.9.3</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>gestao-pessoal</groupId>
-            <artifactId>dominio-habito</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-junit-platform-engine</artifactId>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-picocontainer</artifactId>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-suite</artifactId>
+                <version>1.9.3</version>
+                <scope>test</scope>
+            </dependency>
     </dependencies>
 
     <build>

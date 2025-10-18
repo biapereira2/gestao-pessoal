@@ -1,3 +1,5 @@
+gestao\pessoal\aplicacao\CheckInSteps.class
+gestao\pessoal\aplicacao\FakeRepositorioCheckIn.class
 gestao\pessoal\aplicacao\FakeRepositorioHabito.class
 gestao\pessoal\aplicacao\CucumberRunnerTest.class
 gestao\pessoal\aplicacao\HabitoSteps.class

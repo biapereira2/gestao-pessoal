@@ -55,10 +55,10 @@ class FakeRepositorioHabito implements RepositorioHabito {
 // =================================================================
 public class HabitoSteps {
 
-    private HabitoService habitoService;
-    private RepositorioHabito repositorioHabito;
-    private Usuario usuario;
-    private Exception excecaoLancada;
+    public HabitoService habitoService;
+    public RepositorioHabito repositorioHabito;
+    public Usuario usuario;
+    public Exception excecaoLancada;
 
     // Construtor: Inicializa o Service e o Repositório Mock
     public HabitoSteps() {
@@ -217,4 +217,5 @@ public class HabitoSteps {
                 .stream().map(Habito::getNome).toList();
         assertTrue(nomesDosHabitos.containsAll(List.of(habito1, habito2)));
     }
+
 }
