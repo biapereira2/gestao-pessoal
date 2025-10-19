@@ -5,27 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6cc68680-f0f7-4192-ab10-5a041d3a3d41" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/CheckInService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/CheckInSteps.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/resources/features/checkin_diario.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dominio-habito/src/main/java/gestao/pessoal/habito/CheckIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dominio-habito/src/main/java/gestao/pessoal/habito/RepositorioCheckIn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/ProgressoUsuarioService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/resources/features/pontos_niveis.feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dominio-engajamento/src/main/java/gestao/pessoal/engajamento/ProgressoUsuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dominio-engajamento/src/main/java/gestao/pessoal/engajamento/RepositorioProgressoUsuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aplicacao/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/HabitoSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/HabitoSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/aplicacao-1.0.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/HabitoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/HabitoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/surefire-reports/TEST-gestao.pessoal.aplicacao.CucumberRunnerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/surefire-reports/TEST-gestao.pessoal.aplicacao.CucumberRunnerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/surefire-reports/gestao.pessoal.aplicacao.CucumberRunnerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/surefire-reports/gestao.pessoal.aplicacao.CucumberRunnerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CheckInSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CheckInSteps.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/dominio-compartilhado-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-compartilhado/target/dominio-compartilhado-1.0.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-compartilhado/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-compartilhado/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-compartilhado/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dominio-engajamento/target/dominio-engajamento-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-engajamento/target/dominio-engajamento-1.0.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-engajamento/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-engajamento/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-engajamento/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-engajamento/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dominio-habito/target/dominio-habito-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/dominio-habito-1.0.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-habito/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dominio-relatorio/target/dominio-relatorio-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-relatorio/target/dominio-relatorio-1.0.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-relatorio/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-relatorio/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-relatorio/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-relatorio/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pai/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pai/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +47,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;hugorocha05&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/biapereira2/gestao-pessoal.git&quot;,
+    &quot;accountId&quot;: &quot;c1bfcd3a-2105-46d0-9151-d15ecf599acb&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -54,26 +70,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TesteConexao.executor&quot;: &quot;Run&quot;,
-    &quot;Application.com.exemplo.app.Main (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.com.exemplo.app.Main.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CucumberRunnerTest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/biaac/OneDrive/Área de Trabalho/Faculdade/5 periodo/projeto_requisito-main/projeto_requisito-main&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Main.executor": "Run",
+    "Application.TesteConexao.executor": "Run",
+    "Application.com.exemplo.app.Main (1).executor": "Run",
+    "Application.com.exemplo.app.Main.executor": "Run",
+    "Cucumber Java.Scenario: Ganhar pontos ao realizar um check-in.executor": "Debug",
+    "JUnit.CucumberRunnerTest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/biaac/OneDrive/Área de Trabalho/Faculdade/5 periodo/projeto_requisito-main/projeto_requisito-main",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ygor1\OneDrive\Documentos\GitHub\gestao-pessoal\dominio-compartilhado" />
@@ -106,8 +124,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.exemplo.app" />
+    <configuration name="com.exemplo.app.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.exemplo.app.Main" />
       <module name="app" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
       <extension name="coverage">
@@ -120,13 +138,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="com.exemplo.app.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.exemplo.app.Main" />
-      <module name="app" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+    <configuration name="Scenario: Ganhar pontos ao realizar um check-in" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="7" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/aplicacao/src/test/resources/features/pontos_niveis.feature" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="aplicacao" />
+      <option name="NAME_FILTER" value="^Ganhar pontos ao realizar um check\-in$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin teamcity --name &quot;^Ganhar pontos ao realizar um check\-in$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Ganhar pontos ao realizar um check-in" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.exemplo.app.*" />
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -231,17 +254,17 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.TesteConexao" />
-      <item itemvalue="Application.app" />
       <item itemvalue="Application.com.exemplo.app.Main" />
+      <item itemvalue="Cucumber Java.Scenario: Ganhar pontos ao realizar um check-in" />
       <item itemvalue="JUnit.CucumberRunnerTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.CucumberRunnerTest" />
+        <item itemvalue="Cucumber Java.Scenario: Ganhar pontos ao realizar um check-in" />
         <item itemvalue="Application.com.exemplo.app.Main" />
         <item itemvalue="Application.TesteConexao" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.app" />
       </list>
     </recent_temporary>
   </component>

@@ -29,6 +29,18 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>gestao-pessoal</groupId>
+                <artifactId>dominio-engajamento</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>gestao-pessoal</groupId>
+                <artifactId>dominio-relatorio</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <!-- Dependências de teste -->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
