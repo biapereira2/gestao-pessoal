@@ -12,7 +12,7 @@ public class MetaRepositorioEmMemoria implements RepositorioMeta {
 
     @Override
     public void salvar(Meta meta) {
-        metas.put(meta.getId(), meta);
+        metas.put(meta.getId(), meta); // adiciona ou substitui a meta
     }
 
     @Override
@@ -21,14 +21,14 @@ public class MetaRepositorioEmMemoria implements RepositorioMeta {
     }
 
     @Override
-    public List<Meta> listarTodasPorUsuario(UUID usuarioId) {
+    public List<Meta> listarPorUsuario(UUID usuarioId) {
         return metas.values().stream()
-                .filter(meta -> meta.getUsuarioId().equals(usuarioId))
+                .filter(m -> m.getUsuarioId().equals(usuarioId))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public void excluir(UUID metaId) {
+    public void remover(UUID metaId) {
         metas.remove(metaId);
     }
 }

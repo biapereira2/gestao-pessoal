@@ -1,6 +1,7 @@
 package gestao.pessoal.habito;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 public class Meta {
@@ -9,11 +10,9 @@ public class Meta {
 
     private final UUID id;
     private final UUID usuarioId;
-    private final UUID habitoId;
-    private Tipo tipo;
-    private String descricao;
+    private final Tipo tipo;
+    private final String descricao;
     private LocalDate prazo;
-    private boolean concluida;
     private int quantidade;
     private int habitosCompletos;
     private boolean alertaProximoFalha;
@@ -28,25 +27,18 @@ public class Meta {
         if (tipo == null) {
             throw new IllegalArgumentException("tipo inválido");
         }
+        if (usuarioId == null) {
+            throw new IllegalArgumentException("Usuário inválido.");
+        }
 
         this.id = UUID.randomUUID();
         this.usuarioId = usuarioId;
-        this.habitoId = habitoId;
         this.tipo = tipo;
         this.descricao = descricao;
         this.prazo = LocalDate.now().plusDays(tipo == Tipo.SEMANAL ? 7 : tipo == Tipo.MENSAL ? 30 : 1);
-        this.concluida = false;
         this.quantidade = quantidade;
         this.habitosCompletos = 0;
         this.alertaProximoFalha = false;
-    }
-
-    // --- Métodos de negócio ---
-    public void concluir() {
-        if (this.concluida) {
-            throw new IllegalStateException("A meta já foi concluída.");
-        }
-        this.concluida = true;
     }
 
     public void atualizarQuantidade(int novaQuantidade) {
@@ -59,34 +51,30 @@ public class Meta {
     public void dispararAlertaSeNecessario() {
         double percentual = (double) habitosCompletos / quantidade;
 
+        boolean pertoDoPrazo = false;
+        if (prazo != null) {
+            long diasRestantes = ChronoUnit.DAYS.between(LocalDate.now(), prazo);
+            pertoDoPrazo = diasRestantes <= 2; // alerta se estiver a 2 dias ou menos do prazo
+        }
+
         switch (tipo) {
             case SEMANAL:
-                alertaProximoFalha = percentual < 0.5; // alerta se menos de 50% completado
+                alertaProximoFalha = percentual < 0.5 || pertoDoPrazo;
                 break;
             case MENSAL:
-                alertaProximoFalha = percentual < 0.25; // alerta se menos de 25% completado
+                alertaProximoFalha = percentual < 0.25 || pertoDoPrazo;
                 break;
             default:
                 alertaProximoFalha = false;
         }
     }
 
-    public boolean estaPertoDeFalhar() {
-        return alertaProximoFalha;
-    }
-
     // --- Getters e Setters ---
     public UUID getId() { return id; }
     public UUID getUsuarioId() { return usuarioId; }
-    public UUID getHabitoId() { return habitoId; }
-    public Tipo getTipo() { return tipo; }
     public String getDescricao() { return descricao; }
-    public LocalDate getPrazo() { return prazo; }
-    public boolean isConcluida() { return concluida; }
     public int getQuantidade() { return quantidade; }
-    public int getHabitosCompletos() { return habitosCompletos; }
     public void setHabitosCompletos(int habitosCompletos) { this.habitosCompletos = habitosCompletos; }
     public boolean isAlertaProximoFalha() { return alertaProximoFalha; }
     public void setPrazo(LocalDate prazo) { this.prazo = prazo; }
-
 }
