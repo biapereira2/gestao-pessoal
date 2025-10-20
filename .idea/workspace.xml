@@ -5,6 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6cc68680-f0f7-4192-ab10-5a041d3a3d41" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/MetaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/MetaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/MetaSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/MetaSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/resources/features/meta.feature" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/resources/features/meta.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/MetaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/MetaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/features/meta.feature" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/features/meta.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/MetaSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/MetaSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/src/main/java/gestao/pessoal/habito/Meta.java" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/src/main/java/gestao/pessoal/habito/Meta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/classes/gestao/pessoal/habito/Meta.class" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/classes/gestao/pessoal/habito/Meta.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/ProgressoUsuarioService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/aplicacao/src/test/resources/features/pontos_niveis.feature" afterDir="false" />
@@ -39,14 +48,26 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "nandaord"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/biapereira2/gestao-pessoal.git",
+    "accountId": "715451e6-0aad-4f07-8a6a-5f819460760a"
+  }
+}]]></component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
@@ -82,7 +103,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "branchNanda",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/biaac/OneDrive/Área de Trabalho/Faculdade/5 periodo/projeto_requisito-main/projeto_requisito-main",
@@ -279,12 +300,27 @@
     </task>
     <servers />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.feature" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="branchNanda" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
