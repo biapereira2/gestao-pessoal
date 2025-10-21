@@ -5,31 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6cc68680-f0f7-4192-ab10-5a041d3a3d41" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/ProgressoUsuarioService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/resources/features/pontos_niveis.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dominio-engajamento/src/main/java/gestao/pessoal/engajamento/ProgressoUsuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dominio-engajamento/src/main/java/gestao/pessoal/engajamento/RepositorioProgressoUsuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/CheckInService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/CheckInService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/HabitoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/HabitoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/surefire-reports/TEST-gestao.pessoal.aplicacao.CucumberRunnerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/surefire-reports/TEST-gestao.pessoal.aplicacao.CucumberRunnerTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/surefire-reports/gestao.pessoal.aplicacao.CucumberRunnerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/surefire-reports/gestao.pessoal.aplicacao.CucumberRunnerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/UsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/UsuarioService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CheckInSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CheckInSteps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/dominio-compartilhado-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-compartilhado/target/dominio-compartilhado-1.0.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-compartilhado/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-compartilhado/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-engajamento/target/dominio-engajamento-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-engajamento/target/dominio-engajamento-1.0.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-engajamento/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-engajamento/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-habito/target/dominio-habito-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/dominio-habito-1.0.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-relatorio/target/dominio-relatorio-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-relatorio/target/dominio-relatorio-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CucumberRunnerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CucumberRunnerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioCheckIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioCheckIn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioHabito.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioHabito.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/HabitoSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/HabitoSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/UsuarioSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/UsuarioSteps.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -279,12 +265,27 @@
     </task>
     <servers />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.feature" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="branchNanda" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
