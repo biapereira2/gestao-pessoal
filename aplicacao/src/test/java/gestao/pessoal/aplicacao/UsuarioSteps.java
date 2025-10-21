@@ -39,6 +39,10 @@ class FakeRepositorioUsuario implements RepositorioUsuario {
     }
 
     public Map<String, Usuario> getUsuarios() { return usuarios; }
+
+    public void limpar() {
+        usuarios.clear();
+    }
 }
 
 

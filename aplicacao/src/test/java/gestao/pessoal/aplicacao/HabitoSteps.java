@@ -47,6 +47,10 @@ class FakeRepositorioHabito implements RepositorioHabito {
     public void excluir(UUID habitoId) {
         habitos.remove(habitoId);
     }
+
+    public void limpar() {
+        this.habitos.clear();
+    }
 }
 
 
