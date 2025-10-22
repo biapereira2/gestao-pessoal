@@ -4,32 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a113947-1141-47e5-88fa-3ed2684bad2e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/BadgesService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/BadgesSteps.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeProgressoUsuarioService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioMeta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioUsuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/resources/features/badges.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dominio-engajamento/src/main/java/gestao/pessoal/engajamento/Badges.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dominio-engajamento/src/main/java/gestao/pessoal/engajamento/RepositorioBadges.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="7a113947-1141-47e5-88fa-3ed2684bad2e" name="Changes" comment="Funcionalidade de Badges e reorganização de FakeRepositorios e FakeService">
+      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioCheckIn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioHabito.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/CheckInSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/CheckInSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/MetaSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/MetaSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/UsuarioSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/UsuarioSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/RotinaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/RotinaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/HabitoSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/HabitoSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CheckInSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CheckInSteps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeProgressoUsuarioService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeProgressoUsuarioService$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeProgressoUsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeProgressoUsuarioService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioMeta.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioMeta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioRotina.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioRotina.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioUsuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/MetaSteps$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/MetaSteps$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/MetaSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/MetaSteps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/UsuarioSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/UsuarioSteps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-habito/src/main/java/gestao/pessoal/habito/Meta.java" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/src/main/java/gestao/pessoal/habito/Meta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-habito/target/classes/gestao/pessoal/habito/Meta.class" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/classes/gestao/pessoal/habito/Meta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioCheckIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioCheckIn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioHabito.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioHabito.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioProgressoUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioProgressoUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/HabitoSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/HabitoSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +107,15 @@
       <option name="presentableId" value="Default" />
       <updated>1761159664651</updated>
     </task>
+    <task id="LOCAL-00001" summary="Funcionalidade de Badges e reorganização de FakeRepositorios e FakeService">
+      <option name="closed" value="true" />
+      <created>1761165263860</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1761165263860</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -132,5 +128,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Funcionalidade de Badges e reorganização de FakeRepositorios e FakeService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidade de Badges e reorganização de FakeRepositorios e FakeService" />
   </component>
 </project>
