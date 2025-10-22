@@ -1,7 +1,14 @@
 gestao\pessoal\aplicacao\FakeRepositorioCheckIn.class
+gestao\pessoal\aplicacao\FakeRepositorioProgressoUsuario.class
+gestao\pessoal\aplicacao\MetaSteps$1.class
 gestao\pessoal\aplicacao\HabitoSteps.class
+gestao\pessoal\aplicacao\FakeRepositorioMeta.class
 gestao\pessoal\aplicacao\CheckInSteps.class
 gestao\pessoal\aplicacao\FakeRepositorioHabito.class
+gestao\pessoal\aplicacao\FakeProgressoUsuarioService$1.class
 gestao\pessoal\aplicacao\CucumberRunnerTest.class
 gestao\pessoal\aplicacao\UsuarioSteps.class
+gestao\pessoal\aplicacao\MetaSteps.class
+gestao\pessoal\aplicacao\FakeProgressoUsuarioService.class
+gestao\pessoal\aplicacao\ProgressoUsuarioSteps.class
 gestao\pessoal\aplicacao\FakeRepositorioUsuario.class

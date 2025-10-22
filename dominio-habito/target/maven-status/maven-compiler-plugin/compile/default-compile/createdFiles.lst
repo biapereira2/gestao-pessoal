@@ -1,4 +1,8 @@
+gestao\pessoal\habito\Meta.class
 gestao\pessoal\habito\RepositorioHabito.class
 gestao\pessoal\habito\Habito.class
 gestao\pessoal\habito\CheckIn.class
+gestao\pessoal\habito\Meta$Tipo.class
 gestao\pessoal\habito\RepositorioCheckIn.class
+gestao\pessoal\habito\Meta$1.class
+gestao\pessoal\habito\RepositorioMeta.class

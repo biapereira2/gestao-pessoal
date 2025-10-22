@@ -1,4 +1,18 @@
 -------------------------------------------------------------------------------
 Test set: gestao.pessoal.aplicacao.CucumberRunnerTest
 -------------------------------------------------------------------------------
-Tests run: 29, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.759 s -- in gestao.pessoal.aplicacao.CucumberRunnerTest
+Tests run: 32, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.430 s <<< FAILURE! -- in gestao.pessoal.aplicacao.CucumberRunnerTest
+Gerenciamento de Metas Semanais e Mensais.Atualizar meta existente -- Time elapsed: 0.007 s <<< ERROR!
+java.lang.IllegalArgumentException: Frequência inválida: Frequência 1
+	at gestao.pessoal.habito.Habito.definirPontosPorFrequencia(Habito.java:42)
+	at gestao.pessoal.habito.Habito.<init>(Habito.java:25)
+	at gestao.pessoal.aplicacao.MetaSteps.eu_ja_possuo_uma_meta_semanal_de_habitos_cadastrada(MetaSteps.java:114)
+	at ✽.eu já possuo uma meta semanal de 3 hábitos cadastrada(classpath:features/meta.feature:25)
+
+Gerenciamento de Metas Semanais e Mensais.Excluir meta existente -- Time elapsed: 0 s <<< ERROR!
+java.lang.IllegalArgumentException: Frequência inválida: Frequência 1
+	at gestao.pessoal.habito.Habito.definirPontosPorFrequencia(Habito.java:42)
+	at gestao.pessoal.habito.Habito.<init>(Habito.java:25)
+	at gestao.pessoal.aplicacao.MetaSteps.eu_ja_possuo_uma_meta_semanal_de_habitos_cadastrada(MetaSteps.java:114)
+	at ✽.eu já possuo uma meta semanal de 4 hábitos cadastrada(classpath:features/meta.feature:32)
+

@@ -25,16 +25,15 @@ public class HabitoService {
         return novoHabito;
     }
 
-    public void atualizar(UUID habitoId, String novoNome, String novaDescricao, String novaCategoria) {
+    public void atualizar(UUID habitoId, String novoNome, String novaDescricao, String novaCategoria, String novaFrequencia) {
         Habito habito = repositorioHabito.buscarPorId(habitoId)
                 .orElseThrow(() -> new IllegalArgumentException("Hábito com ID " + habitoId + " não encontrado."));
 
-        habito.atualizar(novoNome, novaDescricao, novaCategoria);
+        habito.atualizar(novoNome, novaDescricao, novaCategoria, novaFrequencia);
         repositorioHabito.salvar(habito);
     }
 
     public List<Habito> listarPorUsuario(UUID usuarioId) {
-        // A conversão para DTO foi removida. O método ficou mais simples.
         return repositorioHabito.listarTodosPorUsuario(usuarioId);
     }
 
