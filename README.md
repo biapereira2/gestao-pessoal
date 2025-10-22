@@ -52,5 +52,5 @@ Ajudar o usuário a estabelecer hábitos consistentes, monitorar seu progresso e
 - [**Cenários de testes BDD**](https://docs.google.com/document/d/1wMd8lLSDe-dSkIkIKiURhsDlfgXnIeM2-AU42b_FcYE/edit?tab=t.0)
 - [**Protótipos da aplicação**](https://www.figma.com/design/NsABiAr6smo0L9mt6IJpGX/Gest%C3%A3o-Pessoal?node-id=0-1&p=f&t=PWIvPsOrWAbbfYok-0)
 - [**Mapa de Histórias do Usuário**](https://miro.com/app/board/uXjVJ3Da9sc=/)
-- [**Apresentação**]
+- [**Apresentação**](https://www.canva.com/design/DAG2dv_n_5U/Rqv4LQzW95dG1jT1BUU1_Q/edit?utm_content=DAG2dv_n_5U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 - [**Diagrama no Context Mapper**]
