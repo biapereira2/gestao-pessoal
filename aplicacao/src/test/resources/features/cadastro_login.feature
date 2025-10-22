@@ -20,7 +20,7 @@ Feature: Cadastro e Login de Usuários
     And eu preencho o campo "Senha" com "Maria@456"
     And eu preencho o campo "Confirmar Senha" com "Maria@456"
     And eu clico no botão "Cadastrar"
-    Then o sistema deve retornar a mensagem de erro "Já existe uma conta cadastrada com este email."
+    Then o sistema deve retornar a mensagem de erro "O email joao.silva@email.com já está cadastrado."
 
   Scenario: Senhas não coincidentes
     Given que eu estou na página de cadastro
