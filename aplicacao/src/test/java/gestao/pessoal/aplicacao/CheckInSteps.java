@@ -71,18 +71,11 @@ class FakeRepositorioCheckIn implements RepositorioCheckIn {
     }
 }
 
-
-// =================================================================
-// STEPS DEFINITION (MAPEAMENTO DO GHERKIN)
-// Contém APENAS passos relacionados à lógica de Check-In
-// =================================================================
 public class CheckInSteps {
 
     private final FakeRepositorioCheckIn fakeRepositorioCheckIn;
     private final CheckInService checkInService;
     private static CheckInSteps instanciaAtual;
-
-    // Dependência injetada: Requer que HabitoSteps tenha campos públicos para acesso
     private final HabitoSteps habitoSteps;
 
     private Throwable excecaoCapturada;
@@ -108,10 +101,6 @@ public class CheckInSteps {
     }
 
 
-    // =======================================================
-    // MÉTODOS AUXILIARES
-    // =======================================================
-
     private UUID buscarHabitoIdPorNome(String nomeHabito) {
         // Acessa o repositório de Hábito do HabitoSteps para encontrar o ID
         return habitoSteps.repositorioHabito.listarTodosPorUsuario(habitoSteps.usuario.getId()).stream()
@@ -125,13 +114,6 @@ public class CheckInSteps {
         return LocalDate.parse(dataStr, FORMATTER);
     }
 
-    // =======================================================
-    // DEFINIÇÕES DOS STEPS (GIVEN/AND) - CheckIn Específicos
-    // =======================================================
-
-    // PASSO "que sou um usuário autenticado" REMOVIDO: ESTÁ EM HabitoSteps.java
-
-    // PASSO "existe um hábito chamado {string} cadastrado" REMOVIDO: ESTÁ IMPLÍCITO NO HabitoSteps.java (se o passo for "E")
 
     @And("que o dia atual é {string}")
     public void que_o_dia_atual_e(String dataStr) {
@@ -146,7 +128,7 @@ public class CheckInSteps {
         try {
             checkInService.marcarCheckIn(habitoSteps.usuario.getId(), habitoId, data);
         } catch (Exception e) {
-            // Ignora se for duplicado
+
         }
     }
 
@@ -154,25 +136,17 @@ public class CheckInSteps {
     public void o_habito_tem_checkins_registrados(String nomeHabito, String diasStr) {
         UUID habitoId = buscarHabitoIdPorNome(nomeHabito);
 
-        // Divide por vírgula
         Stream.of(diasStr.split(","))
-                .map(String::trim)       // remove espaços antes/depois de cada data
+                .map(String::trim)
                 .forEach(dataStr -> {
-                    LocalDate data = parseData(dataStr);  // agora dataStr = "01/11/2025", etc
+                    LocalDate data = parseData(dataStr);
                     try {
                         checkInService.marcarCheckIn(habitoSteps.usuario.getId(), habitoId, data);
                     } catch (Exception e) {
-                        // ignora duplicidade
                     }
                 });
     }
 
-
-
-
-    // =======================================================
-    // DEFINIÇÕES DOS STEPS (WHEN) - CheckIn Específicos
-    // =======================================================
 
     @When("eu clico no botão {string} para o hábito {string} no dia {string}")
     public void eu_clico_no_botao_para_o_habito(String acao, String nomeHabito, String dataStr) {
@@ -196,10 +170,7 @@ public class CheckInSteps {
         UUID habitoId = buscarHabitoIdPorNome(nomeHabito);
 
         try {
-            // 1. Lista todos os check-ins do hábito (sem filtro de data)
             checkinsListados = checkInService.listarCheckInsPorHabito(habitoSteps.usuario.getId(), habitoId);
-
-            // 2. Simula a filtragem pelo período de calendário
             LocalDate dataInicial = parseData(dataInicialStr);
             LocalDate dataFinal = parseData(dataFinalStr);
             checkinsListados = checkinsListados.stream()
@@ -211,10 +182,6 @@ public class CheckInSteps {
         }
     }
 
-
-    // =======================================================
-    // VERIFICAÇÕES (THEN/AND) - CheckIn Específicos
-    // =======================================================
 
     @Then("o check-in deve ser registrado com sucesso para o hábito {string} no dia {string}")
     public void o_check_in_deve_ser_registrado_com_sucesso(String nomeHabito, String dataStr) {
@@ -257,6 +224,4 @@ public class CheckInSteps {
                 "A mensagem de erro esperada era 'check-in para este hábito já foi registrado', mas foi '" + e.getMessage() + "'");
     }
 
-
-    // PASSO "eu devo receber um erro informando que {string}" REMOVIDO: ESTÁ EM HabitoSteps.java
 }

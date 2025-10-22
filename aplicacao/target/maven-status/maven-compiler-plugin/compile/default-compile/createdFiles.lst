@@ -1,4 +1,6 @@
 gestao\pessoal\aplicacao\CheckInService.class
+gestao\pessoal\aplicacao\AmigoDTO.class
+gestao\pessoal\aplicacao\AmizadeService.class
 gestao\pessoal\aplicacao\ProgressoUsuarioService.class
 gestao\pessoal\aplicacao\HabitoService.class
 gestao\pessoal\aplicacao\MetaService.class
