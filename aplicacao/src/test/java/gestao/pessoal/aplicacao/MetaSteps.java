@@ -118,7 +118,7 @@ public class MetaSteps {
         }
 
         MetaService metaService = criarMetaServiceComUsuarioMock();
-        metaService.criar(usuario.getId(), habitosIds, Meta.Tipo.SEMANAL, "Meta semanal");
+        metaService.criar(usuario.getId(), habitosIds, Meta.Tipo.SEMANAL, "Exemplo de Meta semanal");
     }
 
 
@@ -136,20 +136,20 @@ public class MetaSteps {
         }
 
         MetaService metaService = criarMetaServiceComUsuarioMock();
-        metaService.criar(usuario.getId(), habitosIds, Meta.Tipo.MENSAL, "Meta mensal");
+        metaService.criar(usuario.getId(), habitosIds, Meta.Tipo.MENSAL, "Exemplo de Meta mensal");
     }
 
 
     @Dado("eu possuo uma meta semanal de {int} hábitos")
     public void eu_possuo_uma_meta_semanal_de_habitos(Integer quantidade) {
         garantirUsuario();
-        criarMetaComHabitos(quantidade, Meta.Tipo.SEMANAL, "Meta semanal");
+        criarMetaComHabitos(quantidade, Meta.Tipo.SEMANAL, "Exemplo de Meta semanal");
     }
 
     @Dado("eu possuo uma meta mensal de {int} hábitos")
     public void eu_possuo_uma_meta_mensal_de_habitos(Integer quantidade) {
         garantirUsuario();
-        criarMetaComHabitos(quantidade, Meta.Tipo.MENSAL, "Meta mensal");
+        criarMetaComHabitos(quantidade, Meta.Tipo.MENSAL, "Exemplo de Meta mensal");
     }
 
     private void criarMetaComHabitos(int quantidade, Meta.Tipo tipo, String descricao) {
@@ -271,7 +271,6 @@ public class MetaSteps {
     @Entao("devo receber um alerta informando que estou perto de não cumprir a meta")
     public void devo_receber_um_alerta_informando_que_estou_perto_de_não_cumprir_a_meta() {
         List<Meta> metas = repositorioMeta.listarPorUsuario(usuario.getId());
-        metas.forEach(Meta::dispararAlertaSeNecessario);
         boolean alertaAtivo = metas.stream().anyMatch(Meta::isAlertaProximoFalha);
         assertTrue(alertaAtivo, "Esperava receber um alerta de que a meta está perto de não ser cumprida.");
     }
