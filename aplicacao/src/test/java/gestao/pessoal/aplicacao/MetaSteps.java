@@ -112,7 +112,7 @@ public class MetaSteps {
 
         for (int i = 0; i < quantidade; i++) {
             Habito habito = new Habito(usuario.getId(), "Hábito " + (i + 1), "Descrição " + (i + 1),
-                    "Categoria " + (i + 1), "Frequência " + (i + 1));
+                    "Categoria " + (i + 1), "Diaria");
             repositorioHabito.salvar(habito);
             habitosIds.add(habito.getId());
         }
@@ -130,7 +130,7 @@ public class MetaSteps {
 
         for (int i = 0; i < quantidade; i++) {
             Habito habito = new Habito(usuario.getId(), "Hábito " + (i + 1), "Descrição " + (i + 1),
-                    "Categoria " + (i + 1), "Frequência " + (i + 1));
+                    "Categoria " + (i + 1), "Diaria");
             repositorioHabito.salvar(habito);
             habitosIds.add(habito.getId());
         }
@@ -157,7 +157,7 @@ public class MetaSteps {
         List<UUID> habitosIds = new ArrayList<>();
 
         for (int i = 0; i < quantidade; i++) {
-            Habito habito = new Habito(usuario.getId(), "Hábito " + (i + 1), "Descrição", "Categoria", "Diária");
+            Habito habito = new Habito(usuario.getId(), "Hábito " + (i + 1), "Descrição", "Categoria", "Diaria");
             repositorioHabito.salvar(habito);
             habitosIds.add(habito.getId());
         }
@@ -195,7 +195,7 @@ public class MetaSteps {
             garantirUsuario();
 
             List<UUID> habitosIds = new ArrayList<>();
-            Habito habito = new Habito(usuario.getId(), "Hábito Teste", "Descrição", "Categoria", "Diária");
+            Habito habito = new Habito(usuario.getId(), "Hábito Teste", "Descrição", "Categoria", "Diaria");
             repositorioHabito.salvar(habito);
             habitosIds.add(habito.getId());
 

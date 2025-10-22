@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="6cc68680-f0f7-4192-ab10-5a041d3a3d41" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/RotinaService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/RotinaSteps.java" afterDir="false" />
@@ -32,6 +33,17 @@
       <change beforePath="$PROJECT_DIR$/dominio-habito/target/dominio-habito-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/dominio-habito-1.0.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dominio-relatorio/target/dominio-relatorio-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-relatorio/target/dominio-relatorio-1.0.0-SNAPSHOT.jar" afterDir="false" />
+=======
+    <list default="true" id="6cc68680-f0f7-4192-ab10-5a041d3a3d41" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;aplicacao/src/test/java/gestao/pessoal/aplicacao/HabitoSteps.java&#10;#&#9;aplicacao/target/aplicacao-1.0.0-SNAPSHOT.jar&#10;#&#9;aplicacao/target/classes/gestao/pessoal/aplicacao/HabitoService.class&#10;#&#9;aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst&#10;#&#9;aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst&#10;#&#9;aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst&#10;#&#9;aplicacao/target/surefire-reports/TEST-gestao.pessoal.aplicacao.CucumberRunnerTest.xml&#10;#&#9;aplicacao/target/surefire-reports/gestao.pessoal.aplicacao.CucumberRunnerTest.txt&#10;#&#9;aplicacao/target/test-classes/gestao/pessoal/aplicacao/HabitoSteps.class&#10;#&#9;dominio-compartilhado/target/dominio-compartilhado-1.0.0-SNAPSHOT.jar&#10;#&#9;dominio-engajamento/target/dominio-engajamento-1.0.0-SNAPSHOT.jar&#10;#&#9;dominio-engajamento/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst&#10;#&#9;dominio-habito/target/dominio-habito-1.0.0-SNAPSHOT.jar&#10;#&#9;dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst&#10;#&#9;dominio-relatorio/target/dominio-relatorio-1.0.0-SNAPSHOT.jar">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/AmizadeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/AmizadeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/HabitoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/HabitoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/MetaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/MetaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioHabito.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioHabito.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/MetaSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/MetaSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/classes/gestao/pessoal/habito/Meta$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/classes/gestao/pessoal/habito/Meta$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/classes/gestao/pessoal/habito/Meta.class" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/classes/gestao/pessoal/habito/Meta.class" afterDir="false" />
+>>>>>>> 912ea1e366638f5455e191a94cfd9a8dae85b0c3
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +53,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -61,6 +73,9 @@
     &quot;accountId&quot;: &quot;c1bfcd3a-2105-46d0-9151-d15ecf599acb&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -79,6 +94,14 @@
     &quot;Application.TesteConexao.executor&quot;: &quot;Run&quot;,
     &quot;Application.com.exemplo.app.Main (1).executor&quot;: &quot;Run&quot;,
     &quot;Application.com.exemplo.app.Main.executor&quot;: &quot;Run&quot;,
+<<<<<<< HEAD
+=======
+    &quot;Cucumber Java.Feature: checkin_diario.executor&quot;: &quot;Run&quot;,
+    &quot;Cucumber Java.Feature: gerenciar_habitos.executor&quot;: &quot;Run&quot;,
+    &quot;Cucumber Java.Feature: pontos_niveis.executor&quot;: &quot;Run&quot;,
+    &quot;Cucumber Java.Scenario: 1. Marcar hábito como feito com sucesso (Dia Atual).executor&quot;: &quot;Run&quot;,
+    &quot;Cucumber Java.Scenario: Criação de um novo hábito com sucesso.executor&quot;: &quot;Run&quot;,
+>>>>>>> 912ea1e366638f5455e191a94cfd9a8dae85b0c3
     &quot;Cucumber Java.Scenario: Ganhar pontos ao realizar um check-in.executor&quot;: &quot;Debug&quot;,
     &quot;JUnit.CucumberRunnerTest.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -87,7 +110,11 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+<<<<<<< HEAD
     &quot;last_opened_file_path&quot;: &quot;C:/Users/biaac/OneDrive/Área de Trabalho/Faculdade/5 periodo/gestao-pessoal&quot;,
+=======
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/biaac/OneDrive/Área de Trabalho/Faculdade/5 periodo/projeto_requisito-main/projeto_requisito-main&quot;,
+>>>>>>> 912ea1e366638f5455e191a94cfd9a8dae85b0c3
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -100,12 +127,26 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.CucumberRunnerTest">
+<<<<<<< HEAD
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.exemplo.app.Main" />
       <module name="gestao-pessoal" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="src.main.java.com.exemplo.app.*" />
+=======
+    <configuration name="Feature: checkin_diario" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="7" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/aplicacao/src/test/resources/features/checkin_diario.feature" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="aplicacao" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin teamcity" />
+      <option name="SUGGESTED_NAME" value="Feature: checkin_diario" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+>>>>>>> 912ea1e366638f5455e191a94cfd9a8dae85b0c3
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -113,12 +154,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration name="TesteConexao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.exemplo.db.TesteConexao" />
       <module name="persistencia" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.exemplo.db.*" />
+=======
+    <configuration name="Feature: gerenciar_habitos" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="7" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/aplicacao/src/test/resources/features/gerenciar_habitos.feature" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="aplicacao" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin teamcity" />
+      <option name="SUGGESTED_NAME" value="Feature: gerenciar_habitos" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+>>>>>>> 912ea1e366638f5455e191a94cfd9a8dae85b0c3
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -126,6 +181,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration name="com.exemplo.app.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.exemplo.app.Main" />
       <module name="app" />
@@ -141,13 +197,40 @@
       </method>
     </configuration>
     <configuration name="Scenario: Ganhar pontos ao realizar um check-in" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="Feature: pontos_niveis" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+>>>>>>> 912ea1e366638f5455e191a94cfd9a8dae85b0c3
       <option name="CUCUMBER_CORE_VERSION" value="7" />
       <option name="FILE_PATH" value="$PROJECT_DIR$/aplicacao/src/test/resources/features/pontos_niveis.feature" />
       <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="aplicacao" />
+<<<<<<< HEAD
       <option name="NAME_FILTER" value="^Ganhar pontos ao realizar um check\-in$" />
       <option name="PROGRAM_PARAMETERS" value=" --plugin teamcity --name &quot;^Ganhar pontos ao realizar um check\-in$&quot;" />
       <option name="SUGGESTED_NAME" value="Scenario: Ganhar pontos ao realizar um check-in" />
+=======
+      <option name="PROGRAM_PARAMETERS" value=" --plugin teamcity" />
+      <option name="SUGGESTED_NAME" value="Feature: pontos_niveis" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scenario: 1. Marcar hábito como feito com sucesso (Dia Atual)" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="7" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/aplicacao/src/test/resources/features/checkin_diario.feature" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="aplicacao" />
+      <option name="NAME_FILTER" value="^1\. Marcar hábito como feito com sucesso \(Dia Atual\)$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin teamcity --name &quot;^1\. Marcar hábito como feito com sucesso \(Dia Atual\)$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: 1. Marcar hábito como feito com sucesso (Dia Atual)" />
+>>>>>>> 912ea1e366638f5455e191a94cfd9a8dae85b0c3
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -254,19 +337,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.TesteConexao" />
-      <item itemvalue="Application.com.exemplo.app.Main" />
-      <item itemvalue="Cucumber Java.Scenario: Ganhar pontos ao realizar um check-in" />
+      <item itemvalue="Cucumber Java.Feature: checkin_diario" />
+      <item itemvalue="Cucumber Java.Feature: gerenciar_habitos" />
+      <item itemvalue="Cucumber Java.Feature: pontos_niveis" />
+      <item itemvalue="Cucumber Java.Scenario: 1. Marcar hábito como feito com sucesso (Dia Atual)" />
       <item itemvalue="JUnit.CucumberRunnerTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.CucumberRunnerTest" />
-        <item itemvalue="Cucumber Java.Scenario: Ganhar pontos ao realizar um check-in" />
-        <item itemvalue="Application.com.exemplo.app.Main" />
-        <item itemvalue="Application.TesteConexao" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Cucumber Java.Feature: pontos_niveis" />
+        <item itemvalue="Cucumber Java.Feature: checkin_diario" />
+        <item itemvalue="Cucumber Java.Scenario: 1. Marcar hábito como feito com sucesso (Dia Atual)" />
+        <item itemvalue="Cucumber Java.Feature: gerenciar_habitos" />
       </list>
     </recent_temporary>
   </component>
@@ -295,7 +378,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="branchNanda" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -306,5 +389,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Corrigindo integração Habito-CheckIn-ProgressoUsuario e corrigindo os testes para utilizar a integrção e services" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrigindo integração Habito-CheckIn-ProgressoUsuario e corrigindo os testes para utilizar a integrção e services" />
   </component>
 </project>

@@ -1,15 +1,15 @@
 package gestao.pessoal.aplicacao;
 
+import gestao.pessoal.engajamento.ProgressoUsuario;
+import gestao.pessoal.engajamento.RepositorioProgressoUsuario;
 import gestao.pessoal.habito.CheckIn;
 import gestao.pessoal.habito.Habito;
 import gestao.pessoal.habito.RepositorioCheckIn;
-
-// Imports das anotações em INGLÊS, conforme o arquivo .feature
+import io.cucumber.java.Before; // Importando o hook Before
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
-
+import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 
 import java.time.LocalDate;
@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 // =================================================================
-// IMPLEMENTAÇÃO MOCK (FAKE REPOSITÓRIO)
+// IMPLEMENTAÇÃO MOCK (FAKE REPOSITÓRIO CHECK-IN)
 // =================================================================
 class FakeRepositorioCheckIn implements RepositorioCheckIn {
 
@@ -71,11 +71,49 @@ class FakeRepositorioCheckIn implements RepositorioCheckIn {
     }
 }
 
+
+// =================================================================
+// IMPLEMENTAÇÃO MOCK (FAKE SERVICE PROGRESSO USUÁRIO - TEMPORÁRIO)
+// Usado para satisfazer a dependência no CheckInService.
+// =================================================================
+// OBSERVAÇÃO: Depende da existência da classe base ProgressoUsuarioService
+// e das interfaces RepositorioProgressoUsuario e ProgressoUsuario.
+class FakeProgressoUsuarioService extends ProgressoUsuarioService {
+
+    // Repositório Mínimo DUMMY para satisfazer o construtor da classe base
+    private static final RepositorioProgressoUsuario DUMMY_REPO = new RepositorioProgressoUsuario() {
+        @Override public void salvar(ProgressoUsuario progresso) {}
+        @Override public Optional<ProgressoUsuario> buscarPorUsuarioId(UUID usuarioId) { return Optional.empty(); }
+        @Override public boolean existeParaUsuario(UUID usuarioId) { return false; }
+    };
+
+    public FakeProgressoUsuarioService() {
+        super(DUMMY_REPO);
+    }
+
+    @Override
+    public void adicionarPontos(UUID usuarioId, int pontos, String motivo) {
+        // Simulação: Apenas aceita a chamada sem lançar erro.
+    }
+
+    @Override
+    public void removerPontos(UUID usuarioId, int pontos, String motivo) {
+        // Simulação: Apenas aceita a chamada sem lançar erro.
+    }
+}
+
+
+// =================================================================
+// STEPS DEFINITION (MAPEAMENTO DO GHERKIN)
+// =================================================================
 public class CheckInSteps {
 
     private final FakeRepositorioCheckIn fakeRepositorioCheckIn;
+    private final FakeProgressoUsuarioService fakeProgressoUsuarioService;
     private final CheckInService checkInService;
     private static CheckInSteps instanciaAtual;
+
+    // Dependência injetada (precisa do HabitoSteps para buscar hábitos e o usuário)
     private final HabitoSteps habitoSteps;
 
     private Throwable excecaoCapturada;
@@ -87,19 +125,44 @@ public class CheckInSteps {
         instanciaAtual = this;
         this.habitoSteps = habitoSteps;
         this.fakeRepositorioCheckIn = new FakeRepositorioCheckIn();
-        this.checkInService = new CheckInService(fakeRepositorioCheckIn);
+        this.fakeProgressoUsuarioService = new FakeProgressoUsuarioService();
 
+        // Satisfazendo as 3 dependências do CheckInService
+        this.checkInService = new CheckInService(
+                fakeRepositorioCheckIn,
+                habitoSteps.repositorioHabito, // Repositório de Hábito (acessado via HabitoSteps)
+                fakeProgressoUsuarioService   // Fake Service para o Progresso do Usuário
+        );
+    }
+
+    @Before
+    public void setupCenarioCheckIn() {
+        // Hook para resetar o estado antes de cada cenário de Check-In
         this.excecaoCapturada = null;
         this.checkinsListados = null;
         this.fakeRepositorioCheckIn.limpar();
+
+        // IMPORTANTE: Limpa o FakeRepositorioHabito para garantir que o GIVEN
+        // que_sou_um_usuario_autenticado não traga hábitos de cenários anteriores.
+        // Assumimos que o HabitoSteps.repositorioHabito é um FakeRepositorioHabito
+        if (habitoSteps.repositorioHabito instanceof FakeRepositorioHabito) {
+            ((FakeRepositorioHabito) habitoSteps.repositorioHabito).limpar();
+        }
+        // OBS: O usuário (habitoSteps.usuario) já deve ser resetado no @Before de HabitoSteps.
     }
+
     public Throwable getExcecaoCapturada() {
         return excecaoCapturada;
     }
+
     public static CheckInSteps getInstanciaAtual() {
         return instanciaAtual;
     }
 
+
+    // =======================================================
+    // MÉTODOS AUXILIARES
+    // =======================================================
 
     private UUID buscarHabitoIdPorNome(String nomeHabito) {
         // Acessa o repositório de Hábito do HabitoSteps para encontrar o ID
@@ -114,10 +177,13 @@ public class CheckInSteps {
         return LocalDate.parse(dataStr, FORMATTER);
     }
 
+    // =======================================================
+    // DEFINIÇÕES DOS STEPS (GIVEN/AND)
+    // =======================================================
 
     @And("que o dia atual é {string}")
     public void que_o_dia_atual_e(String dataStr) {
-        // Nada de código (apenas setup de cenário/variável)
+        // A data é usada implicitamente no WHEN/THEN
     }
 
     @And("o hábito {string} já está marcado como feito no dia {string}")
@@ -128,7 +194,7 @@ public class CheckInSteps {
         try {
             checkInService.marcarCheckIn(habitoSteps.usuario.getId(), habitoId, data);
         } catch (Exception e) {
-
+            // Ignora se for duplicado
         }
     }
 
@@ -136,6 +202,7 @@ public class CheckInSteps {
     public void o_habito_tem_checkins_registrados(String nomeHabito, String diasStr) {
         UUID habitoId = buscarHabitoIdPorNome(nomeHabito);
 
+        // Divide por vírgula e itera sobre as datas
         Stream.of(diasStr.split(","))
                 .map(String::trim)
                 .forEach(dataStr -> {
@@ -143,10 +210,14 @@ public class CheckInSteps {
                     try {
                         checkInService.marcarCheckIn(habitoSteps.usuario.getId(), habitoId, data);
                     } catch (Exception e) {
+                        // ignora duplicidade
                     }
                 });
     }
 
+    // =======================================================
+    // DEFINIÇÕES DOS STEPS (WHEN)
+    // =======================================================
 
     @When("eu clico no botão {string} para o hábito {string} no dia {string}")
     public void eu_clico_no_botao_para_o_habito(String acao, String nomeHabito, String dataStr) {
@@ -170,7 +241,10 @@ public class CheckInSteps {
         UUID habitoId = buscarHabitoIdPorNome(nomeHabito);
 
         try {
+            // 1. Lista todos os check-ins do hábito
             checkinsListados = checkInService.listarCheckInsPorHabito(habitoSteps.usuario.getId(), habitoId);
+
+            // 2. Simula a filtragem pelo período de calendário (Lógica da camada de aplicação/visualização)
             LocalDate dataInicial = parseData(dataInicialStr);
             LocalDate dataFinal = parseData(dataFinalStr);
             checkinsListados = checkinsListados.stream()
@@ -182,6 +256,10 @@ public class CheckInSteps {
         }
     }
 
+
+    // =======================================================
+    // VERIFICAÇÕES (THEN/AND)
+    // =======================================================
 
     @Then("o check-in deve ser registrado com sucesso para o hábito {string} no dia {string}")
     public void o_check_in_deve_ser_registrado_com_sucesso(String nomeHabito, String dataStr) {
@@ -215,6 +293,7 @@ public class CheckInSteps {
         assertNotNull(checkinsListados, "A lista de check-ins não foi gerada.");
         Assertions.assertEquals(quantidadeEsperada, checkinsListados.size(), "O número de check-ins listados está incorreto.");
     }
+
     @Then("eu devo receber um erro de check-in duplicado")
     public void eu_devo_receber_um_erro_de_checkin_duplicado() {
         Throwable e = CheckInSteps.getInstanciaAtual().getExcecaoCapturada();
@@ -223,5 +302,4 @@ public class CheckInSteps {
                         .contains("check-in para este hábito já foi registrado"),
                 "A mensagem de erro esperada era 'check-in para este hábito já foi registrado', mas foi '" + e.getMessage() + "'");
     }
-
 }

@@ -9,32 +9,61 @@ public class Habito {
     private String descricao;
     private String categoria;
     private String frequencia;
+    private int pontuacaoCheckin; // <-- novo atributo
 
     public Habito(UUID usuarioId, String nome, String descricao, String categoria, String frequencia) {
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("O nome do hábito não pode ser vazio.");
         }
+
         this.id = UUID.randomUUID();
         this.usuarioId = usuarioId;
         this.nome = nome;
         this.descricao = descricao;
         this.categoria = categoria;
         this.frequencia = frequencia;
+        this.pontuacaoCheckin = definirPontosPorFrequencia(frequencia); // <-- cálculo automático
     }
 
-    public void atualizar(String novoNome, String novaDescricao, String novaCategoria) {
+    private int definirPontosPorFrequencia(String frequencia) {
+        if (frequencia == null) {
+            throw new IllegalArgumentException("A frequência não pode ser nula.");
+        }
+
+        switch (frequencia.toLowerCase()) {
+            case "diaria":
+                return 10;
+            case "semanal":
+                return 100;
+            case "mensal":
+                return 500;
+            default:
+                throw new IllegalArgumentException("Frequência inválida: " + frequencia);
+        }
+    }
+
+    public void atualizar(String novoNome, String novaDescricao, String novaCategoria, String novaFrequencia) {
         if (novoNome == null || novoNome.trim().isEmpty()) {
             throw new IllegalArgumentException("O nome do hábito não pode ser vazio.");
         }
+
         this.nome = novoNome;
         this.descricao = novaDescricao;
         this.categoria = novaCategoria;
+
+        // Atualiza a frequência e recalcula os pontos
+        if (novaFrequencia != null && !novaFrequencia.equalsIgnoreCase(this.frequencia)) {
+            this.frequencia = novaFrequencia;
+            this.pontuacaoCheckin = definirPontosPorFrequencia(novaFrequencia);
+        }
     }
 
+    // Getters
     public UUID getId() { return id; }
-    public UUID getUsuarioId() { return usuarioId; } // Retorna UUID
+    public UUID getUsuarioId() { return usuarioId; }
     public String getNome() { return nome; }
     public String getDescricao() { return descricao; }
     public String getCategoria() { return categoria; }
     public String getFrequencia() { return frequencia; }
+    public int getPontos() { return pontuacaoCheckin; } // <-- getter novo
 }
