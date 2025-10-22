@@ -202,46 +202,38 @@ public class UsuarioSteps {
                 String novaSenha = dadosCadastro.get("Nova Senha");
                 String confirmarNovaSenha = dadosCadastro.get("Confirmar Nova Senha");
 
-                // CORREÇÃO: Mover a validação para o STEPS (simulação de front-end)
-                // Isso garante que a mensagem "As novas senhas não coincidem" seja lançada aqui,
-                // antes de chegar ao service, conforme o seu Gherkin.
                 if (novaSenha != null && confirmarNovaSenha != null && !novaSenha.equals(confirmarNovaSenha)) {
                     throw new RuntimeException("As novas senhas não coincidem.");
                 }
 
-                // Se passou na validação do front-end, chama o service
                 service.editarPerfil(usuarioIdParaEdicao, nomeNovo, emailNovo, senhaAtual, novaSenha);
 
             } catch (Exception e) {
                 this.excecaoCapturada = e;
             }
         } else if ("Cadastrar".equals(botao)) {
-            // Lógica de Cadastro (que já está correta no seu código)
             String senha = dadosCadastro.get("Senha");
             String confirmaSenha = dadosCadastro.get("Confirmar Senha");
             this.emailFinal = dadosCadastro.get("Email");
 
-            // Simula a checagem de Front-end/Apresentação para Senhas não coincidentes
             if (senha != null && confirmaSenha != null && !senha.equals(confirmaSenha)) {
                 this.excecaoCapturada = new RuntimeException("As senhas não coincidem.");
                 return;
             }
 
             try {
-                // Chama a lógica de negócio (Service)
                 service.cadastrarNovoUsuario(
                         dadosCadastro.get("Nome de Usuário"),
                         emailFinal,
                         senha
                 );
             } catch (Exception e) {
-                // Captura qualquer exceção lançada pelo Service
                 this.excecaoCapturada = e;
             }
         }
     }
 
-    @Entao("ele deve ser redirecionado para a página de dashboard")
+    @Entao("ele deve ser redirecionado para a página de home")
     public void eleDeveSerRedirecionadoParaDashboard() {
         assertNull(excecaoCapturada, "Não deveria ocorrer erro durante edição: " + (excecaoCapturada != null ? excecaoCapturada.getMessage() : ""));
     }
@@ -260,7 +252,6 @@ public class UsuarioSteps {
     public void eleDeveVerMensagemDeErro(String mensagemEsperada) {
         assertNotNull(excecaoCapturada, "Era esperado um erro, mas não ocorreu.");
 
-        // CORRIGIDO: Usa 'contains' e ignora caso (toLowerCase) para ser mais robusto
         String mensagemReal = excecaoCapturada.getMessage();
         assertTrue(mensagemReal.toLowerCase().contains(mensagemEsperada.toLowerCase()),
                 "A mensagem de erro esperada ('" + mensagemEsperada + "') não foi encontrada ou não corresponde à mensagem real ('" + mensagemReal + "').");
