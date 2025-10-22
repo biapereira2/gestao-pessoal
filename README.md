@@ -47,7 +47,7 @@ Ajudar o usuário a estabelecer hábitos consistentes, monitorar seu progresso e
 
 ---
 
-## Links Importantes
+## ⚠️ Links Importantes
 - [**Descrição do domínio na Linguagem Onipresente**](https://docs.google.com/document/d/1_PptuXcc8kX8xpCPpV7p7QnrlHdRh8hpdxnUTz4N9_c/edit?tab=t.0#heading=h.l1sge71luyal)
 - [**Cenários de testes BDD**](https://docs.google.com/document/d/1wMd8lLSDe-dSkIkIKiURhsDlfgXnIeM2-AU42b_FcYE/edit?tab=t.0)
 - [**Protótipos da aplicação**](https://www.figma.com/design/NsABiAr6smo0L9mt6IJpGX/Gest%C3%A3o-Pessoal?node-id=0-1&p=f&t=PWIvPsOrWAbbfYok-0)
