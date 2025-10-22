@@ -28,16 +28,6 @@ Ajudar o usuário a estabelecer hábitos consistentes, monitorar seu progresso e
 
 ---
 
-## 📊 Dashboard e Estatísticas (versão simples)
-
-- Visualizar **hábitos mais cumpridos**  
-- Ver **streaks atuais**  
-- Consultar **gráficos de progresso**  
-- **Atualização automática de streaks** ao abrir o dashboard  
-- Registro de **visitas ao dashboard** para métricas de engajamento
-
----
-
 ## 🛠 Tecnologias
 
 - **Back-end:** Java (Spring Boot)  
