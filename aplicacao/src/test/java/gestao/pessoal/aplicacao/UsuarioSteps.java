@@ -12,38 +12,6 @@ import io.cucumber.java.pt.*;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class FakeRepositorioUsuario implements RepositorioUsuario {
-    private final Map<String, Usuario> usuarios = new HashMap<>();
-
-    @Override
-    public void salvar(Usuario usuario) {
-        usuarios.put(usuario.getEmail(), usuario);
-    }
-
-    @Override
-    public Optional<Usuario> buscarPorId(UUID id) {
-        return usuarios.values().stream()
-                .filter(usuario -> usuario.getId().equals(id))
-                .findFirst();
-    }
-
-    @Override
-    public Optional<Usuario> buscarPorEmail(String email) {
-        return Optional.ofNullable(usuarios.get(email));
-    }
-
-    @Override
-    public boolean existePorEmail(String email) {
-        return usuarios.containsKey(email);
-    }
-
-    public Map<String, Usuario> getUsuarios() { return usuarios; }
-
-    public void limpar() {
-        usuarios.clear();
-    }
-}
-
 public class UsuarioSteps {
 
     private UsuarioService service;

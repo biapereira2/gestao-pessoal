@@ -1,6 +1,11 @@
 # IntelliJ
 .idea/
 *.iml
+!.idea/codeStyles
+!.idea/runConfigurations
+!.idea/vcs.xml
+/out
+/target
 
 # Build Maven
 /target/
@@ -9,3 +14,4 @@
 *.log
 *.tmp
 *.swp
+

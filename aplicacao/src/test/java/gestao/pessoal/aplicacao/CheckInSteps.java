@@ -73,37 +73,6 @@ class FakeRepositorioCheckIn implements RepositorioCheckIn {
 
 
 // =================================================================
-// IMPLEMENTAÇÃO MOCK (FAKE SERVICE PROGRESSO USUÁRIO - TEMPORÁRIO)
-// Usado para satisfazer a dependência no CheckInService.
-// =================================================================
-// OBSERVAÇÃO: Depende da existência da classe base ProgressoUsuarioService
-// e das interfaces RepositorioProgressoUsuario e ProgressoUsuario.
-class FakeProgressoUsuarioService extends ProgressoUsuarioService {
-
-    // Repositório Mínimo DUMMY para satisfazer o construtor da classe base
-    private static final RepositorioProgressoUsuario DUMMY_REPO = new RepositorioProgressoUsuario() {
-        @Override public void salvar(ProgressoUsuario progresso) {}
-        @Override public Optional<ProgressoUsuario> buscarPorUsuarioId(UUID usuarioId) { return Optional.empty(); }
-        @Override public boolean existeParaUsuario(UUID usuarioId) { return false; }
-    };
-
-    public FakeProgressoUsuarioService() {
-        super(DUMMY_REPO);
-    }
-
-    @Override
-    public void adicionarPontos(UUID usuarioId, int pontos, String motivo) {
-        // Simulação: Apenas aceita a chamada sem lançar erro.
-    }
-
-    @Override
-    public void removerPontos(UUID usuarioId, int pontos, String motivo) {
-        // Simulação: Apenas aceita a chamada sem lançar erro.
-    }
-}
-
-
-// =================================================================
 // STEPS DEFINITION (MAPEAMENTO DO GHERKIN)
 // =================================================================
 public class CheckInSteps {

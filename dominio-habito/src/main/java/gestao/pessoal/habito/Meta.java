@@ -82,6 +82,7 @@ public class Meta {
     public UUID getUsuarioId() { return usuarioId; }
     public String getDescricao() { return descricao; }
     public int getQuantidade() { return quantidade; }
+    public int getHabitosCompletos() {return habitosCompletos;}
     public void setHabitosCompletos(int habitosCompletos) { this.habitosCompletos = habitosCompletos; }
     public boolean isAlertaProximoFalha() { return alertaProximoFalha; }
     public void setPrazo(LocalDate prazo) { this.prazo = prazo; }
