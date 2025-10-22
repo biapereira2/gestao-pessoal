@@ -57,15 +57,13 @@ public class MetaService {
     }
 
     // --- Verificar alerta de uma meta específica ---
+    // --- Verificar alerta de uma meta específica ---
     public void verificarAlerta(UUID metaId, String periodo) {
         Meta meta = repositorioMeta.buscarPorId(metaId)
                 .orElseThrow(() -> new IllegalArgumentException("Meta com ID " + metaId + " não encontrada."));
 
-        // Atualiza o flag de alerta baseado na quantidade de hábitos completados
+        // O próprio método da Meta agora imprime a mensagem detalhada
         meta.dispararAlertaSeNecessario();
-
-        if (meta.isAlertaProximoFalha()) {
-            System.out.println("⚠️ Atenção! Você está perto de falhar a meta: " + meta.getDescricao());
-        }
     }
+
 }

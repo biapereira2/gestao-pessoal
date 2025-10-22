@@ -51,11 +51,8 @@ public class Meta {
     public void dispararAlertaSeNecessario() {
         double percentual = (double) habitosCompletos / quantidade;
 
-        boolean pertoDoPrazo = false;
-        if (prazo != null) {
-            long diasRestantes = ChronoUnit.DAYS.between(LocalDate.now(), prazo);
-            pertoDoPrazo = diasRestantes <= 2; // alerta se estiver a 2 dias ou menos do prazo
-        }
+        long diasRestantes = prazo != null ? ChronoUnit.DAYS.between(LocalDate.now(), prazo) : 0;
+        boolean pertoDoPrazo = diasRestantes <= 2; // alerta se estiver a 2 dias ou menos do prazo
 
         switch (tipo) {
             case SEMANAL:
@@ -67,7 +64,18 @@ public class Meta {
             default:
                 alertaProximoFalha = false;
         }
+
+        if (alertaProximoFalha) {
+            int habitosRestantes = quantidade - habitosCompletos;
+            String tipoFormatado = tipo.toString().toLowerCase();
+
+            System.out.println("⚠️ Atenção! Você está perto de falhar a meta ("
+                    + tipoFormatado + "): " + descricao
+                    + ". Você tem " + diasRestantes + " dia(s) pra completar mais "
+                    + habitosRestantes + " hábito(s).");
+        }
     }
+
 
     // --- Getters e Setters ---
     public UUID getId() { return id; }
