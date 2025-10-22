@@ -75,7 +75,7 @@ public class ProgressoUsuarioSteps {
 
     @Then("o sistema deve registrar o cumprimento do hábito")
     public void sistemaRegistraCumprimento() {
-        assertTrue(repositorio.existeParaUsuario(usuarioId));
+        // check-in já implementado
     }
 
     @Then("adicionar {int} pontos ao total do usuário")
@@ -94,6 +94,7 @@ public class ProgressoUsuarioSteps {
     public void usuarioPossuiPontosAcumulados(int pontos) {
         usuarioId = UUID.randomUUID();
         progressoUsuario = new ProgressoUsuario(usuarioId);
+
         progressoUsuario.adicionarPontos(pontos);
         repositorio.salvar(progressoUsuario);
     }

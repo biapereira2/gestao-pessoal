@@ -10,7 +10,7 @@ Feature: Edição de Perfil do Usuário
     And ele altera o campo "Email" para "novo.email.joao@email.com"
     And ele fornece sua "Senha Atual" corretamente
     And ele clica no botão "Salvar Alterações"
-    Then ele deve ser redirecionado para a página de dashboard
+    Then ele deve ser redirecionado para a página de home
     And ele deve ver a mensagem de sucesso "Perfil atualizado com sucesso."
 
   Scenario: Falha ao alterar email ou senha sem fornecer a senha atual

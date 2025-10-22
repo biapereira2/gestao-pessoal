@@ -5,17 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6cc68680-f0f7-4192-ab10-5a041d3a3d41" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/AmigoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/AmizadeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/PerfilSocialSteps.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aplicacao/src/test/resources/features/gerenciar_amigos.feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dominio-engajamento/src/main/java/gestao/pessoal/engajamento/PerfilSocial.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dominio-engajamento/src/main/java/gestao/pessoal/engajamento/RepositorioPerfilSocial.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/CheckInService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/CheckInService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/HabitoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/HabitoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/HabitoSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/HabitoSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/UsuarioSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/UsuarioSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/aplicacao-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/aplicacao-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/META-INF/maven/gestao-pessoal/aplicacao/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/META-INF/maven/gestao-pessoal/aplicacao/pom.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/HabitoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/HabitoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/UsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/UsuarioService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CheckInSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CheckInSteps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CucumberRunnerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CucumberRunnerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioCheckIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioCheckIn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioHabito.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioHabito.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioUsuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/HabitoSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/HabitoSteps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/UsuarioSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/UsuarioSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/MetaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/MetaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/surefire-reports/TEST-gestao.pessoal.aplicacao.CucumberRunnerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/surefire-reports/TEST-gestao.pessoal.aplicacao.CucumberRunnerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/surefire-reports/gestao.pessoal.aplicacao.CucumberRunnerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/surefire-reports/gestao.pessoal.aplicacao.CucumberRunnerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/classes/META-INF/maven/gestao-pessoal/dominio-compartilhado/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/classes/META-INF/maven/gestao-pessoal/dominio-compartilhado/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/dominio-compartilhado-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-compartilhado/target/dominio-compartilhado-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-compartilhado/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-compartilhado/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-engajamento/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-engajamento/target/classes/META-INF/maven/gestao-pessoal/dominio-engajamento/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-engajamento/target/classes/META-INF/maven/gestao-pessoal/dominio-engajamento/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-engajamento/target/dominio-engajamento-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-engajamento/target/dominio-engajamento-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/classes/META-INF/maven/gestao-pessoal/dominio-habito/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/classes/META-INF/maven/gestao-pessoal/dominio-habito/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/dominio-habito-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/dominio-habito-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-relatorio/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-relatorio/target/classes/META-INF/maven/gestao-pessoal/dominio-relatorio/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-relatorio/target/classes/META-INF/maven/gestao-pessoal/dominio-relatorio/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-relatorio/target/dominio-relatorio-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-relatorio/target/dominio-relatorio-1.0.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +57,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -71,7 +103,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/biaac/OneDrive/Área de Trabalho/Faculdade/5 periodo/projeto_requisito-main/projeto_requisito-main",
+    "last_opened_file_path": "C:/Users/biaac/OneDrive/Área de Trabalho/Faculdade/5 periodo/gestao-pessoal",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -84,6 +116,74 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.CucumberRunnerTest">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="gestao-pessoal" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="gestao-pessoal" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Autodetect">
+      <module name="gestao-pessoal" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="gestao-pessoal" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.exemplo.app.Main" />
       <module name="gestao-pessoal" />
@@ -167,74 +267,6 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="gestao-pessoal" />
       <option name="filePath" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="gestao-pessoal" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="gestao-pessoal" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Autodetect">
-      <module name="gestao-pessoal" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Doctests">
-      <module name="gestao-pessoal" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
     <list>
