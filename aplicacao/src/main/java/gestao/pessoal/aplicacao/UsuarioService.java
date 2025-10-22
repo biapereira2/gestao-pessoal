@@ -2,15 +2,18 @@ package gestao.pessoal.aplicacao;
 
 import gestao.pessoal.compartilhado.Usuario;
 import gestao.pessoal.compartilhado.RepositorioUsuario;
+import gestao.pessoal.engajamento.PerfilSocial;
+import gestao.pessoal.engajamento.RepositorioPerfilSocial;
 
 import java.util.UUID;
 
 public class UsuarioService {
-    // Depende da interface do repositório
     private final RepositorioUsuario repositorio;
+    private final RepositorioPerfilSocial repositorioPerfil;
 
-    public UsuarioService(RepositorioUsuario repositorio) {
+    public UsuarioService(RepositorioUsuario repositorio, RepositorioPerfilSocial repositorioPerfil) {
         this.repositorio = repositorio;
+        this.repositorioPerfil = repositorioPerfil;
     }
 
     /**
@@ -24,17 +27,19 @@ public class UsuarioService {
             throw new IllegalStateException("O email " + email + " já está cadastrado.");
         }
 
-        // No futuro, teremos validações de VO aqui (Email, Senha)
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome de usuário inválido.");
         }
-        if (senha == null || senha.length() < 6) { // Exemplo de regra simples
+        if (senha == null || senha.length() < 6) {
             throw new IllegalArgumentException("A senha deve ter pelo menos 6 caracteres.");
         }
 
-        // Simula o hash da senha (em uma implementação real, usariamos BCrypt)
         Usuario novoUsuario = new Usuario(nome, email, senha);
         repositorio.salvar(novoUsuario);
+
+        PerfilSocial novoPerfil = new PerfilSocial(novoUsuario.getId());
+        repositorioPerfil.salvar(novoPerfil);
+
     }
 
     /**
@@ -50,28 +55,21 @@ public class UsuarioService {
         Usuario usuario = repositorio.buscarPorId(usuarioId)
                 .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado."));
 
-        // Se a senha atual não for fornecida e houver alteração de email ou senha, lance exceção.
         boolean alterandoDadosSensiveis = (emailNovo != null && !emailNovo.isEmpty() && !emailNovo.equals(usuario.getEmail()))
                 || (novaSenha != null && !novaSenha.isEmpty());
 
         if (alterandoDadosSensiveis && (senhaAtual == null || senhaAtual.trim().isEmpty())) {
             throw new IllegalStateException("A senha atual é obrigatória para alterar dados sensíveis.");
         }
-
-        // 1. Validar Senha Atual (Simulação)
         if (alterandoDadosSensiveis) {
-            // Em um cenário real: if (!passwordEncoder.matches(senhaAtual, usuario.getSenhaHash()))
             if (!usuario.validarSenha(senhaAtual)) {
                 throw new IllegalStateException("Senha atual incorreta.");
             }
         }
-
-        // 2. Atualizar Nome
         if (nomeNovo != null && !nomeNovo.trim().isEmpty() && !nomeNovo.equals(usuario.getNome())) {
             usuario.setNome(nomeNovo);
         }
 
-        // 3. Atualizar Email
         if (emailNovo != null && !emailNovo.trim().isEmpty() && !emailNovo.equals(usuario.getEmail())) {
             if (repositorio.existePorEmail(emailNovo)) {
                 throw new IllegalStateException("O novo email já está cadastrado para outro usuário.");
@@ -79,25 +77,19 @@ public class UsuarioService {
             usuario.setEmail(emailNovo);
         }
 
-        // 4. Atualizar Senha
         if (novaSenha != null && !novaSenha.trim().isEmpty()) {
             if (novaSenha.length() < 6) {
                 throw new IllegalArgumentException("A nova senha deve ter pelo menos 6 caracteres.");
             }
-            // Em um cenário real, aqui seria o hash da nova senha
             usuario.setSenha(novaSenha);
         }
-
-        // Salva as alterações no repositório
         repositorio.salvar(usuario);
     }
 
-    // Método auxiliar para simular o login (necessário para os steps)
     public Usuario login(String email, String senha) {
         Usuario usuario = repositorio.buscarPorEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("Email ou senha inválidos."));
 
-        // Em um cenário real: if (!passwordEncoder.matches(senha, usuario.getSenhaHash()))
         if (!usuario.validarSenha(senha)) {
             throw new IllegalArgumentException("Email ou senha inválidos.");
         }

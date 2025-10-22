@@ -17,10 +17,6 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// =================================================================
-// IMPLEMENTAÇÃO MOCK (FAKE REPOSITÓRIO)
-// Classe interna que simula o banco de dados para a Entidade Habito.
-// =================================================================
 class FakeRepositorioHabito implements RepositorioHabito {
 
     private final Map<UUID, Habito> habitos = new HashMap<>();
@@ -53,10 +49,6 @@ class FakeRepositorioHabito implements RepositorioHabito {
     }
 }
 
-
-// =================================================================
-// STEPS DEFINITION (MAPEAMENTO DO GHERKIN)
-// =================================================================
 public class HabitoSteps {
 
     public HabitoService habitoService;
@@ -64,20 +56,15 @@ public class HabitoSteps {
     public Usuario usuario;
     public Exception excecaoLancada;
 
-    // Construtor: Inicializa o Service e o Repositório Mock
     public HabitoSteps() {
-        // --- CORREÇÃO DE NOMENCLATURA: USANDO A CLASSE INTERNA FakeRepositorioHabito ---
         this.repositorioHabito = new FakeRepositorioHabito();
-        // --- FIM DA CORREÇÃO ---
 
         this.habitoService = new HabitoService(this.repositorioHabito);
-        this.excecaoLancada = null; // Reseta a exceção para cada cenário
+        this.excecaoLancada = null;
     }
 
-    // --- DADO (Given) ---
     @Dado("que sou um usuário autenticado")
     public void que_sou_um_usuario_autenticado() {
-        // CORREÇÃO: Usando a palavra chave 'new' para instanciar o Usuario
         this.usuario = new Usuario("Usuário Teste", "teste@email.com", "123456");
     }
 
@@ -92,7 +79,6 @@ public class HabitoSteps {
         habitoService.criar(this.usuario.getId(), habito2, "desc2", "cat2", "freq2");
     }
 
-    // --- QUANDO (When) ---
     @Quando("eu tento criar um hábito chamado {string}")
     public void eu_tento_criar_um_habito_chamado(String nomeHabito) {
         try {
@@ -160,10 +146,7 @@ public class HabitoSteps {
 
     @Quando("eu acesso a minha lista de hábitos")
     public void eu_acesso_a_minha_lista_de_habitos() {
-        // Ação vazia, a verificação será feita no "Então"
     }
-
-    // --- ENTÃO (Then) ---
     @Entao("o hábito {string} deve estar na minha lista de hábitos")
     public void o_habito_deve_estar_na_minha_lista_de_habitos(String nomeHabito) {
         List<Habito> habitos = habitoService.listarPorUsuario(this.usuario.getId());
@@ -171,7 +154,6 @@ public class HabitoSteps {
         assertTrue(encontrado, "O hábito '" + nomeHabito + "' não foi encontrado na lista.");
     }
 
-    // ESTE É O MÉTODO REUTILIZÁVEL PARA TODOS OS ERROS
     @Entao("eu devo receber um erro informando que {string}")
     public void eu_devo_receber_um_erro_informando_que(String mensagemDeErro) {
         assertNotNull(excecaoLancada, "Nenhuma exceção foi lançada, mas uma era esperada.");
