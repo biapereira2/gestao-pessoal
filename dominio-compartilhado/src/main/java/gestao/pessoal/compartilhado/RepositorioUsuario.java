@@ -9,4 +9,5 @@ public interface RepositorioUsuario {
     Optional<Usuario> buscarPorId(UUID id);
     Optional<Usuario> buscarPorEmail(String email);
     boolean existePorEmail(String email);
+
 }
