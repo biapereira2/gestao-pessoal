@@ -6,8 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="6cc68680-f0f7-4192-ab10-5a041d3a3d41" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/UsuarioSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/UsuarioSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/resources/features/edicao_perfil.feature" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/resources/features/edicao_perfil.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/MetaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/MetaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/surefire-reports/TEST-gestao.pessoal.aplicacao.CucumberRunnerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/surefire-reports/TEST-gestao.pessoal.aplicacao.CucumberRunnerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/surefire-reports/gestao.pessoal.aplicacao.CucumberRunnerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/surefire-reports/gestao.pessoal.aplicacao.CucumberRunnerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/features/edicao_perfil.feature" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/features/edicao_perfil.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/UsuarioSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/UsuarioSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/classes/gestao/pessoal/habito/Habito.class" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/classes/gestao/pessoal/habito/Habito.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
