@@ -3,6 +3,7 @@ package gestao.pessoal.aplicacao;
 import gestao.pessoal.habito.Alerta;
 import gestao.pessoal.habito.Meta;
 import gestao.pessoal.habito.RepositorioAlerta;
+import gestao.pessoal.aplicacao.fake.FakeRepositorioMeta;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Quando;
