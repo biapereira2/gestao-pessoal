@@ -9,7 +9,7 @@ public class Habito {
     private String descricao;
     private String categoria;
     private String frequencia;
-    private int pontuacaoCheckin; // <-- novo atributo
+    private int pontuacaoCheckin;
 
     public Habito(UUID usuarioId, String nome, String descricao, String categoria, String frequencia) {
         if (nome == null || nome.trim().isEmpty()) {
@@ -22,7 +22,7 @@ public class Habito {
         this.descricao = descricao;
         this.categoria = categoria;
         this.frequencia = frequencia;
-        this.pontuacaoCheckin = definirPontosPorFrequencia(frequencia); // <-- cálculo automático
+        this.pontuacaoCheckin = definirPontosPorFrequencia(frequencia); // <-- calculo automatico
     }
 
     private int definirPontosPorFrequencia(String frequencia) {
@@ -51,19 +51,17 @@ public class Habito {
         this.descricao = novaDescricao;
         this.categoria = novaCategoria;
 
-        // Atualiza a frequência e recalcula os pontos
         if (novaFrequencia != null && !novaFrequencia.equalsIgnoreCase(this.frequencia)) {
             this.frequencia = novaFrequencia;
             this.pontuacaoCheckin = definirPontosPorFrequencia(novaFrequencia);
         }
     }
 
-    // Getters
     public UUID getId() { return id; }
     public UUID getUsuarioId() { return usuarioId; }
     public String getNome() { return nome; }
     public String getDescricao() { return descricao; }
     public String getCategoria() { return categoria; }
     public String getFrequencia() { return frequencia; }
-    public int getPontos() { return pontuacaoCheckin; } // <-- getter novo
+    public int getPontos() { return pontuacaoCheckin; }
 }

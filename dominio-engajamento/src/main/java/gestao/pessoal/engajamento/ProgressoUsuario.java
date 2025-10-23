@@ -13,11 +13,9 @@ public class ProgressoUsuario {
         this.usuarioId = usuarioId;
         this.pontos = 0;
         this.nivel = 1;
-        this.limiteProximoNivel = 100; // por exemplo, meta inicial
+        this.limiteProximoNivel = 100;
         this.limiteNivelAtual = 0;
     }
-
-    // Regras de negócio do domínio (coerentes com seus cenários BDD)
 
     public void adicionarPontos(int pontosGanhos) {
         if (pontosGanhos < 0) throw new IllegalArgumentException("Os pontos ganhos devem ser positivos.");

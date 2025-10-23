@@ -6,15 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7a113947-1141-47e5-88fa-3ed2684bad2e" name="Changes" comment="Funcionalidade de Badges e reorganização de FakeRepositorios e FakeService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/DesafioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/main/java/gestao/pessoal/aplicacao/DesafioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/DesafioSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/DesafioSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/resources/features/desafio.feature" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/resources/features/desafio.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CheckInSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CheckInSteps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioUsuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-compartilhado/src/main/java/gestao/pessoal/compartilhado/RepositorioUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-compartilhado/src/main/java/gestao/pessoal/compartilhado/RepositorioUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dominio-habito/src/main/java/gestao/pessoal/habito/RepositorioDesafio.java" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/src/main/java/gestao/pessoal/habito/RepositorioDesafio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioHabito.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioHabito.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/HabitoSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/HabitoSteps.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +22,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="34RbpEnF0atJCeksIuMvcBAcBB8" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -36,40 +36,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.CucumberRunnerTest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.CucumberRunnerTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
-    <configuration name="CucumberRunnerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="aplicacao" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gestao.pessoal.aplicacao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="gestao.pessoal.aplicacao" />
-      <option name="MAIN_CLASS_NAME" value="gestao.pessoal.aplicacao.CucumberRunnerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -101,6 +77,30 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="CucumberRunnerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aplicacao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gestao.pessoal.aplicacao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="gestao.pessoal.aplicacao" />
+      <option name="MAIN_CLASS_NAME" value="gestao.pessoal.aplicacao.CucumberRunnerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
       <method v="2" />
     </configuration>
     <recent_temporary>
