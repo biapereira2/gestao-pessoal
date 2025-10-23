@@ -1,5 +1,6 @@
-package gestao.pessoal.aplicacao;
+package gestao.pessoal.aplicacao.fake;
 
+import gestao.pessoal.aplicacao.ProgressoUsuarioService;
 import gestao.pessoal.engajamento.ProgressoUsuario;
 import gestao.pessoal.engajamento.RepositorioProgressoUsuario;
 

@@ -1,7 +1,7 @@
 package gestao.pessoal.aplicacao;
 
+import gestao.pessoal.aplicacao.fake.FakeRepositorioUsuario;
 import gestao.pessoal.habito.*;
-import gestao.pessoal.compartilhado.RepositorioUsuario;
 import gestao.pessoal.compartilhado.Usuario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

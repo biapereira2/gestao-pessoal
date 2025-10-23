@@ -1,5 +1,6 @@
 package gestao.pessoal.aplicacao;
 
+import gestao.pessoal.aplicacao.fake.FakeRepositorioUsuario;
 import gestao.pessoal.compartilhado.RepositorioUsuario;
 import gestao.pessoal.compartilhado.Usuario;
 import gestao.pessoal.engajamento.PerfilSocial;

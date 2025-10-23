@@ -1,5 +1,7 @@
 package gestao.pessoal.aplicacao;
 
+import gestao.pessoal.aplicacao.fake.FakeRepositorioCheckIn;
+import gestao.pessoal.aplicacao.fake.FakeRepositorioHabito;
 import gestao.pessoal.engajamento.ProgressoUsuario;
 import gestao.pessoal.engajamento.RepositorioProgressoUsuario;
 
@@ -11,7 +13,6 @@ import io.cucumber.java.en.*;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 

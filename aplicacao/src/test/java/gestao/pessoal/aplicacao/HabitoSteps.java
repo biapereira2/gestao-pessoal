@@ -1,5 +1,6 @@
 package gestao.pessoal.aplicacao;
 
+import gestao.pessoal.aplicacao.fake.FakeRepositorioHabito;
 import gestao.pessoal.compartilhado.Usuario;
 // Importa o Service/Repositorio do dominio Habito
 import gestao.pessoal.habito.Habito;
@@ -7,12 +8,8 @@ import gestao.pessoal.habito.RepositorioHabito;
 import io.cucumber.java.Before; // Hook para limpeza
 import io.cucumber.java.en.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 

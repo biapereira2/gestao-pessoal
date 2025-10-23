@@ -6,8 +6,43 @@
   <component name="ChangeListManager">
     <list default="true" id="7a113947-1141-47e5-88fa-3ed2684bad2e" name="Changes" comment="Funcionalidade de Badges e reorganização de FakeRepositorios e FakeService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioHabito.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioHabito.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/BadgesSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/BadgesSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/CheckInSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/CheckInSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/DesafioSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/DesafioSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeProgressoUsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/fake/FakeProgressoUsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioCheckIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/fake/FakeRepositorioCheckIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioHabito.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/fake/FakeRepositorioHabito.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioMeta.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/fake/FakeRepositorioMeta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/FakeRepositorioUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/fake/FakeRepositorioUsuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/HabitoSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/HabitoSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/MetaSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/MetaSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/PerfilSocialSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/PerfilSocialSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/UsuarioSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/src/test/java/gestao/pessoal/aplicacao/UsuarioSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/DesafioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/classes/gestao/pessoal/aplicacao/DesafioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/BadgesSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/BadgesSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CheckInSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/CheckInSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/DesafioSteps$FakeRepositorioDesafio.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/DesafioSteps$FakeRepositorioDesafio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/DesafioSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/DesafioSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeCheckInService.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeCheckInService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeProgressoUsuarioService$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeProgressoUsuarioService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioBadges.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioBadges.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioCheckIn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioHabito.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioMeta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioPerfilSocial.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioPerfilSocial.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioProgressoUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioProgressoUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/FakeRepositorioUsuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/HabitoSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/HabitoSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/MetaSteps$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/MetaSteps$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/MetaSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/MetaSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/PerfilSocialSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/PerfilSocialSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/ProgressoUsuarioMock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/ProgressoUsuarioSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/UsuarioSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/aplicacao/target/test-classes/gestao/pessoal/aplicacao/UsuarioSteps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-engajamento/target/classes/gestao/pessoal/engajamento/ProgressoUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-engajamento/target/classes/gestao/pessoal/engajamento/ProgressoUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dominio-habito/target/classes/gestao/pessoal/habito/Habito.class" beforeDir="false" afterPath="$PROJECT_DIR$/dominio-habito/target/classes/gestao/pessoal/habito/Habito.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +60,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "hugorocha05"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/biapereira2/gestao-pessoal.git",
+    "accountId": "c1bfcd3a-2105-46d0-9151-d15ecf599acb"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="34RbpEnF0atJCeksIuMvcBAcBB8" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -46,6 +93,30 @@
   }
 }</component>
   <component name="RunManager">
+    <configuration name="CucumberRunnerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aplicacao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gestao.pessoal.aplicacao.fake.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="gestao.pessoal.aplicacao" />
+      <option name="MAIN_CLASS_NAME" value="gestao.pessoal.aplicacao.CucumberRunnerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -77,30 +148,6 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <method v="2" />
-    </configuration>
-    <configuration name="CucumberRunnerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="aplicacao" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gestao.pessoal.aplicacao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="gestao.pessoal.aplicacao" />
-      <option name="MAIN_CLASS_NAME" value="gestao.pessoal.aplicacao.CucumberRunnerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
       <method v="2" />
     </configuration>
     <recent_temporary>

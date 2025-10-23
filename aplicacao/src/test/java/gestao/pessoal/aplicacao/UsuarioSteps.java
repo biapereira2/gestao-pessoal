@@ -1,14 +1,13 @@
 package gestao.pessoal.aplicacao;
 
+import gestao.pessoal.aplicacao.fake.FakeRepositorioUsuario;
 import gestao.pessoal.compartilhado.Usuario;
-import gestao.pessoal.compartilhado.RepositorioUsuario;
-import gestao.pessoal.engajamento.PerfilSocial;
 import gestao.pessoal.engajamento.RepositorioPerfilSocial;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Quando;
 import io.cucumber.java.pt.Entao;
-import io.cucumber.java.pt.*;
+
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 

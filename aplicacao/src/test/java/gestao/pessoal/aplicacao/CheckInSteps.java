@@ -1,13 +1,12 @@
 package gestao.pessoal.aplicacao;
 
-import gestao.pessoal.engajamento.ProgressoUsuario;
-import gestao.pessoal.engajamento.RepositorioProgressoUsuario;
+import gestao.pessoal.aplicacao.fake.FakeProgressoUsuarioService;
+import gestao.pessoal.aplicacao.fake.FakeRepositorioCheckIn;
+import gestao.pessoal.aplicacao.fake.FakeRepositorioHabito;
 import gestao.pessoal.habito.CheckIn;
 import gestao.pessoal.habito.Habito;
-import gestao.pessoal.habito.RepositorioCheckIn;
 import io.cucumber.java.Before; // Importando o hook Before
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
@@ -15,10 +14,7 @@ import org.junit.jupiter.api.Assertions;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

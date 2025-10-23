@@ -1,20 +1,18 @@
 package gestao.pessoal.aplicacao;
 
-import gestao.pessoal.aplicacao.FakeProgressoUsuarioService;
-import gestao.pessoal.compartilhado.RepositorioUsuario;
+import gestao.pessoal.aplicacao.fake.FakeProgressoUsuarioService;
+import gestao.pessoal.aplicacao.fake.FakeRepositorioMeta;
+import gestao.pessoal.aplicacao.fake.FakeRepositorioUsuario;
 import gestao.pessoal.compartilhado.Usuario;
 import gestao.pessoal.engajamento.Badges;
 import gestao.pessoal.engajamento.RepositorioBadges;
 import gestao.pessoal.habito.Meta;
-import gestao.pessoal.habito.RepositorioMeta;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.jupiter.api.Assertions;
 
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 

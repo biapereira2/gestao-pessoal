@@ -1,4 +1,4 @@
-package gestao.pessoal.aplicacao;
+package gestao.pessoal.aplicacao.fake;
 
 import gestao.pessoal.habito.Meta;
 import gestao.pessoal.habito.RepositorioMeta;

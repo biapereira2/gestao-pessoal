@@ -1,11 +1,13 @@
 package gestao.pessoal.aplicacao;
 
+import gestao.pessoal.aplicacao.fake.FakeRepositorioHabito;
+import gestao.pessoal.aplicacao.fake.FakeRepositorioMeta;
+import gestao.pessoal.aplicacao.fake.FakeRepositorioUsuario;
 import gestao.pessoal.compartilhado.RepositorioUsuario;
 import gestao.pessoal.compartilhado.Usuario;
 import gestao.pessoal.habito.Habito;
 import gestao.pessoal.habito.Meta;
 import gestao.pessoal.habito.RepositorioHabito;
-import gestao.pessoal.habito.RepositorioMeta;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
@@ -13,7 +15,6 @@ import io.cucumber.java.pt.Quando;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
