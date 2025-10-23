@@ -1,21 +1,52 @@
 package gestao.pessoal.aplicacao;
 
+import gestao.pessoal.habito.Meta;
+import gestao.pessoal.habito.RepositorioMeta;
+
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
 import gestao.pessoal.compartilhado.RepositorioUsuario;
 import gestao.pessoal.compartilhado.Usuario;
 import gestao.pessoal.habito.Habito;
-import gestao.pessoal.habito.Meta;
 import gestao.pessoal.habito.RepositorioHabito;
-import gestao.pessoal.habito.RepositorioMeta;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 
-import java.time.LocalDate;
-import java.util.*;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+class FakeRepositorioMeta implements RepositorioMeta {
+
+    private final Map<UUID, Meta> metas = new HashMap<>();
+
+    @Override
+    public void salvar(Meta meta) {
+        metas.put(meta.getId(), meta);
+    }
+
+    @Override
+    public Optional<Meta> buscarPorId(UUID metaId) {
+        return Optional.ofNullable(metas.get(metaId));
+    }
+
+    @Override
+    public List<Meta> listarPorUsuario(UUID usuarioId) {
+        return metas.values().stream()
+                .filter(m -> m.getUsuarioId().equals(usuarioId))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void remover(UUID metaId) {
+        metas.remove(metaId);
+    }
+
+    public void limpar() {
+        metas.clear();
+    }
+}
 
 public class MetaSteps {
 
@@ -73,38 +104,14 @@ public class MetaSteps {
     @Dado("eu já possuo uma meta semanal de {int} hábitos cadastrada")
     public void eu_ja_possuo_uma_meta_semanal_de_habitos_cadastrada(Integer quantidade) {
         garantirUsuario();
-        repositorioMeta.limpar();
-        List<UUID> habitosIds = new ArrayList<>();
-
-        for (int i = 0; i < quantidade; i++) {
-            Habito habito = new Habito(usuario.getId(), "Hábito " + (i + 1), "Descrição " + (i + 1),
-                    "Categoria " + (i + 1), "Diaria");
-            repositorioHabito.salvar(habito);
-            habitosIds.add(habito.getId());
-        }
-
-        MetaService metaService = criarMetaServiceComUsuarioMock();
-        metaService.criar(usuario.getId(), habitosIds, Meta.Tipo.SEMANAL, "Exemplo de Meta semanal");
+        criarMetaComHabitos(quantidade, Meta.Tipo.SEMANAL, "Exemplo de Meta semanal");
     }
-
 
     @Dado("eu já possuo uma meta mensal de {int} hábitos cadastrada")
     public void eu_ja_possuo_uma_meta_mensal_de_habitos_cadastrada(Integer quantidade) {
         garantirUsuario();
-        repositorioMeta.limpar();
-        List<UUID> habitosIds = new ArrayList<>();
-
-        for (int i = 0; i < quantidade; i++) {
-            Habito habito = new Habito(usuario.getId(), "Hábito " + (i + 1), "Descrição " + (i + 1),
-                    "Categoria " + (i + 1), "Diaria");
-            repositorioHabito.salvar(habito);
-            habitosIds.add(habito.getId());
-        }
-
-        MetaService metaService = criarMetaServiceComUsuarioMock();
-        metaService.criar(usuario.getId(), habitosIds, Meta.Tipo.MENSAL, "Exemplo de Meta mensal");
+        criarMetaComHabitos(quantidade, Meta.Tipo.MENSAL, "Exemplo de Meta mensal");
     }
-
 
     @Dado("eu possuo uma meta semanal de {int} hábitos")
     public void eu_possuo_uma_meta_semanal_de_habitos(Integer quantidade) {
@@ -132,7 +139,6 @@ public class MetaSteps {
         metaService.criar(usuario.getId(), habitosIds, tipo, descricao);
     }
 
-
     @Dado("só completei {int} hábito até agora")
     @Dado("só completei {int} hábitos até agora")
     public void so_completei_habitos_ate_agora(Integer habitosCompletos) {
@@ -147,7 +153,6 @@ public class MetaSteps {
     public void eu_crio_uma_meta_de_habitos(String tipo, Integer quantidade) {
         try {
             garantirUsuario();
-
             Meta.Tipo tipoMeta = Meta.Tipo.valueOf(tipo.toUpperCase());
             criarMetaComHabitos(quantidade, tipoMeta, "Descrição válida");
         } catch (Exception e) {
@@ -159,7 +164,6 @@ public class MetaSteps {
     public void eu_tento_criar_uma_meta_com_tipo_vazio() {
         try {
             garantirUsuario();
-
             List<UUID> habitosIds = new ArrayList<>();
             Habito habito = new Habito(usuario.getId(), "Hábito Teste", "Descrição", "Categoria", "Diaria");
             repositorioHabito.salvar(habito);
