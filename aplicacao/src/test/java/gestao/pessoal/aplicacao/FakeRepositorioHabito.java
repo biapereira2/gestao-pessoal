@@ -6,10 +6,6 @@ import gestao.pessoal.habito.RepositorioHabito;
 import java.util.*;
 import java.util.stream.Collectors;
 
-// =================================================================
-// IMPLEMENTAÇÃO MOCK (FAKE REPOSITÓRIO HABITO)
-// Classe interna que simula o banco de dados para a Entidade Habito.
-// =================================================================
 public class FakeRepositorioHabito implements RepositorioHabito {
 
     private final Map<UUID, Habito> habitos = new HashMap<>();
