@@ -5,7 +5,7 @@ import gestao.pessoal.aplicacao.fake.FakeRepositorioCheckIn;
 import gestao.pessoal.aplicacao.fake.FakeRepositorioHabito;
 import gestao.pessoal.habito.CheckIn;
 import gestao.pessoal.habito.Habito;
-import io.cucumber.java.Before; // Importando o hook Before
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -100,8 +100,9 @@ public class CheckInSteps {
     // DEFINIÇÕES DOS STEPS (GIVEN/AND)
     // =======================================================
 
-    @And("que o dia atual é {string}")
-    public void que_o_dia_atual_e(String dataStr) {
+    // Renomeado para refletir a nova GIVEN/AND
+    @And("que o dia da ação é {string}")
+    public void que_o_dia_da_acao_e(String dataStr) {
         // A data é usada implicitamente no WHEN/THEN
     }
 
@@ -138,25 +139,37 @@ public class CheckInSteps {
     // DEFINIÇÕES DOS STEPS (WHEN)
     // =======================================================
 
-    @When("eu clico no botão {string} para o hábito {string} no dia {string}")
-    public void eu_clico_no_botao_para_o_habito(String acao, String nomeHabito, String dataStr) {
+    // Novo Step para o When do registro de check-in
+    @When("eu tento registrar o check-in para o hábito {string} no dia {string}")
+    public void eu_tento_registrar_o_checkin_para_o_habito(String nomeHabito, String dataStr) {
         UUID habitoId = buscarHabitoIdPorNome(nomeHabito);
         LocalDate data = parseData(dataStr);
         UUID usuarioId = habitoSteps.usuario.getId();
 
         try {
-            if ("Marcar como feito".equals(acao)) {
-                checkInService.marcarCheckIn(usuarioId, habitoId, data);
-            } else if ("Desmarcar check-in".equals(acao)) {
-                checkInService.desmarcarCheckIn(usuarioId, habitoId, data);
-            }
+            checkInService.marcarCheckIn(usuarioId, habitoId, data);
         } catch (Throwable e) {
             excecaoCapturada = e;
         }
     }
 
-    @When("eu acesso a lista de check-ins para o hábito {string} no período de {string} a {string}")
-    public void eu_acesso_a_lista_de_check_ins_para_o_habito_no_periodo(String nomeHabito, String dataInicialStr, String dataFinalStr) {
+    // Novo Step para o When de remoção de check-in
+    @When("eu tento remover o check-in para o hábito {string} no dia {string}")
+    public void eu_tento_remover_o_checkin_para_o_habito(String nomeHabito, String dataStr) {
+        UUID habitoId = buscarHabitoIdPorNome(nomeHabito);
+        LocalDate data = parseData(dataStr);
+        UUID usuarioId = habitoSteps.usuario.getId();
+
+        try {
+            checkInService.desmarcarCheckIn(usuarioId, habitoId, data);
+        } catch (Throwable e) {
+            excecaoCapturada = e;
+        }
+    }
+
+    // Mapeando o novo step de listagem
+    @When("eu solicito a lista de check-ins para o hábito {string} no período de {string} a {string}")
+    public void eu_solicito_a_lista_de_check_ins_para_o_habito_no_periodo(String nomeHabito, String dataInicialStr, String dataFinalStr) {
         UUID habitoId = buscarHabitoIdPorNome(nomeHabito);
 
         try {

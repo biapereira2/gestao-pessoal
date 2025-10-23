@@ -9,6 +9,12 @@
 
 # Build Maven
 /target/
+aplicacao/target/
+dominio-engajamento/target/
+dominio-habito/target/
+dominio-relatorio/target/
+dominio-compartilhado/target/
+*.class
 
 # Arquivos temporários
 *.log
