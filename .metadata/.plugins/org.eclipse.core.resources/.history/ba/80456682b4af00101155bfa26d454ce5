@@ -1,0 +1,260 @@
+ContextMap GestaoPessoalContextMap {
+  type = SYSTEM
+
+  contains IdentityAccessManagement
+  contains HabitTracking
+  contains GoalSetting
+  contains Challenges
+  contains SocialEngagement
+  contains Reporting
+
+  IdentityAccessManagement [SK]<->[SK] HabitTracking
+  IdentityAccessManagement [SK]<->[SK] GoalSetting
+  IdentityAccessManagement [SK]<->[SK] Challenges
+  IdentityAccessManagement [SK]<->[SK] SocialEngagement
+  IdentityAccessManagement [SK]<->[SK] Reporting
+
+  Challenges [D, CF]<-[U, OHS] HabitTracking
+  GoalSetting [D, CF]<-[U, OHS] HabitTracking
+
+  SocialEngagement [D, ACL]<-[U, OHS] HabitTracking
+  SocialEngagement [D, ACL]<-[U, OHS] GoalSetting
+  SocialEngagement [D, ACL]<-[U, OHS] Challenges
+
+  Reporting [D, ACL]<-[U, OHS] HabitTracking
+  Reporting [D, ACL]<-[U, OHS] GoalSetting
+  Reporting [D, ACL]<-[U, OHS] Challenges
+  Reporting [D, ACL]<-[U, OHS] SocialEngagement
+}
+
+BoundedContext IdentityAccessManagement implements SharedKernel {
+  type = SYSTEM
+  domainVisionStatement = "Gerencia a identidade, autenticação e dados básicos compartilhados dos usuários."
+  implementationTechnology = "Java"
+
+  Aggregate Usuario {
+    Entity Usuario {
+      UUID id
+      - String nome
+      - String email
+      String senhaCriptografada
+      + boolean validarSenha(String senhaFornecida)
+      + void setNome(String nome)
+      + void setEmail(String email)
+      + void setSenha(String senha)
+    }
+    Service RepositorioUsuario {
+      + void salvar(Usuario usuario)
+      + Optional<Usuario> buscarPorId(UUID id)
+      + Optional<Usuario> buscarPorEmail(String email)
+      + boolean existePorEmail(String email)
+    }
+  }
+}
+
+BoundedContext HabitTracking {
+  type = SYSTEM
+  domainVisionStatement = "Permite aos usuários definir, rastrear (via CheckIn) e organizar (via Rotina) seus hábitos."
+  implementationTechnology = "Java"
+
+  Aggregate Habito {
+    Entity Habito {
+      UUID id
+      UUID usuarioId
+      String nome
+      String descricao
+      String categoria
+      String frequencia
+      int pontos
+      - List<RegistroHabito> registros
+      + void concluir(LocalDate data)
+      + boolean estaConcluídoHoje()
+      + void atualizar(String novoNome, String novaDescricao, String novaCategoria)
+    }
+    ValueObject RegistroHabito { LocalDate data; StatusRegistro status }
+    ValueObject StatusRegistro
+    Service RepositorioHabito {
+      + void salvar(Habito habito)
+      + Optional<Habito> buscarPorId(UUID habitoId)
+      + List<Habito> listarTodosPorUsuario(UUID usuarioId)
+      + void excluir(UUID habitoId)
+    }
+  }
+
+  Aggregate Rotina {
+    Entity Rotina {
+      UUID id
+      UUID usuarioId
+      String nome
+      String descricao
+      List<UUID> habitosIds
+      + void atualizar(String novoNome, String novaDescricao, List<UUID> novosHabitos)
+    }
+     Service RepositorioRotina {
+      + void salvar(Rotina rotina)
+      + Optional<Rotina> buscarPorId(UUID rotinaId)
+      + List<Rotina> listarTodosPorUsuario(UUID usuarioId)
+      + void excluir(UUID rotinaId)
+    }
+  }
+
+  Entity CheckIn {
+      UUID id
+      UUID habitoId
+      UUID usuarioId
+      LocalDate data
+  }
+  Service RepositorioCheckIn {
+      + void salvar(CheckIn checkIn)
+      + Optional<CheckIn> buscarPorHabitoEData(UUID habitoId, LocalDate data, UUID usuarioId)
+      + void remover(UUID habitoId, LocalDate data, UUID usuarioId)
+      + List<CheckIn> listarPorHabito(UUID habitoId, UUID usuarioId)
+  }
+}
+
+BoundedContext GoalSetting {
+  type = SYSTEM
+  domainVisionStatement = "Permite aos usuários definir e acompanhar metas associadas aos seus hábitos."
+  implementationTechnology = "Java"
+
+  Aggregate Meta {
+    Entity Meta {
+      UUID id
+      UUID usuarioId
+      List<UUID> habitosIds
+      Tipo tipo
+      String descricao
+      LocalDate prazo
+      int quantidade
+      int habitosCompletos
+      boolean alertaProximoFalha
+      + void atualizarQuantidade(int novaQuantidade)
+      + void dispararAlertaSeNecessario()
+      + void setHabitosCompletos(int habitosCompletos)
+      + void setPrazo(LocalDate prazo)
+    }
+    ValueObject Tipo
+    Service RepositorioMeta {
+        + void salvar(Meta meta)
+        + Optional<Meta> buscarPorId(UUID metaId)
+        + List<Meta> listarPorUsuario(UUID usuarioId)
+        + void remover(UUID metaId)
+    }
+  }
+}
+
+BoundedContext Challenges {
+  type = SYSTEM
+  domainVisionStatement = "Permite aos usuários criar, participar e gerenciar desafios baseados em hábitos."
+  implementationTechnology = "Java"
+
+  Aggregate Desafio {
+    Entity Desafio {
+      UUID id
+      UUID criadorId
+      String nome
+      List<UUID> habitosIds
+      List<UUID> participantesIds
+      LocalDate dataInicio
+      LocalDate dataFim
+      StatusDesafio status
+      + void adicionarParticipante(UUID participanteId)
+      + void removerParticipante(UUID participanteId)
+      + void encerrar()
+    }
+    ValueObject StatusDesafio
+
+    Entity ConviteDesafio {
+      UUID id
+      UUID desafioId
+      UUID convidadoId
+      UUID criadorId
+      StatusConvite status
+      LocalDateTime dataCriacao
+      + void aceitar()
+      + void rejeitar()
+    }
+    ValueObject StatusConvite
+
+    Service RepositorioDesafio {
+        + void salvar(Desafio desafio)
+        + Optional<Desafio> buscarPorId(UUID desafioId)
+        + List<Desafio> buscarTodosDoUsuario(UUID usuarioId)
+        + void salvarConvite(ConviteDesafio convite)
+        + List<ConviteDesafio> buscarConvitesPendentes(UUID convidadoId)
+    }
+  }
+}
+
+BoundedContext SocialEngagement {
+  type = SYSTEM
+  domainVisionStatement = "Gerencia a gamificação (pontos, níveis, badges), conexões sociais (amizades) e ranking."
+  implementationTechnology = "Java"
+
+  Aggregate PerfilSocial {
+    Entity PerfilSocial {
+      UUID id
+      UUID usuarioId
+      - Set<UUID> amigos
+      + void adicionarAmigo(UUID amigoId)
+      + void removerAmigo(UUID amigoId)
+      + boolean ehAmigoDe(UUID amigoId)
+    }
+    Service RepositorioPerfilSocial {
+        + void salvar(PerfilSocial perfil)
+        + Optional<PerfilSocial> buscarPorUsuarioId(UUID usuarioId)
+    }
+  }
+
+  Aggregate ProgressoUsuario {
+    Entity ProgressoUsuario {
+      id = UUID usuarioId
+      int pontos
+      int nivel
+      - int limiteProximoNivel
+      - int limiteNivelAtual
+      Set<UUID> badgesConquistados
+
+      + void adicionarPontos(int pontosGanhos)
+      + void removerPontos(int pontosPerdidos)
+      - void verificarNivel()
+      + void adicionarBadgeConquistada(UUID badgeId)
+    }
+     Service RepositorioProgressoUsuario {
+        + void salvar(ProgressoUsuario progresso)
+        + Optional<ProgressoUsuario> buscarPorUsuarioId(UUID usuarioId)
+    }
+  }
+
+  Aggregate BadgeDefinition {
+    Entity Badges {
+      UUID id
+      String nome
+      String descricao
+      Categoria categoria
+      int valorRequerido
+    }
+    ValueObject Categoria
+
+    Entity BadgeConquista {
+        UUID id
+        UUID usuarioId
+        boolean desbloqueada
+    }
+
+    Service RepositorioBadges {
+        + void salvarModelo(Badges modelo)
+        + void salvarConquista(Badges conquista)
+        + List<Badges> listarTodosModelos()
+        + List<Badges> listarConquistasPorUsuario(UUID usuarioId)
+        + boolean usuarioConquistouBadge(UUID usuarioId, UUID badgeModeloId)
+    }
+  }
+}
+
+BoundedContext Reporting {
+  type = SYSTEM
+  domainVisionStatement = "Consolida informações de outros contextos para apresentar relatórios e análises de progresso."
+  implementationTechnology = "Java"
+  ValueObject RelatorioDesempenho { }
+}
