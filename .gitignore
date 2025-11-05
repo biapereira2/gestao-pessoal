@@ -10,10 +10,9 @@
 # Build Maven
 /target/
 aplicacao/target/
-dominio-engajamento/target/
-dominio-habito/target/
-dominio-relatorio/target/
-dominio-compartilhado/target/
+infra/target/
+dominio/target/
+apresentacao/target/
 *.class
 
 # Arquivos temporários

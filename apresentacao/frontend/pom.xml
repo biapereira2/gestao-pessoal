@@ -5,23 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>gestao-pessoal</groupId>
-    <artifactId>gestao-pessoal-projeto-raiz</artifactId>
+    <artifactId>frontend</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>pai</module>
-        <module>apresentacao</module>
-        <module>dominio</module>
-        <module>infra</module>
-        <module>aplicacao</module>
-    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.10.1</junit.version>
     </properties>
 
 </project>
