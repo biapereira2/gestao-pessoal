@@ -23,7 +23,6 @@
 
     <dependencies>
 
-        <!-- Dependências de teste -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>

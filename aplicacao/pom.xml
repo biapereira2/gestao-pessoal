@@ -38,13 +38,13 @@
 
     <build>
         <plugins>
-            <!-- Plugin Surefire para execução de testes do módulo aplicacao, se houver -->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <!-- Caso não existam testes neste módulo, pode pular -->
+
                     <skipTests>true</skipTests>
                 </configuration>
             </plugin>

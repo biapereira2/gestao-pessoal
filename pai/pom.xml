@@ -8,13 +8,12 @@
         <groupId>gestao-pessoal</groupId>
         <artifactId>gestao-pessoal-projeto-raiz</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>..</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>pai</artifactId>
     <packaging>pom</packaging>
 
-    <!-- 🔹 Adicione aqui -->
     <properties>
         <junit.version>5.10.2</junit.version>
         <cucumber.version>7.16.1</cucumber.version>
@@ -22,13 +21,14 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- JUnit -->
+
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-api</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
@@ -36,25 +36,27 @@
                 <scope>test</scope>
             </dependency>
 
-            <!-- Cucumber -->
             <dependency>
                 <groupId>io.cucumber</groupId>
                 <artifactId>cucumber-java</artifactId>
                 <version>${cucumber.version}</version>
                 <scope>test</scope>
             </dependency>
+
             <dependency>
                 <groupId>io.cucumber</groupId>
                 <artifactId>cucumber-junit-platform-engine</artifactId>
                 <version>${cucumber.version}</version>
                 <scope>test</scope>
             </dependency>
+
             <dependency>
                 <groupId>io.cucumber</groupId>
                 <artifactId>cucumber-picocontainer</artifactId>
                 <version>${cucumber.version}</version>
                 <scope>test</scope>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
