@@ -16,24 +16,6 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- Dependências internas do projeto -->
-        <dependency>
-            <groupId>gestao-pessoal</groupId>
-            <artifactId>apresentacao</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>gestao-pessoal</groupId>
-            <artifactId>dominio</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>gestao-pessoal</groupId>
-            <artifactId>infra</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>gestao-pessoal</groupId>

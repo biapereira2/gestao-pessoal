@@ -22,12 +22,6 @@
     </properties>
 
     <dependencies>
-        <!-- Dependência do módulo dominio para testar -->
-        <dependency>
-            <groupId>gestao-pessoal</groupId>
-            <artifactId>dominio</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 
         <!-- Dependências de teste -->
         <dependency>
