@@ -1,5 +1,6 @@
 package gestao.pessoal.aplicacao.principal.meta;
 
+
 import gestao.pessoal.principal.meta.Meta;
 import org.jmolecules.ddd.annotation.Service;
 
