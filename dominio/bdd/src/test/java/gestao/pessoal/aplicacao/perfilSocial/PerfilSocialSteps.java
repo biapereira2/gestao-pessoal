@@ -1,11 +1,11 @@
 package gestao.pessoal.aplicacao.perfilSocial;
 
-import gestao.pessoal.aplicacao.amigo.AmigoDTO;
-import gestao.pessoal.aplicacao.amigo.AmizadeService;
+import gestao.pessoal.compartilhado.usuario.RepositorioUsuario;
+import gestao.pessoal.compartilhado.usuario.Usuario;
+import gestao.pessoal.compartilhado.usuario.UsuarioService;
+import gestao.pessoal.engajamento.amigo.AmigoDTO;
+import gestao.pessoal.engajamento.amigo.AmizadeService;
 import gestao.pessoal.aplicacao.usuario.FakeRepositorioUsuario;
-import gestao.pessoal.aplicacao.usuario.UsuarioService;
-import gestao.pessoal.usuario.RepositorioUsuario;
-import gestao.pessoal.usuario.Usuario;
 import gestao.pessoal.engajamento.perfilSocial.RepositorioPerfilSocial;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;

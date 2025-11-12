@@ -1,7 +1,8 @@
 package gestao.pessoal.aplicacao.checkIn;
 
 import gestao.pessoal.aplicacao.habito.FakeRepositorioHabito;
-import gestao.pessoal.aplicacao.progressoUsuario.ProgressoUsuarioService;
+import gestao.pessoal.engajamento.progressoUsuario.ProgressoUsuarioService;
+import gestao.pessoal.principal.checkIn.CheckInService;
 
 /**
  * Implementação FAKE do CheckInService que usa os Repositórios FAKE

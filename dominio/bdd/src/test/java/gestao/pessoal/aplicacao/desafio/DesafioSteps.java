@@ -1,10 +1,11 @@
 package gestao.pessoal.aplicacao.desafio;
 
 import gestao.pessoal.aplicacao.usuario.FakeRepositorioUsuario;
-import gestao.pessoal.habito.desafio.ConviteDesafio;
-import gestao.pessoal.habito.desafio.Desafio;
-import gestao.pessoal.habito.desafio.RepositorioDesafio;
-import gestao.pessoal.usuario.Usuario;
+import gestao.pessoal.compartilhado.usuario.Usuario;
+import gestao.pessoal.principal.desafio.ConviteDesafio;
+import gestao.pessoal.principal.desafio.Desafio;
+import gestao.pessoal.principal.desafio.DesafioService;
+import gestao.pessoal.principal.desafio.RepositorioDesafio;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,8 +16,8 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static gestao.pessoal.habito.desafio.ConviteDesafio.StatusConvite;
-import static gestao.pessoal.habito.desafio.Desafio.StatusDesafio;
+import static gestao.pessoal.principal.desafio.ConviteDesafio.StatusConvite;
+import static gestao.pessoal.principal.desafio.Desafio.StatusDesafio;
 
 public class DesafioSteps {
 

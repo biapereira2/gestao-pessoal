@@ -28,8 +28,6 @@
     </dependencies>
 
     <modules>
-        <module>engajamento</module>
-        <module>compartilhado</module>
         <module>principal</module>
         <module>bdd</module>
     </modules>

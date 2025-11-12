@@ -1,8 +1,9 @@
 package gestao.pessoal.aplicacao.rotina;
 
-import gestao.pessoal.usuario.Usuario;
-import gestao.pessoal.habito.rotina.Rotina;
-import gestao.pessoal.habito.rotina.RepositorioRotina;
+import gestao.pessoal.compartilhado.usuario.Usuario;
+import gestao.pessoal.principal.rotina.RotinaService;
+import gestao.pessoal.principal.rotina.Rotina;
+import gestao.pessoal.principal.rotina.RepositorioRotina;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Quando;
 import io.cucumber.java.pt.Entao;

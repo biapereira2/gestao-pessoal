@@ -1,7 +1,7 @@
 package gestao.pessoal.aplicacao.usuario;
 
-import gestao.pessoal.usuario.RepositorioUsuario;
-import gestao.pessoal.usuario.Usuario;
+import gestao.pessoal.compartilhado.usuario.RepositorioUsuario;
+import gestao.pessoal.compartilhado.usuario.Usuario;
 
 import java.util.HashMap;
 import java.util.Map;

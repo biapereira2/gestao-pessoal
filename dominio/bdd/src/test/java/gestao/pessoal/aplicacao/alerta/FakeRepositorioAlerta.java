@@ -1,7 +1,7 @@
 package gestao.pessoal.aplicacao.alerta;
 
-import gestao.pessoal.habito.alerta.Alerta;
-import gestao.pessoal.habito.alerta.RepositorioAlerta;
+import gestao.pessoal.principal.alerta.Alerta;
+import gestao.pessoal.principal.alerta.RepositorioAlerta;
 
 import java.util.*;
 import java.util.stream.Collectors;

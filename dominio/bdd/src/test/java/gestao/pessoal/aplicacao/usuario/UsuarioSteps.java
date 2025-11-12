@@ -1,8 +1,10 @@
 package gestao.pessoal.aplicacao.usuario;
 
 import gestao.pessoal.aplicacao.perfilSocial.FakeRepositorioPerfilSocial;
-import gestao.pessoal.usuario.Usuario;
+import gestao.pessoal.compartilhado.usuario.Usuario;
+import gestao.pessoal.compartilhado.usuario.UsuarioService;
 import gestao.pessoal.engajamento.perfilSocial.RepositorioPerfilSocial;
+
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Quando;

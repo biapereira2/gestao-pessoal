@@ -1,7 +1,7 @@
 package gestao.pessoal.aplicacao.habito;
 
-import gestao.pessoal.habito.habito.Habito;
-import gestao.pessoal.habito.habito.RepositorioHabito;
+import gestao.pessoal.principal.habito.Habito;
+import gestao.pessoal.principal.habito.RepositorioHabito;
 
 import java.util.*;
 import java.util.stream.Collectors;

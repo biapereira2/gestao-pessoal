@@ -1,9 +1,9 @@
 package gestao.pessoal.aplicacao.habito;
 
-import gestao.pessoal.usuario.Usuario;
-// Importa o Service/Repositorio do dominio Habito
-import gestao.pessoal.habito.habito.Habito;
-import gestao.pessoal.habito.habito.RepositorioHabito;
+import gestao.pessoal.compartilhado.usuario.Usuario;
+import gestao.pessoal.principal.habito.HabitoService;
+import gestao.pessoal.principal.habito.Habito;
+import gestao.pessoal.principal.habito.RepositorioHabito;
 import io.cucumber.java.Before; // Hook para limpeza
 import io.cucumber.java.en.*;
 

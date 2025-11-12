@@ -1,7 +1,7 @@
 package gestao.pessoal.aplicacao.meta;
 
-import gestao.pessoal.habito.meta.Meta;
-import gestao.pessoal.habito.meta.RepositorioMeta;
+import gestao.pessoal.principal.meta.Meta;
+import gestao.pessoal.principal.meta.RepositorioMeta;
 
 import java.util.*;
 import java.util.stream.Collectors;

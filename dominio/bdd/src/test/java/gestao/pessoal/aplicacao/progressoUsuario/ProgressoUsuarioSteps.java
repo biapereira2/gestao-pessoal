@@ -4,12 +4,13 @@ import gestao.pessoal.aplicacao.checkIn.FakeCheckInService;
 import gestao.pessoal.aplicacao.checkIn.FakeRepositorioCheckIn;
 import gestao.pessoal.aplicacao.habito.FakeRepositorioHabito;
 import gestao.pessoal.engajamento.progressoUsuario.ProgressoUsuario;
+import gestao.pessoal.engajamento.progressoUsuario.ProgressoUsuarioService;
 import gestao.pessoal.engajamento.progressoUsuario.RepositorioProgressoUsuario;
 
 // Importa as classes reais do domínio de Habito
 
-import gestao.pessoal.habito.checkIn.CheckIn;
-import gestao.pessoal.habito.habito.Habito;
+import gestao.pessoal.principal.checkIn.CheckIn;
+import gestao.pessoal.principal.habito.Habito;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 

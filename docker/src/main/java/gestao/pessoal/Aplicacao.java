@@ -2,10 +2,10 @@ package gestao.pessoal;
 
 import static org.springframework.boot.SpringApplication.run;
 
-import gestao.pessoal.aplicacao.meta.MetaService;
-import gestao.pessoal.habito.habito.RepositorioHabito;
-import gestao.pessoal.habito.meta.RepositorioMeta;
-import gestao.pessoal.usuario.RepositorioUsuario;
+import gestao.pessoal.compartilhado.usuario.RepositorioUsuario;
+import gestao.pessoal.principal.meta.MetaService;
+import gestao.pessoal.principal.habito.RepositorioHabito;
+import gestao.pessoal.principal.meta.RepositorioMeta;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 

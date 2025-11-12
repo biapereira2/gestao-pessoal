@@ -1,6 +1,7 @@
 package gestao.pessoal.aplicacao.progressoUsuario;
 
 import gestao.pessoal.engajamento.progressoUsuario.ProgressoUsuario;
+import gestao.pessoal.engajamento.progressoUsuario.ProgressoUsuarioService;
 import gestao.pessoal.engajamento.progressoUsuario.RepositorioProgressoUsuario;
 
 import java.util.HashMap;

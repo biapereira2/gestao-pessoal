@@ -2,11 +2,12 @@ package gestao.pessoal.aplicacao.meta;
 
 import gestao.pessoal.aplicacao.habito.FakeRepositorioHabito;
 import gestao.pessoal.aplicacao.usuario.FakeRepositorioUsuario;
-import gestao.pessoal.usuario.RepositorioUsuario;
-import gestao.pessoal.usuario.Usuario;
-import gestao.pessoal.habito.habito.Habito;
-import gestao.pessoal.habito.meta.Meta;
-import gestao.pessoal.habito.habito.RepositorioHabito;
+import gestao.pessoal.compartilhado.usuario.RepositorioUsuario;
+import gestao.pessoal.compartilhado.usuario.Usuario;
+import gestao.pessoal.principal.meta.MetaService;
+import gestao.pessoal.principal.habito.Habito;
+import gestao.pessoal.principal.meta.Meta;
+import gestao.pessoal.principal.habito.RepositorioHabito;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;

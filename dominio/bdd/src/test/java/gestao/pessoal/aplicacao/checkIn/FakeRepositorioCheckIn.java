@@ -1,7 +1,7 @@
 package gestao.pessoal.aplicacao.checkIn;
 
-import gestao.pessoal.habito.checkIn.CheckIn;
-import gestao.pessoal.habito.checkIn.RepositorioCheckIn;
+import gestao.pessoal.principal.checkIn.CheckIn;
+import gestao.pessoal.principal.checkIn.RepositorioCheckIn;
 
 import java.time.LocalDate;
 import java.util.List;

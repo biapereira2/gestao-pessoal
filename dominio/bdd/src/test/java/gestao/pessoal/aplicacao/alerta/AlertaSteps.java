@@ -1,7 +1,8 @@
 package gestao.pessoal.aplicacao.alerta;
 
-import gestao.pessoal.habito.alerta.Alerta;
-import gestao.pessoal.habito.meta.Meta;
+import gestao.pessoal.principal.alerta.Alerta;
+import gestao.pessoal.principal.alerta.AlertaService;
+import gestao.pessoal.principal.meta.Meta;
 import gestao.pessoal.aplicacao.meta.FakeRepositorioMeta;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
