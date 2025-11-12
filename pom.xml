@@ -15,6 +15,7 @@
         <module>dominio</module>
         <module>infra</module>
         <module>aplicacao</module>
+        <module>docker</module>
     </modules>
 
     <properties>

@@ -9,8 +9,9 @@
         <groupId>gestao-pessoal</groupId>
         <artifactId>pai</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../../pai/pom.xml</relativePath>
+        <relativePath>../../pai</relativePath> <!-- caminho relativo até o módulo pai -->
     </parent>
+
 
     <artifactId>bdd</artifactId>
     <version>1.0.0-SNAPSHOT</version>

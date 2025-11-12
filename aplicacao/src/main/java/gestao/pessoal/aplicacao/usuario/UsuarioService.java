@@ -1,9 +1,9 @@
 package gestao.pessoal.aplicacao.usuario;
 
-import gestao.pessoal.usuario.Usuario;
-import gestao.pessoal.usuario.RepositorioUsuario;
 import gestao.pessoal.engajamento.perfilSocial.PerfilSocial;
 import gestao.pessoal.engajamento.perfilSocial.RepositorioPerfilSocial;
+import gestao.pessoal.usuario.RepositorioUsuario;
+import gestao.pessoal.usuario.Usuario;
 
 import java.util.UUID;
 
