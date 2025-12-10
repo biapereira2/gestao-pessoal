@@ -1,7 +1,6 @@
 package gestao.pessoal.aplicacao.principal.meta;
 
-
-import gestao.pessoal.principal.meta.Meta;
+import gestao.pessoal.dominio.principal.princ.meta.Meta;
 import org.jmolecules.ddd.annotation.Service;
 
 import java.util.List;

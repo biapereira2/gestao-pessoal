@@ -1,28 +1,36 @@
-package gestao.pessoal.aplicacao.principal.meta;
+package gestao.pessoal.infra.persistencia.jpa.principal.meta;
 
+import gestao.pessoal.dominio.principal.princ.meta.Meta;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class MetaResumoExpandido {
+@Entity
+@Table(name = "META")
+public class MetaJpa {
 
+    @Id
+    @GeneratedValue
     private UUID id;
+
+    @Column(nullable = false)
     private UUID usuarioId;
+
+    @Column(nullable = false)
     private String descricao;
+
+    @Column(nullable = false)
     private int quantidade;
+
     private int habitosCompletos;
+
     private LocalDate prazo;
+
     private boolean alertaProximoFalha;
 
-    public MetaResumoExpandido(UUID id, UUID usuarioId, String descricao, int quantidade,
-                               int habitosCompletos, LocalDate prazo, boolean alertaProximoFalha) {
-        this.id = id;
-        this.usuarioId = usuarioId;
-        this.descricao = descricao;
-        this.quantidade = quantidade;
-        this.habitosCompletos = habitosCompletos;
-        this.prazo = prazo;
-        this.alertaProximoFalha = alertaProximoFalha;
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Meta.Tipo tipo;
 
     // Getters e setters
     public UUID getId() { return id; }
@@ -45,4 +53,7 @@ public class MetaResumoExpandido {
 
     public boolean isAlertaProximoFalha() { return alertaProximoFalha; }
     public void setAlertaProximoFalha(boolean alertaProximoFalha) { this.alertaProximoFalha = alertaProximoFalha; }
+
+    public Meta.Tipo getTipo() { return tipo; }
+    public void setTipo(Meta.Tipo tipo) { this.tipo = tipo; }
 }
