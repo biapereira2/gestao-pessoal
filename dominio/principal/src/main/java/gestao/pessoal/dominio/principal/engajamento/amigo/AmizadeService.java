@@ -1,8 +1,8 @@
 package gestao.pessoal.dominio.principal.engajamento.amigo;
 
 
-import gestao.pessoal.dominio.principal.compartilhado.RepositorioUsuario;
-import gestao.pessoal.dominio.principal.compartilhado.Usuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
 import gestao.pessoal.dominio.principal.engajamento.perfilSocial.PerfilSocial;
 import gestao.pessoal.dominio.principal.engajamento.perfilSocial.RepositorioPerfilSocial;
 import java.util.Optional;

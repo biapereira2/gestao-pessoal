@@ -22,11 +22,22 @@ public class MetaController {
     }
 
     @PostMapping
-    public ResponseEntity<Meta> criar(@RequestBody MetaForm form) {
-        Meta meta = new Meta(form.getUsuarioId(), UUID.randomUUID(), form.getTipo(), form.getDescricao(), form.getQuantidade());
-        service.criar(meta);
-        return ResponseEntity.ok(meta);
+    public ResponseEntity<?> criar(@RequestBody MetaForm form) {
+        try {
+            Meta meta = new Meta(
+                    form.getUsuarioId(),
+                    UUID.randomUUID(),
+                    form.getTipo(),
+                    form.getDescricao(),
+                    form.getQuantidade()
+            );
+            service.criar(meta);
+            return ResponseEntity.ok(meta);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Meta> buscarPorId(@PathVariable UUID id) {

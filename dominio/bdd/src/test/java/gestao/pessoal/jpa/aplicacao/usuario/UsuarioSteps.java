@@ -1,8 +1,8 @@
 package gestao.pessoal.jpa.aplicacao.usuario;
 
 import gestao.pessoal.jpa.aplicacao.perfilSocial.FakeRepositorioPerfilSocial;
-import gestao.pessoal.dominio.principal.compartilhado.Usuario;
-import gestao.pessoal.dominio.principal.compartilhado.UsuarioService;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.UsuarioService;
 import gestao.pessoal.dominio.principal.engajamento.perfilSocial.RepositorioPerfilSocial;
 
 import io.cucumber.java.Before;

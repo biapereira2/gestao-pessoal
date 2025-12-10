@@ -1,7 +1,7 @@
 package gestao.pessoal.dominio.principal.princ.desafio;
 
-import gestao.pessoal.dominio.principal.compartilhado.RepositorioUsuario;
-import gestao.pessoal.dominio.principal.compartilhado.Usuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
 
 import java.time.LocalDate;
 import java.util.List;

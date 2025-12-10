@@ -1,4 +1,4 @@
-package gestao.pessoal.dominio.principal.compartilhado;
+package gestao.pessoal.dominio.principal.compartilhado.usuario;
 
 import gestao.pessoal.dominio.principal.engajamento.perfilSocial.PerfilSocial;
 import gestao.pessoal.dominio.principal.engajamento.perfilSocial.RepositorioPerfilSocial;

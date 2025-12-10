@@ -1,6 +1,6 @@
 package gestao.pessoal.dominio.principal.princ.meta;
 
-import gestao.pessoal.dominio.principal.compartilhado.RepositorioUsuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario;
 import gestao.pessoal.dominio.principal.princ.habito.RepositorioHabito;
 
 import java.util.List;

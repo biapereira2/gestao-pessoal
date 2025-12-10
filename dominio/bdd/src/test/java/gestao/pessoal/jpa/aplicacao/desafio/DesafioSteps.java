@@ -1,7 +1,7 @@
 package gestao.pessoal.jpa.aplicacao.desafio;
 
 import gestao.pessoal.jpa.aplicacao.usuario.FakeRepositorioUsuario;
-import gestao.pessoal.dominio.principal.compartilhado.Usuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
 import gestao.pessoal.dominio.principal.princ.desafio.ConviteDesafio;
 import gestao.pessoal.dominio.principal.princ.desafio.Desafio;
 import gestao.pessoal.dominio.principal.princ.desafio.DesafioService;

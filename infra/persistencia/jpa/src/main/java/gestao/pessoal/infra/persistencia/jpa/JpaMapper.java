@@ -1,7 +1,10 @@
 package gestao.pessoal.infra.persistencia.jpa;
 
+import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioResumo;
+import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioResumoExpandido;
 import gestao.pessoal.aplicacao.principal.meta.MetaResumo;
 import gestao.pessoal.aplicacao.principal.meta.MetaResumoExpandido;
+import gestao.pessoal.infra.persistencia.jpa.compartilhado.usuario.UsuarioJpa;
 import gestao.pessoal.infra.persistencia.jpa.principal.meta.MetaJpa;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
@@ -39,5 +42,31 @@ public class JpaMapper extends ModelMapper {
                 );
             }
         });
+
+        addConverter(new AbstractConverter<UsuarioJpa, UsuarioResumo>() {
+            @Override
+            protected UsuarioResumo convert(UsuarioJpa source) {
+                if (source == null) return null;
+                return new UsuarioResumo(
+                        source.getId(),
+                        source.getNome(),
+                        source.getEmail()
+                );
+            }
+        });
+
+        addConverter(new AbstractConverter<UsuarioJpa, UsuarioResumoExpandido>() {
+            @Override
+            protected UsuarioResumoExpandido convert(UsuarioJpa source) {
+                if (source == null) return null;
+                return new UsuarioResumoExpandido(
+                        source.getId(),
+                        source.getNome(),
+                        source.getEmail()
+                );
+            }
+        });
+
+
     }
 }

@@ -1,6 +1,6 @@
 package gestao.pessoal.dominio.principal.engajamento.badges;
 
-import gestao.pessoal.dominio.principal.compartilhado.RepositorioUsuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario;
 import gestao.pessoal.dominio.principal.engajamento.progressoUsuario.ProgressoUsuarioService;
 import gestao.pessoal.dominio.principal.princ.meta.RepositorioMeta;
 import java.util.List;

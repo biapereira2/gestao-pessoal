@@ -1,6 +1,6 @@
 package gestao.pessoal.jpa.aplicacao.habito;
 
-import gestao.pessoal.dominio.principal.compartilhado.Usuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
 import gestao.pessoal.dominio.principal.princ.habito.HabitoService;
 import gestao.pessoal.dominio.principal.princ.habito.Habito;
 import gestao.pessoal.dominio.principal.princ.habito.RepositorioHabito;

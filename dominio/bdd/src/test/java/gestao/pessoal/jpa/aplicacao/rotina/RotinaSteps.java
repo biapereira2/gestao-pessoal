@@ -1,6 +1,6 @@
 package gestao.pessoal.jpa.aplicacao.rotina;
 
-import gestao.pessoal.dominio.principal.compartilhado.Usuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
 import gestao.pessoal.dominio.principal.princ.rotina.RotinaService;
 import gestao.pessoal.dominio.principal.princ.rotina.Rotina;
 import gestao.pessoal.dominio.principal.princ.rotina.RepositorioRotina;

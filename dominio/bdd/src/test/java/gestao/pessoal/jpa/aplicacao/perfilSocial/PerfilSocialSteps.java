@@ -1,8 +1,8 @@
 package gestao.pessoal.jpa.aplicacao.perfilSocial;
 
-import gestao.pessoal.dominio.principal.compartilhado.RepositorioUsuario;
-import gestao.pessoal.dominio.principal.compartilhado.Usuario;
-import gestao.pessoal.dominio.principal.compartilhado.UsuarioService;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.UsuarioService;
 import gestao.pessoal.dominio.principal.engajamento.amigo.AmigoDTO;
 import gestao.pessoal.dominio.principal.engajamento.amigo.AmizadeService;
 import gestao.pessoal.jpa.aplicacao.usuario.FakeRepositorioUsuario;

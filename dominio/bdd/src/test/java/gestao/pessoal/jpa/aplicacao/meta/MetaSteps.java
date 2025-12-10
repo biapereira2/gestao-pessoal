@@ -2,8 +2,8 @@ package gestao.pessoal.jpa.aplicacao.meta;
 
 import gestao.pessoal.jpa.aplicacao.habito.FakeRepositorioHabito;
 import gestao.pessoal.jpa.aplicacao.usuario.FakeRepositorioUsuario;
-import gestao.pessoal.dominio.principal.compartilhado.RepositorioUsuario;
-import gestao.pessoal.dominio.principal.compartilhado.Usuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
 import gestao.pessoal.dominio.principal.princ.meta.MetaService;
 import gestao.pessoal.dominio.principal.princ.habito.Habito;
 import gestao.pessoal.dominio.principal.princ.meta.Meta;

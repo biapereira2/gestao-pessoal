@@ -1,4 +1,6 @@
-package gestao.pessoal.dominio.principal.compartilhado;
+package gestao.pessoal.dominio.principal.compartilhado.usuario;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.UUID;
 
@@ -41,6 +43,10 @@ public class Usuario {
         this.senhaCriptografada = criptografar(senha);
     }
 
+    public Usuario(){
+        this.id = UUID.randomUUID();
+    }
+
     // --- MÉTODOS DE DOMÍNIO ---
 
     /**
@@ -77,14 +83,16 @@ public class Usuario {
         return nome;
     }
 
+    @JsonIgnore
     public String getSenha() {
         throw new UnsupportedOperationException("A senha em texto puro não é acessível.");
     }
 
-
+    @JsonIgnore
     public String getSenhaCriptografada() {
         return senhaCriptografada;
     }
+
 
     // --- SETTERS (MÉTODOS DE ALTERAÇÃO) ---
     // O Service é o único responsável por chamar estes métodos.

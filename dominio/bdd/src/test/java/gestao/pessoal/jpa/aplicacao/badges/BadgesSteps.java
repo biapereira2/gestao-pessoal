@@ -3,7 +3,7 @@ package gestao.pessoal.jpa.aplicacao.badges;
 import gestao.pessoal.jpa.aplicacao.progressoUsuario.FakeProgressoUsuarioService;
 import gestao.pessoal.jpa.aplicacao.meta.FakeRepositorioMeta;
 import gestao.pessoal.jpa.aplicacao.usuario.FakeRepositorioUsuario;
-import gestao.pessoal.dominio.principal.compartilhado.Usuario;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
 import gestao.pessoal.dominio.principal.engajamento.badges.BadgesService;
 import gestao.pessoal.dominio.principal.engajamento.badges.Badges;
 import gestao.pessoal.dominio.principal.princ.meta.Meta;

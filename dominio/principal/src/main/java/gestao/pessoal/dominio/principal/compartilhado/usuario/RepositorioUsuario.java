@@ -1,4 +1,4 @@
-package gestao.pessoal.dominio.principal.compartilhado;
+package gestao.pessoal.dominio.principal.compartilhado.usuario;
 
 import java.util.Optional;
 import java.util.UUID;
