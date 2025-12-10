@@ -17,6 +17,17 @@ public class Meta {
     private int habitosCompletos;
     private boolean alertaProximoFalha;
 
+    public Meta() {
+        this.id = UUID.randomUUID();
+        this.usuarioId = null;
+        this.tipo = Tipo.DIARIA;
+        this.descricao = "";
+        this.quantidade = 1;
+        this.habitosCompletos = 0;
+        this.alertaProximoFalha = false;
+        this.prazo = LocalDate.now().plusDays(1);
+    }
+
     public Meta(UUID usuarioId, UUID habitoId, Tipo tipo, String descricao, int quantidade) {
         if (descricao == null || descricao.trim().isEmpty()) {
             throw new IllegalArgumentException("A descrição da meta não pode ser vazia.");

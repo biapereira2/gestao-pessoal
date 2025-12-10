@@ -89,17 +89,22 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
-        <!-- INFRA -->
-        <dependency>
-            <groupId>gestao-pessoal</groupId>
-            <artifactId>infra</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-
         <!-- JPA -->
         <dependency>
             <groupId>gestao-pessoal</groupId>
             <artifactId>jpa</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gestao-pessoal</groupId>
+            <artifactId>backend</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gestao-pessoal</groupId>
+            <artifactId>aplicacao</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
