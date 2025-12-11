@@ -7,14 +7,14 @@ public class Alerta {
 
     public enum Condicao { FALTAM_DIAS }
 
-    private final UUID id;
-    private final UUID usuarioId;
-    private final UUID metaId;
-    private final Condicao condicao;
-    private final int valor;
-    private final String descricao;
+    private UUID id;
+    private UUID usuarioId;
+    private UUID metaId;
+    private Condicao condicao;
+    private int valor;
+    private String descricao;
     private boolean disparado;
-    private final LocalDate dataCriacao;
+    private LocalDate dataCriacao;
 
     public Alerta(UUID usuarioId, UUID metaId, Condicao condicao, int valor, String descricao) {
         if (usuarioId == null) throw new IllegalArgumentException("Usuário inválido.");
@@ -33,6 +33,8 @@ public class Alerta {
         this.dataCriacao = LocalDate.now();
     }
 
+    public Alerta(){}
+
     public boolean deveDisparar(LocalDate dataLimite) {
         if (condicao == Condicao.FALTAM_DIAS) {
             long diasRestantes = java.time.temporal.ChronoUnit.DAYS.between(LocalDate.now(), dataLimite);
@@ -50,7 +52,13 @@ public class Alerta {
     public UUID getMetaId() { return metaId; }
     public Condicao getCondicao() { return condicao; }
     public int getValor() { return valor; }
-    public void setValor(int novoValor) { }
+    public void setValor(int novoValor) {
+        if (novoValor < 0) {
+            throw new IllegalArgumentException("Valor inválido.");
+        }
+        this.valor = novoValor;
+    }
+
     public String getDescricao() { return descricao; }
     public boolean isDisparado() { return disparado; }
 }
