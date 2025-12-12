@@ -9,7 +9,7 @@ const Checkins = () => {
     <DashboardLayout>
       <h1>Check-ins</h1>
       <p>Página de check-ins do usuário.</p>
-      <button className="login-btn" onClick={() => navigate("/dashboard")}>
+      <button className="login-btn" onClick={() => navigate("/dashboard:id")}>
         Voltar
       </button>
     </DashboardLayout>

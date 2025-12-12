@@ -9,7 +9,7 @@ const Desafios = () => {
     <DashboardLayout>
       <h1>Desafios</h1>
       <p>Página de desafios do usuário.</p>
-      <button className="login-btn" onClick={() => navigate("/dashboard")}>
+      <button className="login-btn" onClick={() => navigate("/dashboard:id")}>
         Voltar
       </button>
     </DashboardLayout>

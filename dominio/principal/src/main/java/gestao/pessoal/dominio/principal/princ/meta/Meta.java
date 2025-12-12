@@ -2,6 +2,7 @@ package gestao.pessoal.dominio.principal.princ.meta;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.UUID;
 
 public class Meta {
@@ -16,6 +17,7 @@ public class Meta {
     private int quantidade;
     private int habitosCompletos;
     private boolean alertaProximoFalha;
+    private List<UUID> habitosIds; // NOVO: Lista de IDs de Hábitos
 
     public Meta() {
         this.id = UUID.randomUUID();
@@ -28,7 +30,8 @@ public class Meta {
         this.prazo = LocalDate.now().plusDays(1);
     }
 
-    public Meta(UUID usuarioId, UUID habitoId, Tipo tipo, String descricao, int quantidade) {
+    // CONSTRUTOR CORRIGIDO: Agora recebe List<UUID> habitosIds.
+    public Meta(UUID usuarioId, Tipo tipo, String descricao, int quantidade, List<UUID> habitosIds) {
         if (descricao == null || descricao.trim().isEmpty()) {
             throw new IllegalArgumentException("A descrição da meta não pode ser vazia.");
         }
@@ -41,6 +44,11 @@ public class Meta {
         if (usuarioId == null) {
             throw new IllegalArgumentException("Usuário inválido.");
         }
+        if (habitosIds == null || habitosIds.isEmpty()) {
+            throw new IllegalArgumentException("Uma meta deve estar associada a pelo menos um hábito.");
+        }
+
+
 
         this.id = UUID.randomUUID();
         this.usuarioId = usuarioId;
@@ -50,6 +58,7 @@ public class Meta {
         this.quantidade = quantidade;
         this.habitosCompletos = 0;
         this.alertaProximoFalha = false;
+        this.habitosIds = habitosIds;
     }
 
     public void atualizarQuantidade(int novaQuantidade) {
@@ -101,6 +110,10 @@ public class Meta {
     public LocalDate getPrazo() {
         return prazo;
     }
+
+    public List<UUID> getHabitosIds() { return habitosIds; }
+    public void setHabitosIds(List<UUID> habitosIds) { this.habitosIds = habitosIds; }
+
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;

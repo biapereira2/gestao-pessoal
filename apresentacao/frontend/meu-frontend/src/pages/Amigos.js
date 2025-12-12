@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom'; // Não se esqueça de importar o useParams
 import DashboardLayout from '../components/DashboardLayout';
 import AmigoCard from '../components/Social/AmigoCard';
 import PerfilAmigoModal from '../components/Social/PerfilAmigoModal';
@@ -9,12 +10,12 @@ import { socialService } from '../services/socialService';
 import '../css/social.css';
 
 const Amigos = () => {
+  const { id } = useParams(); // Pega o id do parâmetro da URL
   const [amigos, setAmigos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [termoBusca, setTermoBusca] = useState('');
   const [resultadosBusca, setResultadosBusca] = useState([]);
-
 
   const [amigoSelecionado, setAmigoSelecionado] = useState(null);
   const [modalExclusao, setModalExclusao] = useState({
@@ -23,16 +24,14 @@ const Amigos = () => {
     nomeAmigo: ''
   });
 
-  const usuarioId = "8c155cb1-f588-4fb2-b3f3-aaf341d2dcc4";
-
   useEffect(() => {
-    carregarAmigos();
-  }, []);
+    if (id) carregarAmigos(); // Garante que só carrega os amigos se o id estiver disponível
+  }, [id]);
 
   const carregarAmigos = async () => {
     try {
       setLoading(true);
-      const data = await socialService.listarAmigos(usuarioId);
+      const data = await socialService.listarAmigos(id); // Usa o id do parâmetro da URL
       setAmigos(data);
     } catch (error) {
       toast.error("Erro ao carregar lista de amigos.");
@@ -47,7 +46,7 @@ const Amigos = () => {
     if (termo.length > 2) {
       const resultados = await socialService.pesquisarUsuarios(termo);
       const filtrados = resultados.filter(u =>
-        u.id !== usuarioId && !amigos.some(a => a.id === u.id)
+        u.id !== id && !amigos.some(a => a.id === u.id) // Usa o id do parâmetro da URL
       );
       setResultadosBusca(filtrados);
     } else {
@@ -57,7 +56,7 @@ const Amigos = () => {
 
   const handleAdicionar = async (amigoId) => {
     try {
-      await socialService.adicionarAmigo(usuarioId, amigoId);
+      await socialService.adicionarAmigo(id, amigoId); // Usa o id do parâmetro da URL
 
       toast.success("Amigo adicionado com sucesso! 🎉");
 
@@ -77,13 +76,12 @@ const Amigos = () => {
     });
   };
 
-
   const confirmarRemocao = async () => {
-    const id = modalExclusao.idParaRemover;
+    const amigoId = modalExclusao.idParaRemover;
     try {
-      await socialService.removerAmigo(usuarioId, id);
+      await socialService.removerAmigo(id, amigoId); // Usa o id do parâmetro da URL
 
-      setAmigos(amigos.filter(a => a.id !== id));
+      setAmigos(amigos.filter(a => a.id !== amigoId));
       toast.info("Amizade desfeita.");
 
       setModalExclusao({ show: false, idParaRemover: null, nomeAmigo: '' });
@@ -139,7 +137,6 @@ const Amigos = () => {
             <AmigoCard
               key={amigo.id}
               amigo={amigo}
-              // MUDANÇA: Passamos o objeto inteiro para pegar o nome
               onRemover={() => solicitarRemocao(amigo)}
               onVerPerfil={setAmigoSelecionado}
             />

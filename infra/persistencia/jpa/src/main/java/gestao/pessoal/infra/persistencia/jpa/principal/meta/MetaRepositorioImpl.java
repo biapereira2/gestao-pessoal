@@ -46,6 +46,7 @@ public class MetaRepositorioImpl implements MetaRepositorioApl {
     @Override
     public List<MetaResumoExpandido> listarResumosExpandidoPorUsuario(UUID usuarioId) {
         List<MetaJpa> metas = metaJpaRepositorio.findByUsuarioId(usuarioId);
+        // O JpaMapper deve estar configurado para mapear o List<UUID> habitosIds do MetaJpa para MetaResumoExpandido.
         return metas.stream()
                 .map(jpa -> mapper.map(jpa, MetaResumoExpandido.class))
                 .collect(Collectors.toList());

@@ -9,7 +9,7 @@ const Rotinas = () => {
     <DashboardLayout>
       <h1>Rotinas</h1>
       <p>Página de rotinas do usuário.</p>
-      <button className="login-btn" onClick={() => navigate("/dashboard")}>
+      <button className="login-btn" onClick={() => navigate("/dashboard:id")}>
         Voltar
       </button>
     </DashboardLayout>

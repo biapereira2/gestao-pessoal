@@ -9,7 +9,7 @@ const Perfil = () => {
     <DashboardLayout>
       <h1>Perfil</h1>
       <p>Página de perfil do usuário.</p>
-      <button className="login-btn" onClick={() => navigate("/dashboard")}>
+      <button className="login-btn" onClick={() => navigate("/dashboard:id")}>
         Voltar
       </button>
     </DashboardLayout>

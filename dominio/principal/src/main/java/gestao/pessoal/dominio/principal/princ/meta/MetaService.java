@@ -23,6 +23,9 @@ public class MetaService {
         if (tipo == null)
             throw new IllegalArgumentException("Tipo inválido");
 
+        if (habitosIds == null || habitosIds.isEmpty())
+            throw new IllegalArgumentException("É necessário associar pelo menos um hábito à meta.");
+
         if (repositorioUsuario.buscarPorId(usuarioId).isEmpty())
             throw new IllegalArgumentException("Usuário não encontrado.");
 
@@ -33,8 +36,8 @@ public class MetaService {
             }
         }
 
-        // Cria apenas UMA meta para o conjunto de hábitos
-        Meta meta = new Meta(usuarioId, null, tipo, descricao, habitosIds.size());
+        // Cria a meta com a lista de IDs de Hábitos.
+        Meta meta = new Meta(usuarioId, tipo, descricao, habitosIds.size(), habitosIds);
         repositorioMeta.salvar(meta);
     }
 
@@ -49,12 +52,33 @@ public class MetaService {
         repositorioMeta.salvar(meta);
     }
 
+    // NOVO: Adiciona a possibilidade de atualizar os hábitos associados
+    public void atualizarHabitos(UUID metaId, List<UUID> novosHabitosIds) {
+        Meta meta = repositorioMeta.buscarPorId(metaId)
+                .orElseThrow(() -> new IllegalArgumentException("Meta com ID " + metaId + " não encontrada."));
+
+        if (novosHabitosIds == null || novosHabitosIds.isEmpty())
+            throw new IllegalArgumentException("A meta deve ter pelo menos um hábito.");
+
+        // Validação se os novos hábitos existem
+        for (UUID habitoId : novosHabitosIds) {
+            if (habitoId == null || repositorioHabito.buscarPorId(habitoId).isEmpty()) {
+                throw new IllegalArgumentException("Hábito não encontrado: " + habitoId);
+            }
+        }
+
+        // Atualiza a lista de IDs e a quantidade
+        meta.setHabitosIds(novosHabitosIds);
+        meta.setQuantidade(novosHabitosIds.size());
+
+        repositorioMeta.salvar(meta);
+    }
+
     // --- Excluir meta ---
     public void excluir(UUID metaId) {
         repositorioMeta.remover(metaId);
     }
 
-    // --- Verificar alerta de uma meta específica ---
     // --- Verificar alerta de uma meta específica ---
     public void verificarAlerta(UUID metaId, String periodo) {
         Meta meta = repositorioMeta.buscarPorId(metaId)

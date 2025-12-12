@@ -3,6 +3,7 @@ package gestao.pessoal.infra.persistencia.jpa.principal.meta;
 import gestao.pessoal.dominio.principal.princ.meta.Meta;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -32,6 +33,12 @@ public class MetaJpa {
     @Column(nullable = false)
     private Meta.Tipo tipo;
 
+    // NOVO: Mapeamento de Coleção de IDs de Hábitos (Cria a tabela de junção META_HABITOS)
+    @ElementCollection
+    @CollectionTable(name = "META_HABITOS", joinColumns = @JoinColumn(name = "meta_id"))
+    @Column(name = "habito_id")
+    private List<UUID> habitosIds;
+
     // Getters e setters
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
@@ -56,4 +63,8 @@ public class MetaJpa {
 
     public Meta.Tipo getTipo() { return tipo; }
     public void setTipo(Meta.Tipo tipo) { this.tipo = tipo; }
+
+    // Getter e Setter para habitosIds
+    public List<UUID> getHabitosIds() { return habitosIds; }
+    public void setHabitosIds(List<UUID> habitosIds) { this.habitosIds = habitosIds; }
 }

@@ -1,6 +1,7 @@
 package gestao.pessoal.aplicacao.principal.meta;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 public class MetaResumoExpandido {
@@ -12,9 +13,11 @@ public class MetaResumoExpandido {
     private int habitosCompletos;
     private LocalDate prazo;
     private boolean alertaProximoFalha;
+    private List<UUID> habitosIds; // NOVO
 
     public MetaResumoExpandido(UUID id, UUID usuarioId, String descricao, int quantidade,
-                               int habitosCompletos, LocalDate prazo, boolean alertaProximoFalha) {
+                               int habitosCompletos, LocalDate prazo, boolean alertaProximoFalha,
+                               List<UUID> habitosIds) {
         this.id = id;
         this.usuarioId = usuarioId;
         this.descricao = descricao;
@@ -22,6 +25,7 @@ public class MetaResumoExpandido {
         this.habitosCompletos = habitosCompletos;
         this.prazo = prazo;
         this.alertaProximoFalha = alertaProximoFalha;
+        this.habitosIds = habitosIds;
     }
 
     // Getters e setters
@@ -45,4 +49,7 @@ public class MetaResumoExpandido {
 
     public boolean isAlertaProximoFalha() { return alertaProximoFalha; }
     public void setAlertaProximoFalha(boolean alertaProximoFalha) { this.alertaProximoFalha = alertaProximoFalha; }
+
+    public List<UUID> getHabitosIds() { return habitosIds; }
+    public void setHabitosIds(List<UUID> habitosIds) { this.habitosIds = habitosIds; }
 }

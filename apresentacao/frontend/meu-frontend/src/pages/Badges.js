@@ -9,7 +9,7 @@ const Badges = () => {
     <DashboardLayout>
       <h1>Badges</h1>
       <p>Página de conquistas do usuário.</p>
-      <button className="login-btn" onClick={() => navigate("/dashboard")}>
+      <button className="login-btn" onClick={() => navigate("/dashboard:id")}>
         Voltar
       </button>
     </DashboardLayout>

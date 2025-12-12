@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import DashboardLayout from '../components/DashboardLayout';
 import HabitoCard from '../components/Habitos/HabitoCard';
 import CriarHabitoModal from '../components/Habitos/CriarHabitoModal';
@@ -10,6 +11,7 @@ import { toast } from 'react-toastify';
 import '../css/habitos.css';
 
 const Habitos = () => {
+  const { id } = useParams();
   const [habitos, setHabitos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [busca, setBusca] = useState('');
@@ -19,16 +21,14 @@ const Habitos = () => {
   const [modalEditar, setModalEditar] = useState({ show: false, habito: null });
   const [modalDetalhes, setModalDetalhes] = useState({ show: false, habito: null });
 
-  const usuarioId = "8c155cb1-f588-4fb2-b3f3-aaf341d2dcc4";
-
   useEffect(() => {
     carregarHabitos();
-  }, []);
+  }, [id]);
 
   const carregarHabitos = async () => {
     try {
       setLoading(true);
-      const data = await habitoService.listarPorUsuario(usuarioId);
+      const data = await habitoService.listarPorUsuario(id);
       setHabitos(data);
     } catch (error) {
       toast.error("Erro ao carregar hábitos");
@@ -39,7 +39,7 @@ const Habitos = () => {
 
   const handleSalvarHabito = async (dadosForm) => {
     try {
-      await habitoService.criar(dadosForm);
+      await habitoService.criar({ ...dadosForm, usuarioId: id });
       toast.success("Hábito criado!");
       setModalCriarAberto(false);
       carregarHabitos();
@@ -48,9 +48,9 @@ const Habitos = () => {
     }
   };
 
-  const handleAtualizarHabito = async (id, dadosForm) => {
+  const handleAtualizarHabito = async (habitoId, dadosForm) => {
     try {
-      await habitoService.atualizar(id, dadosForm);
+      await habitoService.atualizar(habitoId, dadosForm);
       toast.success("Hábito atualizado!");
       setModalEditar({ show: false, habito: null });
       carregarHabitos();
@@ -78,10 +78,9 @@ const Habitos = () => {
   return (
     <DashboardLayout>
       <div className="habitos-page">
-
-        <div style={{marginBottom: '25px'}}>
-            <h1>Meus Hábitos</h1>
-            <p>Gerencie sua rotina e acompanhe seu progresso diário.</p>
+        <div style={{ marginBottom: '25px' }}>
+          <h1>Meus Hábitos</h1>
+          <p>Gerencie sua rotina e acompanhe seu progresso diário.</p>
         </div>
 
         <div className="habitos-header-row">
@@ -110,14 +109,14 @@ const Habitos = () => {
           ))}
         </div>
 
-
         {modalCriarAberto && (
           <CriarHabitoModal
             onClose={() => setModalCriarAberto(false)}
             onSalvar={handleSalvarHabito}
-            usuarioId={usuarioId}
+            usuarioId={id}
           />
         )}
+
         {modalEditar.show && (
           <EditarHabitoModal
             habito={modalEditar.habito}
@@ -140,7 +139,6 @@ const Habitos = () => {
           titulo="Excluir hábito?"
           mensagem={`Deseja realmente excluir "${modalExclusao.habito?.nome}"?`}
         />
-
       </div>
     </DashboardLayout>
   );

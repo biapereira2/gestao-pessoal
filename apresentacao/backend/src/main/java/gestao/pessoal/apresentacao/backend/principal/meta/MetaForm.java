@@ -1,10 +1,12 @@
 package gestao.pessoal.apresentacao.backend.principal.meta;
 
 import gestao.pessoal.dominio.principal.princ.meta.Meta;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 public class MetaForm {
@@ -13,8 +15,7 @@ public class MetaForm {
     @Size(min = 1, max = 100)
     private String descricao;
 
-    @NotNull
-    private Integer quantidade;
+    private Integer quantidade; // Deixamos opcional, será calculado por habitosIds.size()
 
     private int habitosCompletos;
 
@@ -27,6 +28,10 @@ public class MetaForm {
 
     @NotNull
     private UUID usuarioId;
+
+    @NotNull
+    @NotEmpty(message = "A meta deve ter pelo menos um hábito associado.")
+    private List<UUID> habitosIds; // NOVO
 
     // Getters e Setters
     public String getDescricao() { return descricao; }
@@ -49,4 +54,7 @@ public class MetaForm {
 
     public UUID getUsuarioId() { return usuarioId; }
     public void setUsuarioId(UUID usuarioId) { this.usuarioId = usuarioId; }
+
+    public List<UUID> getHabitosIds() { return habitosIds; }
+    public void setHabitosIds(List<UUID> habitosIds) { this.habitosIds = habitosIds; }
 }

@@ -42,5 +42,17 @@ export const habitoService = {
     });
     if (!response.ok) throw new Error("Erro ao remover hábito");
     return true;
+  },
+
+  // ================= NOVA FUNÇÃO =================
+  obterPorId: async (id) => {
+    try {
+      const response = await fetch(`${API_URL}/${id}`);
+      if (!response.ok) throw new Error("Hábito não encontrado");
+      return await response.json(); // Retorna { id, nome, ... }
+    } catch (error) {
+      console.error("Erro ao buscar hábito por ID:", error);
+      throw error;
+    }
   }
 };

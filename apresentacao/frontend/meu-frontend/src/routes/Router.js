@@ -25,18 +25,18 @@ const AppRouter = () => {
         <Route path="/cadastro" element={<Cadastro />} />
 
         {/* Dashboard */}
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/:id" element={<Dashboard />} />
 
         {/* Páginas do Navbar */}
-        <Route path="/rotinas" element={<Rotinas />} />
-        <Route path="/metas" element={<Metas />} />
-        <Route path="/habitos" element={<Habitos />} />
-        <Route path="/desafios" element={<Desafios />} />
-        <Route path="/checkins" element={<Checkins />} />
-        <Route path="/alertas" element={<Alertas />} />
-        <Route path="/social" element={<Amigos />} />
-        <Route path="/badges" element={<Badges />} />
-        <Route path="/perfil" element={<Perfil />} />
+        <Route path="/rotinas/:id" element={<Rotinas />} />
+        <Route path="/metas/:id" element={<Metas />} />
+        <Route path="/habitos/:id" element={<Habitos />} />
+        <Route path="/desafios/:id" element={<Desafios />} />
+        <Route path="/checkins/:id" element={<Checkins />} />
+        <Route path="/alertas/:id" element={<Alertas />} />
+        <Route path="/social/:id" element={<Amigos />} />
+        <Route path="/badges/:id" element={<Badges />} />
+        <Route path="/perfil/:id" element={<Perfil />} />
       </Routes>
     </Router>
   );
