@@ -5,60 +5,48 @@ import java.util.UUID;
 
 public class Alerta {
 
-    public enum Condicao { FALTAM_DIAS }
-
     private UUID id;
     private UUID usuarioId;
-    private UUID metaId;
-    private Condicao condicao;
-    private int valor;
+    private String titulo;
     private String descricao;
+    private LocalDate dataDisparo;
     private boolean disparado;
-    private LocalDate dataCriacao;
+    private String categoria; // nova funcionalidade: categoria do alerta
 
-    public Alerta(UUID usuarioId, UUID metaId, Condicao condicao, int valor, String descricao) {
+    public Alerta(UUID usuarioId, String titulo, String descricao, LocalDate dataDisparo, String categoria) {
         if (usuarioId == null) throw new IllegalArgumentException("Usuário inválido.");
-        if (metaId == null) throw new IllegalArgumentException("Meta inválida.");
-        if (condicao == null) throw new IllegalArgumentException("Condição inválida.");
-        if (valor <= 0) throw new IllegalArgumentException("Valor inválido.");
-        if (descricao == null || descricao.trim().isEmpty()) throw new IllegalArgumentException("Descrição obrigatória.");
+        if (titulo == null || titulo.isBlank()) throw new IllegalArgumentException("Título obrigatório.");
+        if (dataDisparo == null) throw new IllegalArgumentException("Data de disparo obrigatória.");
 
         this.id = UUID.randomUUID();
         this.usuarioId = usuarioId;
-        this.metaId = metaId;
-        this.condicao = condicao;
-        this.valor = valor;
+        this.titulo = titulo;
         this.descricao = descricao;
+        this.dataDisparo = dataDisparo;
         this.disparado = false;
-        this.dataCriacao = LocalDate.now();
+        this.categoria = categoria != null && !categoria.isBlank() ? categoria : "Geral";
     }
 
     public Alerta(){}
 
-    public boolean deveDisparar(LocalDate dataLimite) {
-        if (condicao == Condicao.FALTAM_DIAS) {
-            long diasRestantes = java.time.temporal.ChronoUnit.DAYS.between(LocalDate.now(), dataLimite);
-            return diasRestantes == valor;
-        }
-        return false;
+    public boolean deveDisparar() {
+        return !disparado && !LocalDate.now().isBefore(dataDisparo);
     }
 
     public void marcarComoDisparado() {
         this.disparado = true;
     }
 
+    // getters e setters
     public UUID getId() { return id; }
     public UUID getUsuarioId() { return usuarioId; }
-    public UUID getMetaId() { return metaId; }
-    public Condicao getCondicao() { return condicao; }
-    public int getValor() { return valor; }
-    public void setValor(int novoValor) {
-        if (novoValor < 0) {
-            throw new IllegalArgumentException("Valor inválido.");
-        }
-        this.valor = novoValor;
-    }
-
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
     public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+    public LocalDate getDataDisparo() { return dataDisparo; }
+    public void setDataDisparo(LocalDate dataDisparo) { this.dataDisparo = dataDisparo; }
     public boolean isDisparado() { return disparado; }
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
 }

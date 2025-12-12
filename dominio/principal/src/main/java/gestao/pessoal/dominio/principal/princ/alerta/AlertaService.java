@@ -1,57 +1,51 @@
 package gestao.pessoal.dominio.principal.princ.alerta;
 
-import gestao.pessoal.dominio.principal.princ.meta.Meta;
-import gestao.pessoal.dominio.principal.princ.meta.RepositorioMeta;
-
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public class AlertaService {
 
-    private final RepositorioAlerta repositorioAlerta;
-    private final RepositorioMeta repositorioMeta;
+    private final RepositorioAlerta repositorio;
 
-    public AlertaService(RepositorioAlerta repositorioAlerta, RepositorioMeta repositorioMeta) {
-        this.repositorioAlerta = repositorioAlerta;
-        this.repositorioMeta = repositorioMeta;
+    public AlertaService(RepositorioAlerta repositorio) {
+        this.repositorio = repositorio;
     }
 
-    public void criar(UUID usuarioId, UUID metaId, Alerta.Condicao condicao, int valor, String descricao) {
-        if (condicao == null)
-            throw new IllegalArgumentException("Condição inválida");
-        if (valor <= 0)
-            throw new IllegalArgumentException("Valor inválido");
-        if (descricao == null || descricao.isBlank())
-            throw new IllegalArgumentException("Descrição obrigatória");
-
-        Optional<Meta> metaOpt = repositorioMeta.buscarPorId(metaId);
-        if (metaOpt.isEmpty())
-            throw new IllegalArgumentException("Meta não encontrada.");
-
-        Alerta alerta = new Alerta(usuarioId, metaId, condicao, valor, descricao);
-        repositorioAlerta.salvar(alerta);
+    // Criar alerta
+    public void criar(UUID usuarioId, String titulo, String descricao, LocalDate dataDisparo, String categoria) {
+        Alerta alerta = new Alerta(usuarioId, titulo, descricao, dataDisparo, categoria);
+        repositorio.salvar(alerta);
     }
 
-    public void editar(UUID alertaId, int novoValor) {
-        Alerta alerta = repositorioAlerta.buscarPorId(alertaId).orElseThrow(() -> new IllegalArgumentException("Alerta não encontrado."));alerta.setValor(novoValor);
+    // Editar alerta
+    public void editar(UUID alertaId, String novoTitulo, String novaDescricao, LocalDate novaData, String novaCategoria) {
+        Alerta alerta = repositorio.buscarPorId(alertaId)
+                .orElseThrow(() -> new IllegalArgumentException("Alerta não encontrado"));
+
+        if (novoTitulo != null && !novoTitulo.isBlank()) alerta.setTitulo(novoTitulo);
+        if (novaDescricao != null) alerta.setDescricao(novaDescricao);
+        if (novaData != null) alerta.setDataDisparo(novaData);
+        if (novaCategoria != null && !novaCategoria.isBlank()) alerta.setCategoria(novaCategoria);
     }
 
-
+    // Remover alerta
     public void excluir(UUID alertaId) {
-        repositorioAlerta.remover(alertaId);
+        repositorio.remover(alertaId);
     }
 
-    public void verificarDisparo(UUID alertaId, LocalDate dataLimite) {
-        Alerta alerta = repositorioAlerta.buscarPorId(alertaId).orElseThrow(() -> new IllegalArgumentException("Alerta não encontrado."));
-        if (alerta.deveDisparar(dataLimite)) {
+    // Verificar disparo
+    public void verificarDisparo(UUID alertaId) {
+        Alerta alerta = repositorio.buscarPorId(alertaId)
+                .orElseThrow(() -> new IllegalArgumentException("Alerta não encontrado"));
+        if (alerta.deveDisparar()) {
             alerta.marcarComoDisparado();
-            System.out.println("🔔 Alerta disparado: " + alerta.getDescricao());
+            System.out.println("⏰ Lembrete: " + alerta.getTitulo() + " - " + alerta.getDescricao() + " [" + alerta.getCategoria() + "]");
         }
     }
 
+    // Listar alertas do usuário
     public List<Alerta> listarPorUsuario(UUID usuarioId) {
-        return repositorioAlerta.listarPorUsuario(usuarioId);
+        return repositorio.listarPorUsuario(usuarioId);
     }
 }

@@ -7,31 +7,28 @@ public class AlertaResumoExpandido {
 
     private UUID id;
     private UUID usuarioId;
-    private UUID metaId;
-    private String condicao;
-    private int valor;
+    private String titulo;
     private String descricao;
+    private LocalDate dataDisparo;
     private boolean disparado;
-    private LocalDate dataCriacao;
+    private String categoria;
 
-    public AlertaResumoExpandido(UUID id, UUID usuarioId, UUID metaId, String condicao,
-                                 int valor, String descricao, boolean disparado, LocalDate dataCriacao) {
+    public AlertaResumoExpandido(UUID id, UUID usuarioId, String titulo, String descricao,
+                                 LocalDate dataDisparo, boolean disparado, String categoria) {
         this.id = id;
         this.usuarioId = usuarioId;
-        this.metaId = metaId;
-        this.condicao = condicao;
-        this.valor = valor;
+        this.titulo = titulo;
         this.descricao = descricao;
+        this.dataDisparo = dataDisparo;
         this.disparado = disparado;
-        this.dataCriacao = dataCriacao;
+        this.categoria = categoria;
     }
 
     public UUID getId() { return id; }
     public UUID getUsuarioId() { return usuarioId; }
-    public UUID getMetaId() { return metaId; }
-    public String getCondicao() { return condicao; }
-    public int getValor() { return valor; }
+    public String getTitulo() { return titulo; }
     public String getDescricao() { return descricao; }
+    public LocalDate getDataDisparo() { return dataDisparo; }
     public boolean isDisparado() { return disparado; }
-    public LocalDate getDataCriacao() { return dataCriacao; }
+    public String getCategoria() { return categoria; }
 }

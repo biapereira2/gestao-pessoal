@@ -15,22 +15,19 @@ public class AlertaJpa {
     private UUID usuarioId;
 
     @Column(nullable = false)
-    private UUID metaId;
-
-    @Column(nullable = false)
-    private String condicao;
-
-    @Column(nullable = false)
-    private int valor;
+    private String titulo;
 
     @Column(nullable = false)
     private String descricao;
 
     @Column(nullable = false)
+    private LocalDate dataDisparo;
+
+    @Column(nullable = false)
     private boolean disparado;
 
     @Column(nullable = false)
-    private LocalDate dataCriacao;
+    private String categoria;
 
     // Getters e setters
     public UUID getId() { return id; }
@@ -39,21 +36,18 @@ public class AlertaJpa {
     public UUID getUsuarioId() { return usuarioId; }
     public void setUsuarioId(UUID usuarioId) { this.usuarioId = usuarioId; }
 
-    public UUID getMetaId() { return metaId; }
-    public void setMetaId(UUID metaId) { this.metaId = metaId; }
-
-    public String getCondicao() { return condicao; }
-    public void setCondicao(String condicao) { this.condicao = condicao; }
-
-    public int getValor() { return valor; }
-    public void setValor(int valor) { this.valor = valor; }
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
 
     public String getDescricao() { return descricao; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
 
+    public LocalDate getDataDisparo() { return dataDisparo; }
+    public void setDataDisparo(LocalDate dataDisparo) { this.dataDisparo = dataDisparo; }
+
     public boolean isDisparado() { return disparado; }
     public void setDisparado(boolean disparado) { this.disparado = disparado; }
 
-    public LocalDate getDataCriacao() { return dataCriacao; }
-    public void setDataCriacao(LocalDate dataCriacao) { this.dataCriacao = dataCriacao; }
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
 }

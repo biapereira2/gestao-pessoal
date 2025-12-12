@@ -37,10 +37,10 @@ public class AlertaRepositorioImpl implements AlertaRepositorioApl {
                 .stream()
                 .map(jpa -> new AlertaResumo(
                         jpa.getId(),
+                        jpa.getTitulo(),
                         jpa.getDescricao(),
-                        jpa.getCondicao(),
-                        jpa.getValor(),
-                        jpa.isDisparado()
+                        jpa.isDisparado(),
+                        jpa.getCategoria()
                 ))
                 .collect(Collectors.toList());
     }
@@ -52,12 +52,11 @@ public class AlertaRepositorioImpl implements AlertaRepositorioApl {
                 .map(jpa -> new AlertaResumoExpandido(
                         jpa.getId(),
                         jpa.getUsuarioId(),
-                        jpa.getMetaId(),
-                        jpa.getCondicao(),
-                        jpa.getValor(),
+                        jpa.getTitulo(),
                         jpa.getDescricao(),
+                        jpa.getDataDisparo(),
                         jpa.isDisparado(),
-                        jpa.getDataCriacao()
+                        jpa.getCategoria()
                 ))
                 .collect(Collectors.toList());
     }

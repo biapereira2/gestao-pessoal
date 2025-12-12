@@ -1,8 +1,8 @@
 package gestao.pessoal.apresentacao.backend.principal.alerta;
 
-import gestao.pessoal.dominio.principal.princ.alerta.Alerta;
-
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class AlertaForm {
@@ -10,30 +10,29 @@ public class AlertaForm {
     @NotNull
     private UUID usuarioId;
 
-    @NotNull
-    private UUID metaId;
+    @NotBlank
+    private String titulo;
 
-    @NotNull
-    private Alerta.Condicao condicao;
-
-    @NotNull
-    private int valor;
-
-    @NotNull
     private String descricao;
 
+    @NotNull
+    private LocalDate dataDisparo;
+
+    private String categoria;
+
+    // Getters e setters
     public UUID getUsuarioId() { return usuarioId; }
     public void setUsuarioId(UUID usuarioId) { this.usuarioId = usuarioId; }
 
-    public UUID getMetaId() { return metaId; }
-    public void setMetaId(UUID metaId) { this.metaId = metaId; }
-
-    public Alerta.Condicao getCondicao() { return condicao; }
-    public void setCondicao(Alerta.Condicao condicao) { this.condicao = condicao; }
-
-    public int getValor() { return valor; }
-    public void setValor(int valor) { this.valor = valor; }
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
 
     public String getDescricao() { return descricao; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
+
+    public LocalDate getDataDisparo() { return dataDisparo; }
+    public void setDataDisparo(LocalDate dataDisparo) { this.dataDisparo = dataDisparo; }
+
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
 }

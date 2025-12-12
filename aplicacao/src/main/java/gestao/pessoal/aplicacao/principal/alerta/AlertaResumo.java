@@ -5,22 +5,22 @@ import java.util.UUID;
 public class AlertaResumo {
 
     private UUID id;
+    private String titulo;
     private String descricao;
-    private String condicao;
-    private int valor;
     private boolean disparado;
+    private String categoria;
 
-    public AlertaResumo(UUID id, String descricao, String condicao, int valor, boolean disparado) {
+    public AlertaResumo(UUID id, String titulo, String descricao, boolean disparado, String categoria) {
         this.id = id;
+        this.titulo = titulo;
         this.descricao = descricao;
-        this.condicao = condicao;
-        this.valor = valor;
         this.disparado = disparado;
+        this.categoria = categoria;
     }
 
     public UUID getId() { return id; }
+    public String getTitulo() { return titulo; }
     public String getDescricao() { return descricao; }
-    public String getCondicao() { return condicao; }
-    public int getValor() { return valor; }
     public boolean isDisparado() { return disparado; }
+    public String getCategoria() { return categoria; }
 }

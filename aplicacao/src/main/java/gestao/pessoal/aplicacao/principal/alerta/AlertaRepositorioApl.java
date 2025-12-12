@@ -10,6 +10,6 @@ public interface AlertaRepositorioApl {
     void salvar(Alerta alerta);
     Optional<Alerta> buscarPorId(UUID id);
     List<AlertaResumo> listarPorUsuario(UUID usuarioId);
-    List<AlertaResumoExpandido> listarResumosExpandidoPorUsuario(UUID usuarioId); // novo método
+    List<AlertaResumoExpandido> listarResumosExpandidoPorUsuario(UUID usuarioId);
     void remover(UUID id);
 }

@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/alertas")
+@CrossOrigin(origins = "*")
 public class AlertaController {
 
     private final AlertaServiceApl service;
@@ -21,7 +22,13 @@ public class AlertaController {
     @PostMapping
     public ResponseEntity<?> criar(@RequestBody AlertaForm form) {
         try {
-            Alerta alerta = new Alerta(form.getUsuarioId(), form.getMetaId(), form.getCondicao(), form.getValor(), form.getDescricao());
+            Alerta alerta = new Alerta(
+                    form.getUsuarioId(),
+                    form.getTitulo(),
+                    form.getDescricao(),
+                    form.getDataDisparo(),
+                    form.getCategoria()
+            );
             service.criar(alerta);
             return ResponseEntity.ok(alerta);
         } catch (IllegalArgumentException e) {
@@ -42,13 +49,18 @@ public class AlertaController {
     @PutMapping("/{id}")
     public ResponseEntity<?> editar(@PathVariable UUID id, @RequestBody AlertaForm form) {
         try {
-            Alerta alertaAtualizado = service.editar(id, form.getValor());
+            Alerta alertaAtualizado = service.editar(
+                    id,
+                    form.getTitulo(),
+                    form.getDescricao(),
+                    form.getDataDisparo(),
+                    form.getCategoria()
+            );
             return ResponseEntity.ok(alertaAtualizado);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> remover(@PathVariable UUID id) {
