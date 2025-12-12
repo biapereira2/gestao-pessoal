@@ -50,21 +50,40 @@ public class MetaSteps {
     }
 
     private MetaService criarMetaServiceComUsuarioMock() {
+
         RepositorioUsuario repoMock = new RepositorioUsuario() {
+
             @Override
             public void salvar(Usuario usuario) { }
+
             @Override
             public Optional<Usuario> buscarPorId(UUID id) {
                 if (id.equals(usuario.getId())) return Optional.of(usuario);
                 return Optional.empty();
             }
+
             @Override
-            public Optional<Usuario> buscarPorEmail(String email) { return Optional.of(usuario); }
+            public Optional<Usuario> buscarPorEmail(String email) {
+                return Optional.of(usuario);
+            }
+
             @Override
-            public boolean existePorEmail(String email) { return true; }
+            public boolean existePorEmail(String email) {
+                return true;
+            }
+
+            @Override
+            public List<Usuario> buscarPorParteDoNome(String nome) {
+                if (usuario.getNome().toLowerCase().contains(nome.toLowerCase())) {
+                    return Collections.singletonList(usuario);
+                }
+                return Collections.emptyList();
+            }
         };
+
         return new MetaService(repositorioMeta, repoMock, repositorioHabito);
     }
+
 
     @Dado("que eu sou um usuário autenticado para metas")
     public void que_eu_sou_um_usuario_autenticado_para_metas() {

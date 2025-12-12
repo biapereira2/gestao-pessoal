@@ -3,31 +3,27 @@ package gestao.pessoal.jpa.aplicacao.usuario;
 import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario;
 import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class FakeRepositorioUsuario implements RepositorioUsuario {
 
-    // Mapa principal que usa Email como chave (padrão do seu repositório original)
+    // Mapa principal que usa Email como chave
     private final Map<String, Usuario> usuariosPorEmail = new HashMap<>();
 
-    // Mapa auxiliar que usa Nome como chave (para testes BDD e Desafios)
+    // Mapa auxiliar que usa Nome como chave
     private final Map<String, Usuario> usuariosPorNome = new HashMap<>();
+
 
     /**
      * Método utilitário crucial para os testes BDD de Desafios.
-     * Busca um usuário pelo nome. Se não existir, o cria (simulando um cadastro rápido para o teste).
+     * Busca um usuário pelo nome. Se não existir, o cria.
      */
     public Usuario criarOuBuscarUsuario(String nome) {
         if (usuariosPorNome.containsKey(nome)) {
             return usuariosPorNome.get(nome);
         }
 
-        // Simulação: Cria um usuário.
-        // Usa o construtor real da Entidade Usuario (nome, email, senha).
-        // Fornece um email e senha mockados, já que o construtor exige.
         String emailMock = nome.toLowerCase().replace(" ", "") + "@mock.com";
         String senhaMock = "SenhaSegura123";
 
@@ -39,7 +35,6 @@ public class FakeRepositorioUsuario implements RepositorioUsuario {
 
     @Override
     public void salvar(Usuario usuario) {
-        // Salva nos dois mapas
         usuariosPorEmail.put(usuario.getEmail(), usuario);
         usuariosPorNome.put(usuario.getNome(), usuario);
     }
@@ -59,6 +54,23 @@ public class FakeRepositorioUsuario implements RepositorioUsuario {
     @Override
     public boolean existePorEmail(String email) {
         return usuariosPorEmail.containsKey(email);
+    }
+
+    /**
+     * 🔥 IMPLEMENTAÇÃO FALTANTE – agora corrigida
+     */
+    @Override
+    public List<Usuario> buscarPorParteDoNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        String termo = nome.toLowerCase();
+
+        return usuariosPorNome.values().stream()
+                .filter(u -> u.getNome() != null &&
+                        u.getNome().toLowerCase().contains(termo))
+                .collect(Collectors.toList());
     }
 
     public Map<String, Usuario> getUsuarios() {

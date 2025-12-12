@@ -29,8 +29,18 @@ public class AlertaSteps {
         repositorioAlerta = new FakeRepositorioAlerta();
         repositorioMeta = new FakeRepositorioMeta();
         alertaService = new AlertaService(repositorioAlerta, repositorioMeta);
+
         usuarioId = UUID.randomUUID();
-        meta = new Meta(usuarioId, null, Meta.Tipo.SEMANAL, "Meta Teste", 5);
+
+        // 🔧 Meta agora exige lista de hábitos
+        meta = new Meta(
+                usuarioId,
+                Meta.Tipo.SEMANAL,
+                "Meta Teste",
+                5,
+                List.of(UUID.randomUUID())
+        );
+
         repositorioMeta.salvar(meta);
         excecao = null;
         repositorioAlerta.limpar();
@@ -57,7 +67,15 @@ public class AlertaSteps {
 
     @Dado("eu possuo uma meta semanal de {int} hábitos específica para alertas")
     public void eu_possuo_uma_meta_semanal_de_habitos_especifica_para_alertas(Integer qtd) {
-        meta = new Meta(usuarioId, null, Meta.Tipo.SEMANAL, "Meta nova para alertas", qtd);
+
+        meta = new Meta(
+                usuarioId,
+                Meta.Tipo.SEMANAL,
+                "Meta nova para alertas",
+                qtd,
+                List.of(UUID.randomUUID())
+        );
+
         repositorioMeta.salvar(meta);
     }
 
@@ -86,13 +104,14 @@ public class AlertaSteps {
     }
 
     @Quando("eu tento criar um alerta sem definir condição ou tempo")
-    public void eu_tento_criar_um_alerta_sem_definir_condicao_ou_tempo() {
+    public void eu_tento_criar_um_alerta_sem_definir_condição_ou_tempo() {
         try {
             alertaService.criar(usuarioId, meta.getId(), null, 0, "");
         } catch (Exception e) {
             excecao = e;
         }
     }
+
 
     @Quando("eu altero o alerta para ser notificado {int} dia antes do fim da semana")
     public void eu_altero_o_alerta_para_ser_notificado_dia_antes_do_fim_da_semana(Integer novoValor) {
@@ -189,5 +208,4 @@ public class AlertaSteps {
         alertaAtual = getAlertaAtual();
         assertTrue(alertaAtual.isDisparado(), "Esperava que o alerta tivesse sido disparado");
     }
-
 }
