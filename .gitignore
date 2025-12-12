@@ -7,6 +7,11 @@
 /out
 /target
 
+*.mv.db
+
+# Arquivos de classes e propriedades gerados pelo build (ex: target/)
+docker/target/
+
 # Build Maven
 /target/
 aplicacao/target/
