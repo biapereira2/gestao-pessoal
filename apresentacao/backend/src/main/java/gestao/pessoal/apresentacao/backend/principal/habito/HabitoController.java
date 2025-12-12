@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/habitos")
+@CrossOrigin(origins = "*")
 public class HabitoController {
 
     private final HabitoServiceApl service;

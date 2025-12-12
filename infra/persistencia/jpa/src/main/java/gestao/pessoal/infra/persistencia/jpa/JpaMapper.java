@@ -2,10 +2,13 @@ package gestao.pessoal.infra.persistencia.jpa;
 
 import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioResumo;
 import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioResumoExpandido;
+import gestao.pessoal.aplicacao.principal.habito.HabitoResumo;
+import gestao.pessoal.aplicacao.principal.habito.HabitoResumoExpandido;
 import gestao.pessoal.aplicacao.principal.meta.MetaResumo;
 import gestao.pessoal.aplicacao.principal.meta.MetaResumoExpandido;
 import gestao.pessoal.dominio.principal.engajamento.perfilSocial.PerfilSocial;
 import gestao.pessoal.infra.persistencia.jpa.compartilhado.usuario.UsuarioJpa;
+import gestao.pessoal.infra.persistencia.jpa.principal.habito.HabitoJpa;
 import gestao.pessoal.infra.persistencia.jpa.principal.meta.MetaJpa;
 import gestao.pessoal.infra.persistencia.jpa.principal.social.PerfilSocialJpa;
 import org.modelmapper.AbstractConverter;
@@ -98,5 +101,33 @@ public class JpaMapper extends ModelMapper {
                     }
                     return destino;
                 });
+
+        addConverter(new AbstractConverter<HabitoJpa, HabitoResumo>() {
+            @Override
+            protected HabitoResumo convert(HabitoJpa source) {
+                if (source == null) return null;
+                return new HabitoResumo(
+                        source.getId(),
+                        source.getNome(),
+                        source.getCategoria(),
+                        source.getFrequencia()
+                );
+            }
+        });
+
+        addConverter(new AbstractConverter<HabitoJpa, HabitoResumoExpandido>() {
+            @Override
+            protected HabitoResumoExpandido convert(HabitoJpa source) {
+                if (source == null) return null;
+                return new HabitoResumoExpandido(
+                        source.getId(),
+                        source.getNome(),
+                        source.getDescricao(),
+                        source.getCategoria(),
+                        source.getFrequencia(),
+                        source.getPontuacaoCheckin()
+                );
+            }
+        });
     }
 }

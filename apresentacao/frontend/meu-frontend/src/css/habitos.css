@@ -1,0 +1,230 @@
+.habitos-header-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.search-input-habito {
+  flex: 1;
+  background-color: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  color: var(--text-primary);
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  outline: none;
+  font-family: inherit;
+}
+
+.search-input-habito:focus {
+  box-shadow: 0 0 0 2px rgba(3, 2, 19, 0.1);
+}
+
+.btn-primary-habito {
+  background-color: var(--accent-color);
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary-habito:hover {
+  opacity: 0.9;
+}
+
+.habitos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.habito-card {
+  background-color: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.habito-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px var(--border-color);
+}
+
+.habito-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.habito-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.habito-meta {
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meta-separator {
+  width: 4px;
+  height: 4px;
+  background-color: var(--border-color);
+  border-radius: 50%;
+}
+
+.habito-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover {
+  background-color: var(--text-primary);
+  color: #FFFFFF;
+}
+
+.btn-danger {
+  background: transparent;
+  border: 1.5px solid #d32f2f;
+  color: #d32f2f;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-danger:hover {
+  background-color: #d32f2f;
+  color: #FFFFFF;
+}
+
+.modal-content-creation {
+  background-color: #FFFFFF;
+  width: 100%;
+  max-width: 500px;
+  border: 2px solid var(--text-primary);
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-title-creation {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.modal-subtitle-creation {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-left: 5px;
+}
+
+.input-creation {
+  background-color: #F7F7F8;
+  border: 1.5px solid #E0E0E0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-creation:focus {
+  background-color: #FFFFFF;
+  border-color: var(--text-primary);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.btn-close-absolute {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.btn-close-absolute:hover {
+  color: var(--text-primary);
+}
+
+.btn-block {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
