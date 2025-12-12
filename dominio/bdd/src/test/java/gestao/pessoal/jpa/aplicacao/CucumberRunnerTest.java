@@ -9,9 +9,8 @@ import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 
 @Suite
 @IncludeEngines("cucumber")
-// 1. ONDE ESTÃO OS FEATURES? O valor 'features' aponta para src/test/resources/features
+// Aqui é onde estava o erro! Agora apontando para TODO o projeto.
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "gestao.pessoal")
 @SelectClasspathResource("features")
-// 2. ONDE ESTÃO OS STEPS? O valor 'gestao.pessoal.aplicacao' aponta para o pacote Java com os Steps.
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "gestao.pessoal.aplicacao")
 public class CucumberRunnerTest {
 }
