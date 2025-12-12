@@ -1,56 +1,19 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "../css/base.css";
 
-const LoginScreen = () => {
+const Cadastro = () => {
   const navigate = useNavigate();
 
-  const goToHome = () => {
-    navigate('/');
-  };
-
-  const goToPagInicial = () => {
-      navigate('/pag-inicial');
-    };
-
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        textAlign: 'center'
-      }}
-    >
-      <h1>Pagina de Cadastro</h1>
-
-      <button
-        onClick={goToHome}
-        style={{
-          padding: '10px 20px',
-          fontSize: '16px',
-          cursor: 'pointer',
-          marginTop: '20px'
-        }}
-      >
-        Ir para Login
+    <div className="container">
+      <h1>Cadastro</h1>
+      <p>Página de cadastro de usuário.</p>
+      <button className="login-btn" onClick={() => navigate("/")}>
+        Voltar
       </button>
-
-      <button
-              onClick={goToPagInicial}
-              style={{
-                padding: '10px 20px',
-                fontSize: '16px',
-                cursor: 'pointer',
-                marginTop: '20px'
-              }}
-            >
-              Ir para PagInicial
-            </button>
-
     </div>
   );
 };
 
-export default LoginScreen;
+export default Cadastro;

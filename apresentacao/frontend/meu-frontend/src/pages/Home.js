@@ -1,50 +1,49 @@
-// Assumindo que este é o componente que você quer centralizar o botão
-// Nome do arquivo: frontend/meu-frontend/src/pages/Home.js
-// ou o seu frontend/meu-frontend/src/pages/Login.js
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../css/base.css";
 
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Importar hook de navegação
-
-const LoginScreen = () => {
-  // Hook para navegação segura no react-router-dom v6+
+const Home = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
-  const goToCadastro = () => {
-    navigate('/cadastro');
+  const handleEntrar = () => {
+    navigate("/dashboard"); // redireciona sem validar
+  };
+
+  const handleCadastro = () => {
+    navigate("/cadastro"); // redireciona para cadastro
   };
 
   return (
-    // 1. O div pai deve ter altura total da viewport (100vh)
-    // 2. Usamos display: flex, justify-content: center e align-items: center
-    //    para centralizar o conteúdo horizontal e verticalmente.
-    <div 
-      style={{ 
-        display: 'flex', 
-        flexDirection: 'column', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '100vh', 
-        textAlign: 'center' 
-      }}
-    >
-      <h1>Bem-vindo(a)</h1>
-      <p>Faça login ou cadastre-se para continuar.</p>
-      
-      {/* O SEU BOTÃO CENTRALIZADO */}
-      <button 
-        onClick={goToCadastro}
-        style={{ 
-          padding: '10px 20px', 
-          fontSize: '16px', 
-          cursor: 'pointer',
-          marginTop: '20px' // Espaçamento se houver outro conteúdo
-        }}
-      >
-        Ir para Cadastro
-      </button>
+    <div className="container">
+      <h1>Gerenciador de Hábitos</h1>
+      <p>Acompanhe suas metas diárias e semanais de forma simples e eficiente.</p>
 
+      <div className="card">
+        <input
+          type="email"
+          placeholder="Seu email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type="password"
+          placeholder="Sua senha"
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+        />
+
+        <button className="login-btn" onClick={handleEntrar}>
+          Entrar
+        </button>
+        <button className="signup-btn" onClick={handleCadastro}>
+          Criar conta
+        </button>
+      </div>
     </div>
   );
 };
 
-export default LoginScreen;
+export default Home;
