@@ -1,0 +1,98 @@
+/* src/css/cadastro.css (CÓPIA DE auth.css) */
+
+/* Definições de Variáveis de Cor (Ajuste se necessário) */
+:root {
+  --primary-color: #1976d2;
+  --secondary-color: #F0F2F5;
+  --card-bg: #FFFFFF;
+  --text-primary: #030213;
+  --text-secondary: #6B7280;
+}
+
+/* Container Principal */
+.auth-page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+  padding: 20px;
+  text-align: center;
+}
+
+/* Card de Login/Cadastro */
+.auth-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Alterado de 15px para 20px no original Cadastro.js, mantenha 20px */
+}
+
+/* Estilo dos Inputs */
+.input-auth {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-auth:focus {
+  border-color: var(--primary-color);
+}
+
+/* Botão de Cadastro (Principal) */
+.btn-primary-auth {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 14px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  transition: opacity 0.3s;
+}
+
+.btn-primary-auth:hover { opacity: 0.9; }
+
+/* Links */
+.link-auth {
+  text-align: center;
+  font-size: 14px;
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.link-auth:hover {
+  text-decoration: underline;
+}
+
+/* Títulos */
+.auth-title { font-weight: 800; font-size: 24px; color: var(--text-primary); text-align: center; margin-bottom: 5px; }
+.auth-subtitle { font-size: 14px; color: var(--text-secondary); text-align: center; margin-bottom: 15px; }
+.form-group-auth { margin-bottom: 15px; }
+/* ... Adicione/Substitua esta seção no seu auth.css ou cadastro.css ... */
+
+/* Ajuste para alinhar os rótulos à esquerda */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+  /* A linha mais importante para a correção: */
+  text-align: left;
+}
+/* ... */

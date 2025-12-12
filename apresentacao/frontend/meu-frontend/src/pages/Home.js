@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/base.css";
+import '../css/auth.css';
 import api from "../services/api";
 
 const Home = () => {

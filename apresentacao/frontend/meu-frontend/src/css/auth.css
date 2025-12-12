@@ -1,0 +1,109 @@
+/* src/css/auth.css (ou aprimore seu base.css) */
+
+/* Definições de Variáveis de Cor (Ajuste se necessário) */
+:root {
+  --primary-color: #1976d2; /* Azul dos botões de meta */
+  --secondary-color: #F0F2F5; /* Fundo suave */
+  --card-bg: #FFFFFF;
+  --text-primary: #030213;
+  --text-secondary: #6B7280;
+}
+
+/* 1. Container Principal (Alinhado ao Estilo Auth Card) */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color); /* Fundo suave */
+  padding: 20px;
+  text-align: center;
+}
+
+.container h1 {
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
+
+.container p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  max-width: 400px;
+}
+
+/* 2. Card de Login/Cadastro (Alinhado ao Estilo Meta Card/Modal) */
+.card {
+  background: var(--card-bg);
+  border-radius: 20px; /* Cantos arredondados do modal de meta */
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Sombra sutil */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 3. Estilo dos Inputs (Alinhado ao Estilo Input Creation) */
+.card input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Mais arredondado que o padrão */
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.card input:focus {
+  border-color: var(--primary-color);
+}
+
+/* 4. Botão de Login (Principal) */
+.login-btn {
+  /* Estilo btn-primary-auth / btn-primary-habito */
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 14px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  transition: opacity 0.3s;
+  margin-top: 10px;
+}
+
+.login-btn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.login-btn:disabled {
+  background-color: #A0C5E8; /* Cor desabilitada */
+  cursor: not-allowed;
+}
+
+/* 5. Botão de Cadastro (Secundário/Outline) */
+.signup-btn {
+  /* Estilo "outline" ou link secundário */
+  width: 100%;
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 14px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.signup-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
