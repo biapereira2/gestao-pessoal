@@ -5,12 +5,15 @@ import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario
 import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
 import gestao.pessoal.dominio.principal.engajamento.perfilSocial.PerfilSocial;
 import gestao.pessoal.dominio.principal.engajamento.perfilSocial.RepositorioPerfilSocial;
+import org.jmolecules.ddd.annotation.Service;
+
 import java.util.Optional;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Service
 public class AmizadeService {
     private final RepositorioPerfilSocial repositorioPerfil;
     private final RepositorioUsuario repositorioUsuario;
@@ -21,11 +24,22 @@ public class AmizadeService {
     }
 
     public void adicionarAmigo(UUID usuarioId, String emailAmigo) {
-        PerfilSocial perfilUsuario = buscarPerfilOuLancarErro(usuarioId);
+        // --- ALTERADO AQUI ---
+        // Usa o método que cria se não existir
+        PerfilSocial perfilUsuario = obterOuCriarPerfil(usuarioId);
+
         Usuario amigo = repositorioUsuario.buscarPorEmail(emailAmigo)
                 .orElseThrow(() -> new IllegalArgumentException("Usuário com email " + emailAmigo + " não encontrado."));
+
         UUID amigoId = amigo.getId();
-        PerfilSocial perfilAmigo = buscarPerfilOuLancarErro(amigoId);
+
+        if (usuarioId.equals(amigoId)) {
+            throw new IllegalArgumentException("Você não pode adicionar a si mesmo.");
+        }
+
+        // --- ALTERADO AQUI ---
+        PerfilSocial perfilAmigo = obterOuCriarPerfil(amigoId);
+
         perfilUsuario.adicionarAmigo(amigoId);
         perfilAmigo.adicionarAmigo(usuarioId);
 
@@ -34,16 +48,18 @@ public class AmizadeService {
     }
 
     public void removerAmigo(UUID usuarioId, UUID amigoId) {
-        PerfilSocial perfilUsuario = buscarPerfilOuLancarErro(usuarioId);
-        PerfilSocial perfilAmigo = buscarPerfilOuLancarErro(amigoId);
+        PerfilSocial perfilUsuario = obterOuCriarPerfil(usuarioId);
+        PerfilSocial perfilAmigo = obterOuCriarPerfil(amigoId);
+
         perfilUsuario.removerAmigo(amigoId);
         perfilAmigo.removerAmigo(usuarioId);
+
         repositorioPerfil.salvar(perfilUsuario);
         repositorioPerfil.salvar(perfilAmigo);
     }
 
     public List<AmigoDTO> listarAmigos(UUID usuarioId) {
-        PerfilSocial perfilUsuario = buscarPerfilOuLancarErro(usuarioId);
+        PerfilSocial perfilUsuario = obterOuCriarPerfil(usuarioId);
         Set<UUID> idsDosAmigos = perfilUsuario.getAmigos();
         return idsDosAmigos.stream()
                 .map(id -> repositorioUsuario.buscarPorId(id))
@@ -53,8 +69,12 @@ public class AmizadeService {
                 .collect(Collectors.toList());
     }
 
-    private PerfilSocial buscarPerfilOuLancarErro(UUID usuarioId) {
+    private PerfilSocial obterOuCriarPerfil(UUID usuarioId) {
         return repositorioPerfil.buscarPorUsuarioId(usuarioId)
-                .orElseThrow(() -> new IllegalStateException("Perfil social para o usuário " + usuarioId + " não encontrado."));
+                .orElseGet(() -> {
+                    // Se não achar o perfil no banco, cria um novo em memória agora mesmo.
+                    // Ele será salvo logo em seguida pelos métodos acima.
+                    return new PerfilSocial(usuarioId);
+                });
     }
 }
