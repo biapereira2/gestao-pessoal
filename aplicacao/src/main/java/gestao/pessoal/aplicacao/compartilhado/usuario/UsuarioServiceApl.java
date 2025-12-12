@@ -2,6 +2,8 @@ package gestao.pessoal.aplicacao.compartilhado.usuario;
 
 import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
 import org.springframework.stereotype.Service;
+import gestao.pessoal.dominio.principal.engajamento.perfilSocial.PerfilSocial;
+import gestao.pessoal.dominio.principal.engajamento.perfilSocial.RepositorioPerfilSocial;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,13 +13,23 @@ import java.util.UUID;
 public class UsuarioServiceApl {
 
     private final UsuarioRepositorioApl repositorio;
+    private final RepositorioPerfilSocial repositorioSocial;
 
-    public UsuarioServiceApl(UsuarioRepositorioApl repositorio) {
+    public UsuarioServiceApl(UsuarioRepositorioApl repositorio, RepositorioPerfilSocial repositorioSocial) {
         this.repositorio = repositorio;
+        this.repositorioSocial = repositorioSocial;
     }
 
     public void criar(Usuario usuario) {
+        // 1. Salva o usuário no banco (Shared Kernel)
         repositorio.salvar(usuario);
+
+        // 2. Cria automaticamente o Perfil Social (Engajamento)
+        // Isso garante que o usuário já possa receber convites de amizade imediatamente
+        if (repositorioSocial.buscarPorUsuarioId(usuario.getId()).isEmpty()) {
+            PerfilSocial novoPerfil = new PerfilSocial(usuario.getId());
+            repositorioSocial.salvar(novoPerfil);
+        }
     }
 
     public Optional<Usuario> buscarPorId(UUID id) {

@@ -4,12 +4,16 @@ import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioResumo;
 import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioResumoExpandido;
 import gestao.pessoal.aplicacao.principal.meta.MetaResumo;
 import gestao.pessoal.aplicacao.principal.meta.MetaResumoExpandido;
+import gestao.pessoal.dominio.principal.engajamento.perfilSocial.PerfilSocial;
 import gestao.pessoal.infra.persistencia.jpa.compartilhado.usuario.UsuarioJpa;
 import gestao.pessoal.infra.persistencia.jpa.principal.meta.MetaJpa;
+import gestao.pessoal.infra.persistencia.jpa.principal.social.PerfilSocialJpa;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration.AccessLevel;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 @Component
 public class JpaMapper extends ModelMapper {
@@ -19,6 +23,7 @@ public class JpaMapper extends ModelMapper {
         config.setFieldMatchingEnabled(true);
         config.setFieldAccessLevel(AccessLevel.PRIVATE);
 
+        // --- CONVERSORES DE META ---
         addConverter(new AbstractConverter<MetaJpa, MetaResumo>() {
             @Override
             protected MetaResumo convert(MetaJpa source) {
@@ -43,6 +48,7 @@ public class JpaMapper extends ModelMapper {
             }
         });
 
+        // --- CONVERSORES DE USUÁRIO ---
         addConverter(new AbstractConverter<UsuarioJpa, UsuarioResumo>() {
             @Override
             protected UsuarioResumo convert(UsuarioJpa source) {
@@ -67,6 +73,30 @@ public class JpaMapper extends ModelMapper {
             }
         });
 
+        // --- CONVERSOR DE PERFIL SOCIAL (CORREÇÃO DO ERRO 500) ---
+        createTypeMap(PerfilSocialJpa.class, PerfilSocial.class)
+                .setProvider(request -> {
+                    PerfilSocialJpa source = (PerfilSocialJpa) request.getSource();
+                    return new PerfilSocial(source.getUsuarioId());
+                })
+                .setPostConverter(context -> {
+                    PerfilSocialJpa source = context.getSource();
+                    PerfilSocial destino = context.getDestination();
 
+                    if (source.getAmigos() != null) {
+                        for (UUID amigoId : source.getAmigos()) {
+                            // CORREÇÃO AQUI:
+                            // Protegemos a adição com try-catch.
+                            // Se o domínio reclamar "Este usuário já é amigo", ignoramos,
+                            // pois estamos apenas carregando o estado existente do banco.
+                            try {
+                                destino.adicionarAmigo(amigoId);
+                            } catch (IllegalStateException e) {
+                                // Silencia o erro: O amigo já está na lista, então o objetivo foi cumprido.
+                            }
+                        }
+                    }
+                    return destino;
+                });
     }
 }

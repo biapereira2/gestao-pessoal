@@ -11,20 +11,19 @@
         <relativePath>../pai</relativePath>
     </parent>
 
-    <artifactId>infra</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>dominio-engajamento</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
+            <groupId>gestao-pessoal</groupId>
+            <artifactId>dominio-compartilhado</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <modules>
-        <module>persistencia</module>
-        <module>evento</module>
-    </modules>
-
 </project>
