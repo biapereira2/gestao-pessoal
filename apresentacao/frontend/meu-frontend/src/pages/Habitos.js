@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import DashboardLayout from '../components/DashboardLayout';
 import HabitoCard from '../components/Habitos/HabitoCard';
+// ... outros imports de Modais
 import CriarHabitoModal from '../components/Habitos/CriarHabitoModal';
 import ConfirmacaoModal from '../components/Social/ConfirmacaoModal';
 import EditarHabitoModal from '../components/Habitos/EditarHabitoModal';
@@ -11,7 +12,7 @@ import { toast } from 'react-toastify';
 import '../css/habitos.css';
 
 const Habitos = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // 'id' é o ID do usuário
   const [habitos, setHabitos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [busca, setBusca] = useState('');
@@ -28,6 +29,7 @@ const Habitos = () => {
   const carregarHabitos = async () => {
     try {
       setLoading(true);
+      // ...
       const data = await habitoService.listarPorUsuario(id);
       setHabitos(data);
     } catch (error) {
@@ -37,39 +39,29 @@ const Habitos = () => {
     }
   };
 
-  const handleSalvarHabito = async (dadosForm) => {
-    try {
-      await habitoService.criar({ ...dadosForm, usuarioId: id });
-      toast.success("Hábito criado!");
-      setModalCriarAberto(false);
-      carregarHabitos();
-    } catch (error) {
-      toast.error("Erro ao criar: " + error.message);
-    }
+  // ... (suas funções handleSalvarHabito, handleAtualizarHabito, confirmarRemocao)
+
+  // =======================================================
+  // FUNÇÃO PARA LIDAR COM O CHECK-IN (NOVA)
+  // =======================================================
+  /**
+   * Chamada pelo HabitoCard após marcar/desmarcar o check-in.
+   * Pode ser usada para atualizar o placar de pontos do usuário, por exemplo.
+   * @param {string} habitoId - ID do hábito alterado.
+   * @param {boolean} isCheckedIn - true se marcou, false se desmarcou.
+   */
+  const handleCheckinConcluido = (habitoId, isCheckedIn) => {
+      // Por exemplo, você pode recarregar o progresso do usuário aqui,
+      // mas como o backend atualiza a pontuação automaticamente,
+      // esta função serve principalmente para fins de log ou atualizações visuais em outros lugares.
+      console.log(`[EVENTO] Hábito ${habitoId} foi ${isCheckedIn ? 'marcado' : 'desmarcado'}.`);
+
+      // Se você tiver um componente que mostra os pontos do usuário,
+      // você chamaria a função de atualização dele aqui.
+      // Exemplo: atualizarPontosGlobais();
   };
 
-  const handleAtualizarHabito = async (habitoId, dadosForm) => {
-    try {
-      await habitoService.atualizar(habitoId, dadosForm);
-      toast.success("Hábito atualizado!");
-      setModalEditar({ show: false, habito: null });
-      carregarHabitos();
-    } catch (error) {
-      toast.error("Erro ao atualizar: " + error.message);
-    }
-  };
-
-  const confirmarRemocao = async () => {
-    if (!modalExclusao.habito) return;
-    try {
-      await habitoService.remover(modalExclusao.habito.id);
-      setHabitos(habitos.filter(h => h.id !== modalExclusao.habito.id));
-      toast.info("Hábito removido.");
-      setModalExclusao({ show: false, habito: null });
-    } catch (error) {
-      toast.error("Erro ao remover.");
-    }
-  };
+  // ... (funções de filtro)
 
   const habitosFiltrados = habitos.filter(h =>
     h.nome.toLowerCase().includes(busca.toLowerCase())
@@ -78,6 +70,7 @@ const Habitos = () => {
   return (
     <DashboardLayout>
       <div className="habitos-page">
+        {/* ... (Seção de Título e Input/Botão Criar) */}
         <div style={{ marginBottom: '25px' }}>
           <h1>Meus Hábitos</h1>
           <p>Gerencie sua rotina e acompanhe seu progresso diário.</p>
@@ -102,13 +95,16 @@ const Habitos = () => {
             <HabitoCard
               key={habito.id}
               habito={habito}
+              usuarioId={id} // ⬅️ NOVO: ID DO USUÁRIO OBRIGATÓRIO PARA O CHECK-IN
               onRemover={(h) => setModalExclusao({ show: true, habito: h })}
               onEditar={(h) => setModalEditar({ show: true, habito: h })}
               onVerDetalhes={(h) => setModalDetalhes({ show: true, habito: h })}
+              onCheckinConcluido={handleCheckinConcluido} // ⬅️ NOVO: CALLBACK DE AÇÃO
             />
           ))}
         </div>
 
+        {/* ... (Seção de Modais) */}
         {modalCriarAberto && (
           <CriarHabitoModal
             onClose={() => setModalCriarAberto(false)}
