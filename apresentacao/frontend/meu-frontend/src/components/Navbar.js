@@ -1,34 +1,61 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../css/base.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const usuario = JSON.parse(localStorage.getItem("usuario")) || { nome: "Perfil" };
+  const usuario = JSON.parse(localStorage.getItem("usuario")) || { nome: "Visitante" };
+
+
+  const isActive = (path) => location.pathname.startsWith(path) ? "active" : "";
+
+  const menuItems = [
+    { label: "Rotinas", path: "/rotinas" },
+    { label: "Metas", path: "/metas" },
+    { label: "Hábitos", path: "/habitos" },
+    { label: "Desafios", path: "/desafios" },
+    { label: "Check-ins", path: "/checkins" },
+    { label: "Alertas", path: "/alertas" },
+    { label: "Amigos", path: "/social" },
+    { label: "Badges", path: "/badges" },
+  ];
 
   return (
-    <div className="sidebar">
+    <nav className="sidebar">
       <div className="logo" onClick={() => navigate("/dashboard")}>
-        Gerenciador
+        Gestão Pessoal
       </div>
 
       <ul>
-        <li onClick={() => navigate("/rotinas")}>Rotinas</li>
-        <li onClick={() => navigate("/metas")}>Metas</li>
-        <li onClick={() => navigate("/habitos")}>Hábitos</li>
-        <li onClick={() => navigate("/desafios")}>Desafios</li>
-        <li onClick={() => navigate("/checkins")}>Check-ins</li>
-        <li onClick={() => navigate("/alertas")}>Alertas</li>
-        <li onClick={() => navigate("/amigos")}>Amigos</li>
-        <li onClick={() => navigate("/badges")}>Badges</li>
+        {menuItems.map((item) => (
+          <li
+            key={item.path}
+            className={isActive(item.path)}
+            onClick={() => navigate(item.path)}
+          >
+            {item.label}
+          </li>
+        ))}
       </ul>
 
       <div className="profile" onClick={() => navigate("/perfil")}>
-        <img src="https://via.placeholder.com/50" alt="avatar" />
+        <div style={{
+          width: '40px',
+          height: '40px',
+          borderRadius: '50%',
+          backgroundColor: '#2a2938',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontWeight: 'bold'
+        }}>
+          {usuario.nome.charAt(0).toUpperCase()}
+        </div>
         <div>{usuario.nome}</div>
       </div>
-    </div>
+    </nav>
   );
 };
 

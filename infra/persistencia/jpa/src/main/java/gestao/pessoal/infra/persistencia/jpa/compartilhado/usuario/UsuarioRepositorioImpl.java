@@ -1,10 +1,8 @@
 package gestao.pessoal.infra.persistencia.jpa.compartilhado.usuario;
 
-// Imports das Interfaces que vamos implementar
-import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioRepositorioApl; // Interface da Aplicação
-import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario; // Interface do Domínio
 
-// Imports do Domínio e Infra
+import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioRepositorioApl;
+import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario;
 import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioResumo;
 import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioResumoExpandido;
 import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
@@ -12,12 +10,14 @@ import gestao.pessoal.infra.persistencia.jpa.JpaMapper;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
-@Repository // Essencial para o Spring encontrar
+@Repository
 public class UsuarioRepositorioImpl implements UsuarioRepositorioApl, RepositorioUsuario {
-    // ^^^ AQUI ESTÁ O SEGREDO: Implementar RepositorioUsuario
+
 
     private final UsuarioJpaRepositorio repo;
     private final JpaMapper mapper;
@@ -27,7 +27,6 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorioApl, Repositori
         this.mapper = mapper;
     }
 
-    // --- Métodos do RepositorioUsuario (Domínio) ---
 
     @Override
     public void salvar(Usuario usuario) {
@@ -51,8 +50,6 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorioApl, Repositori
         return repo.findByEmail(email).isPresent();
     }
 
-    // --- Métodos Extras do UsuarioRepositorioApl (Se houver na interface de aplicação) ---
-
     @Override
     public void remover(UUID id) {
         repo.deleteById(id);
@@ -68,5 +65,13 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorioApl, Repositori
     public Optional<UsuarioResumoExpandido> buscarResumoExpandidoPorId(UUID id) {
         return repo.findById(id)
                 .map(jpa -> mapper.map(jpa, UsuarioResumoExpandido.class));
+    }
+
+    @Override
+    public List<Usuario> buscarPorParteDoNome(String nome) {
+        return repo.findByNomeContainingIgnoreCase(nome)
+                .stream()
+                .map(jpa -> mapper.map(jpa, Usuario.class))
+                .collect(Collectors.toList());
     }
 }

@@ -65,7 +65,7 @@ public class AmizadeService {
                 .map(id -> repositorioUsuario.buscarPorId(id))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .map(u -> new AmigoDTO(u.getId(), u.getNome()))
+                .map(u -> new AmigoDTO(u.getId(), u.getNome(), u.getEmail()))
                 .collect(Collectors.toList());
     }
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class SocialServiceApl {
@@ -22,12 +23,8 @@ public class SocialServiceApl {
     }
 
     public void adicionarAmigo(UUID usuarioId, UUID amigoId) {
-        // TRADUÇÃO: A API recebe o ID, mas o seu Domínio pede o Email.
-        // Buscamos o usuário no banco para pegar o email.
         Usuario amigo = repoUsuario.buscarPorId(amigoId)
                 .orElseThrow(() -> new IllegalArgumentException("Usuário amigo não encontrado."));
-
-        // Chama a regra de negócio do domínio passando o email
         amizadeService.adicionarAmigo(usuarioId, amigo.getEmail());
     }
 
@@ -37,5 +34,13 @@ public class SocialServiceApl {
 
     public List<AmigoDTO> listarAmigos(UUID usuarioId) {
         return amizadeService.listarAmigos(usuarioId);
+    }
+
+    public List<AmigoDTO> pesquisarUsuarios(String termo) {
+        List<Usuario> usuarios = repoUsuario.buscarPorParteDoNome(termo);
+
+        return usuarios.stream()
+                .map(u -> new AmigoDTO(u.getId(), u.getNome(), u.getEmail()))
+                .collect(Collectors.toList());
     }
 }

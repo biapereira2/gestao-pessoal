@@ -24,13 +24,11 @@ public class SocialController {
         return serviceApl.listarAmigos(usuarioId);
     }
 
-    // --- MUDANÇA AQUI ---
-    // Agora usando o SocialForm no corpo da requisição
     @PostMapping("/{usuarioId}/amigos")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void adicionarAmigo(
             @PathVariable UUID usuarioId,
-            @RequestBody SocialForm form) { // <--- Recebe o SocialForm
+            @RequestBody SocialForm form) {
 
         serviceApl.adicionarAmigo(usuarioId, form.getAmigoId());
     }
@@ -39,5 +37,10 @@ public class SocialController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removerAmigo(@PathVariable UUID usuarioId, @PathVariable UUID amigoId) {
         serviceApl.removerAmigo(usuarioId, amigoId);
+    }
+
+    @GetMapping("/pesquisar")
+    public List<AmigoDTO> pesquisarUsuarios(@RequestParam String termo) {
+        return serviceApl.pesquisarUsuarios(termo);
     }
 }

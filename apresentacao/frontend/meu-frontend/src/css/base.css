@@ -1,157 +1,111 @@
-/* Base para toda a aplicação */
+:root {
+  --bg-page: #F0F2F5;
+  --bg-card: #FFFFFF;
+
+  --text-primary: #030213;
+  --text-secondary: #4a4a4a;
+
+  --border-color: #030213;
+  --border-width: 1.5px;
+
+  --hover-color: #E8E8E8;
+  --accent-color: #030213;
+}
+
+
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background: #f5f5f5; /* cinza claro */
-  color: #333333; /* texto cinza escuro */
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Container principal centralizado (Home/Login) */
-.container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 20px;
-}
-
-/* Título e descrição */
-h1 {
-  margin-bottom: 10px;
-  color: #6a1b9a; /* roxo clássico para títulos */
+h1, h2, h3 {
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
 p {
-  margin-bottom: 20px;
-  font-size: 16px;
-  color: #333333;
+  color: var(--text-secondary);
 }
 
-/* Cartão do formulário (login/cadastro) */
-.card {
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  width: 320px;
-  transition: transform 0.2s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-/* Inputs */
-.card input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-/* Botões */
-.card button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  color: #fff;
-  font-weight: bold;
-  font-size: 14px;
-  transition: background 0.2s;
-}
-
-.login-btn {
-  background: #1976d2; /* azul clássico */
-}
-
-.login-btn:hover {
-  background: #1565c0;
-}
-
-.signup-btn {
-  background: #388e3c; /* verde escuro */
-  margin-top: 15px;
-}
-
-.signup-btn:hover {
-  background: #2e7d32;
-}
-
-/* Mensagem de erro / alertas */
-.error-message {
-  color: #fbc02d; /* amarelo dourado para alertas */
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 13px;
-  text-align: left;
-}
-
-/* ==================== */
-/* Navbar lateral (Dashboard) */
 .sidebar {
-  position: fixed; /* fixa na lateral */
+  position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
-  width: 220px;
-  background: #1976d2; /* azul clássico */
-  color: #fff;
+  width: 240px;
+  background: var(--text-primary);
+  color: #FFFFFF;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px 0;
+  padding: 30px 20px;
   box-sizing: border-box;
+  z-index: 1000;
 }
 
 .sidebar .logo {
-  font-size: 20px;
+  color: #FFFFFF;
+  font-size: 22px;
   font-weight: bold;
-  margin-bottom: 30px;
-  cursor: pointer;
-  text-align: center;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  width: 100%;
+  margin-bottom: 40px;
 }
 
 .sidebar ul li {
-  width: 100%;
-  padding: 12px 20px;
-  margin-bottom: 5px;
+  color: #CCCCCC;
+  padding: 12px 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  border-radius: 5px;
+  transition: all 0.2s;
 }
 
-.sidebar ul li:hover {
-  background: #1565c0; /* azul hover */
-  color: #fbc02d; /* dourado para destaque */
+.sidebar ul li:hover, .sidebar ul li.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
 }
 
-.sidebar .profile {
-  margin-top: auto;
-  text-align: center;
-}
-
-.sidebar .profile img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  margin-bottom: 5px;
-}
-
-/* Conteúdo principal (Dashboard) */
 .main-content {
-  margin-left: 220px; /* espaço da sidebar */
-  padding: 20px;
+  margin-left: 240px;
+  padding: 40px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.card {
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: 12px;
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: 4px 4px 0px rgba(3, 2, 19, 0.1);
+  width: 100%;
+  max-width: 350px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+input:focus {
+  box-shadow: 0 0 0 2px rgba(3, 2, 19, 0.2);
+}
+
+button {
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  transition: transform 0.1s;
+}
+
+button:active {
+  transform: scale(0.98);
 }
