@@ -73,4 +73,7 @@ public class Habito implements HabitoBase {
     public String getDescricao() { return descricao; }
     public String getCategoria() { return categoria; }
     public String getFrequencia() { return frequencia; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

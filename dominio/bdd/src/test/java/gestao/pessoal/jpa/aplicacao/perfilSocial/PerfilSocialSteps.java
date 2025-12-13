@@ -12,6 +12,7 @@ import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import java.util.*;
+import org.springframework.context.ApplicationEventPublisher;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PerfilSocialSteps {
@@ -26,8 +27,10 @@ public class PerfilSocialSteps {
     public PerfilSocialSteps() {
         this.repositorioPerfil = new FakeRepositorioPerfilSocial();
         this.repositorioUsuario = new FakeRepositorioUsuario();
+        ApplicationEventPublisher fakePublisher = event -> {
+        };
         this.usuarioService = new UsuarioService(repositorioUsuario, repositorioPerfil);
-        this.amizadeService = new AmizadeService(repositorioPerfil, repositorioUsuario);
+        this.amizadeService = new AmizadeService(repositorioPerfil, repositorioUsuario, fakePublisher);
         this.excecaoLancada = null;
         this.listaDeAmigosResultante = new ArrayList<>();
     }

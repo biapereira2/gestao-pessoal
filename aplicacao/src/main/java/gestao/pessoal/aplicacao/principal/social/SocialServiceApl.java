@@ -4,7 +4,6 @@ import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario
 import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
 import gestao.pessoal.dominio.principal.engajamento.amigo.AmigoDTO;
 import gestao.pessoal.dominio.principal.engajamento.amigo.AmizadeService;
-import gestao.pessoal.dominio.principal.engajamento.perfilSocial.RepositorioPerfilSocial;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,14 +16,15 @@ public class SocialServiceApl {
     private final AmizadeService amizadeService;
     private final RepositorioUsuario repoUsuario;
 
-    public SocialServiceApl(RepositorioPerfilSocial repoSocial, RepositorioUsuario repoUsuario) {
+    public SocialServiceApl(AmizadeService amizadeService, RepositorioUsuario repoUsuario) {
+        this.amizadeService = amizadeService;
         this.repoUsuario = repoUsuario;
-        this.amizadeService = new AmizadeService(repoSocial, repoUsuario);
     }
 
     public void adicionarAmigo(UUID usuarioId, UUID amigoId) {
         Usuario amigo = repoUsuario.buscarPorId(amigoId)
                 .orElseThrow(() -> new IllegalArgumentException("Usuário amigo não encontrado."));
+
         amizadeService.adicionarAmigo(usuarioId, amigo.getEmail());
     }
 
