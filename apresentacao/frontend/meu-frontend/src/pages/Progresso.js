@@ -56,7 +56,7 @@ const ProgressoUsuario = () => {
             <NivelCard
               nivel={progresso.nivel}
               pontos={progresso.pontos}
-              pontosParaProximo={progresso.pontosFaltantes}
+              pontosParaProximo={progresso.limiteProximoNivel}
             />
 
             {/* 🔒 Reservado para evolução futura */}

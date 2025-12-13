@@ -1,7 +1,5 @@
 package gestao.pessoal;
 
-import gestao.pessoal.dominio.principal.princ.desafio.DesafioService;
-// Importa a implementação concreta que a camada de aplicação precisa
 import gestao.pessoal.dominio.principal.princ.desafio.templateMethod.DesafioServicePorId;
 import gestao.pessoal.dominio.principal.princ.desafio.RepositorioDesafio;
 import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario;
@@ -22,6 +20,7 @@ public class Aplicacao {
             RepositorioDesafio repositorioDesafio,
             RepositorioUsuario repositorioUsuario
     ) {
+        // INSTANCIANDO A CLASSE CONCRETA
         return new DesafioServicePorId(repositorioDesafio, repositorioUsuario);
     }
 }
