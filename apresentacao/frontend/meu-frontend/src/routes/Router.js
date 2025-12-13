@@ -10,7 +10,6 @@ import Rotinas from '../pages/Rotinas';
 import Metas from '../pages/Metas';
 import Habitos from '../pages/Habitos';
 import Desafios from '../pages/Desafios';
-import Checkins from '../pages/Checkins';
 import Alertas from '../pages/Alertas';
 import Amigos from '../pages/Amigos';
 import Badges from '../pages/Badges';
@@ -33,7 +32,6 @@ const AppRouter = () => {
         <Route path="/metas/:id" element={<Metas />} />
         <Route path="/habitos/:id" element={<Habitos />} />
         <Route path="/desafios/:id" element={<Desafios />} />
-        <Route path="/checkins/:id" element={<Checkins />} />
         <Route path="/alertas/:id" element={<Alertas />} />
         <Route path="/social/:id" element={<Amigos />} />
 
