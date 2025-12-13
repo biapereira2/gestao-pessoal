@@ -1,6 +1,10 @@
 package gestao.pessoal.dominio.principal.princ.alerta;
 
+import gestao.pessoal.dominio.principal.princ.alerta.observer.AlertaObserver;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Alerta {
@@ -11,7 +15,10 @@ public class Alerta {
     private String descricao;
     private LocalDate dataDisparo;
     private boolean disparado;
-    private String categoria; // nova funcionalidade: categoria do alerta
+    private String categoria;
+
+    // Lista de observadores
+    private final List<AlertaObserver> observers = new ArrayList<>();
 
     public Alerta(UUID usuarioId, String titulo, String descricao, LocalDate dataDisparo, String categoria) {
         if (usuarioId == null) throw new IllegalArgumentException("Usuário inválido.");
@@ -27,17 +34,34 @@ public class Alerta {
         this.categoria = categoria != null && !categoria.isBlank() ? categoria : "Geral";
     }
 
-    public Alerta(){}
+    public Alerta() {}
 
+    // --- Observer methods ---
+    public void adicionarObservador(AlertaObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removerObservador(AlertaObserver observer) {
+        observers.remove(observer);
+    }
+
+    private void notificar() {
+        for (AlertaObserver observer : observers) {
+            observer.alterado(this);
+        }
+    }
+
+    // --- Lógica de disparo ---
     public boolean deveDisparar() {
         return !disparado && !LocalDate.now().isBefore(dataDisparo);
     }
 
     public void marcarComoDisparado() {
         this.disparado = true;
+        notificar(); // notifica os observadores quando disparado
     }
 
-    // getters e setters
+    // --- Getters e setters ---
     public UUID getId() { return id; }
     public UUID getUsuarioId() { return usuarioId; }
     public String getTitulo() { return titulo; }
