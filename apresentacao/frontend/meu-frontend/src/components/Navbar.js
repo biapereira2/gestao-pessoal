@@ -22,9 +22,6 @@ const Navbar = () => {
     { label: "Check-ins", path: `/checkins/${usuario.id}` },
     { label: "Alertas", path: `/alertas/${usuario.id}` },
     { label: "Amigos", path: `/social/${usuario.id}` },
-
-    // 🎮 Gamificação
-    { label: "Progresso", path: `/progresso/${usuario.id}` },
   ];
 
   return (
