@@ -1,0 +1,200 @@
+/*
+    Estilos Básicos para o Módulo Desafios
+*/
+
+/* Variáveis de cores (ajuste conforme seu tema) */
+:root {
+    --primary-color: #1976D2; /* Azul */
+    --success-color: #2E7D32; /* Verde */
+    --danger-color: #D32F2F;  /* Vermelho */
+    --text-primary: #030213;
+    --text-secondary: #5a5a5a;
+    --background-card: #FFFFFF;
+    --border-color: #E0E0E0;
+}
+
+/* Estruturas de Lista */
+.convites-list, .desafios-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* === Estilo Comum para Cards === */
+.convite-card, .desafio-card {
+    background-color: var(--background-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* === Convite Card === */
+.convite-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.convite-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.convite-detail {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 3px 0;
+}
+
+.convite-actions {
+    min-width: 150px;
+}
+
+/* === Desafio Card === */
+.desafio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.desafio-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.desafio-status {
+    font-size: 10px;
+    font-weight: 700;
+    color: #FFFFFF;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.desafio-detail {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.desafio-progresso-bar {
+    margin: 10px 0 15px 0;
+}
+
+.desafio-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+}
+
+/* === Botões e Inputs (Reutilizando estilos de hábitos) === */
+
+.btn-primary-habito {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-outline {
+    background-color: white;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Estilos de Modal de Criação (Reutilizar de Metas) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content-creation {
+    background-color: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-title-creation {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.input-creation {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.btn-close-absolute {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--text-secondary);
+}

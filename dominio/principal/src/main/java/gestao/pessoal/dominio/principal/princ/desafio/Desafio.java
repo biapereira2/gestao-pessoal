@@ -24,7 +24,6 @@ public class Desafio {
         this.status = StatusDesafio.ATIVO;
         this.participantesIds = new java.util.ArrayList<>(List.of(criadorId)); // Criador é o primeiro participante
     }
-
     // Método para adicionar participante após aceitação de convite
     public void adicionarParticipante(UUID participanteId) {
         if (!participantesIds.contains(participanteId)) {

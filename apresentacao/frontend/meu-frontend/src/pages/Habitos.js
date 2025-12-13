@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import DashboardLayout from '../components/DashboardLayout';
 import HabitoCard from '../components/Habitos/HabitoCard';
-// ... outros imports de Modais
 import CriarHabitoModal from '../components/Habitos/CriarHabitoModal';
 import ConfirmacaoModal from '../components/Social/ConfirmacaoModal';
 import EditarHabitoModal from '../components/Habitos/EditarHabitoModal';
@@ -22,46 +21,80 @@ const Habitos = () => {
   const [modalEditar, setModalEditar] = useState({ show: false, habito: null });
   const [modalDetalhes, setModalDetalhes] = useState({ show: false, habito: null });
 
-  useEffect(() => {
-    carregarHabitos();
-  }, [id]);
+  // =======================================================
+  // FUNÇÕES DE CARREGAMENTO E CRUD (REQUERIDAS PELOS MODAIS)
+  // =======================================================
 
-  const carregarHabitos = async () => {
+  // 💡 USAMOS useCallback para evitar warning no useEffect (agora está correto)
+  const carregarHabitos = useCallback(async () => {
+    if (!id) {
+        setLoading(false);
+        return;
+    }
     try {
       setLoading(true);
-      // ...
       const data = await habitoService.listarPorUsuario(id);
       setHabitos(data);
     } catch (error) {
-      toast.error("Erro ao carregar hábitos");
+      console.error("Erro ao carregar hábitos:", error);
+      toast.error("Erro ao carregar hábitos. Verifique a conexão com a API.");
     } finally {
       setLoading(false);
     }
+  }, [id]);
+
+  // Função de Criação (handleSalvarHabito)
+  const handleSalvarHabito = async (dadosForm) => {
+    try {
+        await habitoService.criar({...dadosForm, usuarioId: id});
+        toast.success("Hábito criado com sucesso!");
+        setModalCriarAberto(false);
+        carregarHabitos();
+    } catch (error) {
+        toast.error("Erro ao criar hábito: " + error.message);
+    }
   };
 
-  // ... (suas funções handleSalvarHabito, handleAtualizarHabito, confirmarRemocao)
+  // Função de Atualização (handleAtualizarHabito)
+  const handleAtualizarHabito = async (habitoId, dadosForm) => {
+    try {
+        await habitoService.atualizar(habitoId, dadosForm);
+        toast.success("Hábito atualizado!");
+        setModalEditar({ show: false, habito: null });
+        carregarHabitos();
+    } catch (error) {
+        toast.error("Erro ao atualizar hábito: " + error.message);
+    }
+  };
+
+  // Função de Remoção (confirmarRemocao)
+  const confirmarRemocao = async () => {
+    if (!modalExclusao.habito) return;
+    try {
+        await habitoService.remover(modalExclusao.habito.id);
+        toast.info("Hábito removido.");
+        setModalExclusao({ show: false, habito: null });
+        carregarHabitos();
+    } catch (error) {
+        toast.error("Erro ao remover hábito: " + error.message);
+    }
+  };
 
   // =======================================================
   // FUNÇÃO PARA LIDAR COM O CHECK-IN (NOVA)
   // =======================================================
-  /**
-   * Chamada pelo HabitoCard após marcar/desmarcar o check-in.
-   * Pode ser usada para atualizar o placar de pontos do usuário, por exemplo.
-   * @param {string} habitoId - ID do hábito alterado.
-   * @param {boolean} isCheckedIn - true se marcou, false se desmarcou.
-   */
   const handleCheckinConcluido = (habitoId, isCheckedIn) => {
-      // Por exemplo, você pode recarregar o progresso do usuário aqui,
-      // mas como o backend atualiza a pontuação automaticamente,
-      // esta função serve principalmente para fins de log ou atualizações visuais em outros lugares.
+      // Esta função não faz nada no momento, apenas loga.
+      // A lógica de persistência do Checkin está no HabitoCard
       console.log(`[EVENTO] Hábito ${habitoId} foi ${isCheckedIn ? 'marcado' : 'desmarcado'}.`);
-
-      // Se você tiver um componente que mostra os pontos do usuário,
-      // você chamaria a função de atualização dele aqui.
-      // Exemplo: atualizarPontosGlobais();
+      // Não recarregamos tudo aqui para manter a performance,
+      // mas se o check-in afetar a contagem de Metas, você pode chamar a função 'carregarMetas()' aqui.
   };
 
-  // ... (funções de filtro)
+  // 💡 useEffect agora usa a dependência 'carregarHabitos' corretamente
+  useEffect(() => {
+    carregarHabitos();
+  }, [carregarHabitos]);
 
   const habitosFiltrados = habitos.filter(h =>
     h.nome.toLowerCase().includes(busca.toLowerCase())
@@ -69,11 +102,12 @@ const Habitos = () => {
 
   return (
     <DashboardLayout>
-      <div className="habitos-page">
+      <div className="habitos-page" style={{ padding: '0 20px' }}> {/* Adicionado padding para visualização */}
+
         {/* ... (Seção de Título e Input/Botão Criar) */}
         <div style={{ marginBottom: '25px' }}>
-          <h1>Meus Hábitos</h1>
-          <p>Gerencie sua rotina e acompanhe seu progresso diário.</p>
+          <h1 style={{ fontWeight: 800 }}>Meus Hábitos</h1>
+          <p style={{ color: 'var(--text-secondary)' }}>Gerencie sua rotina e acompanhe seu progresso diário.</p>
         </div>
 
         <div className="habitos-header-row">
@@ -89,26 +123,30 @@ const Habitos = () => {
         </div>
 
         <div className="habitos-list">
+          {loading && <p>Carregando hábitos...</p>}
           {!loading && habitosFiltrados.length === 0 && <p>Nenhum hábito encontrado.</p>}
 
           {habitosFiltrados.map(habito => (
             <HabitoCard
               key={habito.id}
               habito={habito}
-              usuarioId={id} // ⬅️ NOVO: ID DO USUÁRIO OBRIGATÓRIO PARA O CHECK-IN
+              usuarioId={id}
               onRemover={(h) => setModalExclusao({ show: true, habito: h })}
               onEditar={(h) => setModalEditar({ show: true, habito: h })}
               onVerDetalhes={(h) => setModalDetalhes({ show: true, habito: h })}
-              onCheckinConcluido={handleCheckinConcluido} // ⬅️ NOVO: CALLBACK DE AÇÃO
+              onCheckinConcluido={handleCheckinConcluido}
             />
           ))}
         </div>
 
-        {/* ... (Seção de Modais) */}
+        {/* ======================================================= */}
+        {/* MODAIS (QUE PRECISAM DAS FUNÇÕES DE CRUD DEFINIDAS ACIMA) */}
+        {/* ======================================================= */}
+
         {modalCriarAberto && (
           <CriarHabitoModal
             onClose={() => setModalCriarAberto(false)}
-            onSalvar={handleSalvarHabito}
+            onSalvar={handleSalvarHabito} // ✅ Função definida
             usuarioId={id}
           />
         )}
@@ -117,7 +155,7 @@ const Habitos = () => {
           <EditarHabitoModal
             habito={modalEditar.habito}
             onClose={() => setModalEditar({ show: false, habito: null })}
-            onSalvar={handleAtualizarHabito}
+            onSalvar={handleAtualizarHabito} // ✅ Função definida
           />
         )}
 
@@ -131,7 +169,7 @@ const Habitos = () => {
         <ConfirmacaoModal
           isOpen={modalExclusao.show}
           onClose={() => setModalExclusao({ show: false, habito: null })}
-          onConfirm={confirmarRemocao}
+          onConfirm={confirmarRemocao} // ✅ Função definida
           titulo="Excluir hábito?"
           mensagem={`Deseja realmente excluir "${modalExclusao.habito?.nome}"?`}
         />
