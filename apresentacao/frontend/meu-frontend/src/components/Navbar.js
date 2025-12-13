@@ -25,7 +25,6 @@ const Navbar = () => {
 
     // 🎮 Gamificação
     { label: "Progresso", path: `/progresso/${usuario.id}` },
-    { label: "Badges", path: `/badges/${usuario.id}` },
   ];
 
   return (

@@ -13,7 +13,6 @@ import Desafios from '../pages/Desafios';
 import Checkins from '../pages/Checkins';
 import Alertas from '../pages/Alertas';
 import Amigos from '../pages/Amigos';
-import Badges from '../pages/Badges';
 import Perfil from '../pages/Perfil';
 import ProgressoUsuario from '../pages/ProgressoUsuario'; //  NOVO
 
