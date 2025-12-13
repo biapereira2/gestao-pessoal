@@ -3,7 +3,9 @@ const API_URL = "http://localhost:8080/alertas";
 export const alertaService = {
   listarPorUsuario: async (usuarioId) => {
     try {
-      const response = await fetch(`${API_URL}/usuario/${usuarioId}`);
+      const response = await fetch(
+        `${API_URL}/usuario/${usuarioId}/expandido`
+      );
       if (!response.ok) return [];
       return await response.json();
     } catch (error) {
@@ -18,6 +20,7 @@ export const alertaService = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dados)
     });
+
     if (!response.ok) throw new Error(await response.text());
     return await response.json();
   },
@@ -28,12 +31,16 @@ export const alertaService = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dados)
     });
+
     if (!response.ok) throw new Error(await response.text());
     return await response.json();
   },
 
   remover: async (id) => {
-    const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "DELETE"
+    });
+
     if (!response.ok) throw new Error("Erro ao remover alerta");
     return true;
   }
