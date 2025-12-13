@@ -228,3 +228,23 @@
   justify-content: center;
   align-items: center;
 }
+
+.habitos-list-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.habitos-coluna {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.habitos-coluna h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
