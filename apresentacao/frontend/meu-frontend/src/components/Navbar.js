@@ -5,12 +5,14 @@ import "../css/base.css";
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { id } = useParams(); // pega o id da URL atual
+  const { id } = useParams();
 
-  // Se não tiver id, tenta pegar do localStorage
-  const usuario = JSON.parse(localStorage.getItem("usuario")) || { nome: "Visitante", id: id };
+  const usuario =
+    JSON.parse(localStorage.getItem("usuario")) ||
+    { nome: "Visitante", id };
 
-  const isActive = (path) => location.pathname.startsWith(path) ? "active" : "";
+  const isActive = (path) =>
+    location.pathname.startsWith(path) ? "active" : "";
 
   const menuItems = [
     { label: "Rotinas", path: `/rotinas/${usuario.id}` },
@@ -20,12 +22,18 @@ const Navbar = () => {
     { label: "Check-ins", path: `/checkins/${usuario.id}` },
     { label: "Alertas", path: `/alertas/${usuario.id}` },
     { label: "Amigos", path: `/social/${usuario.id}` },
+
+    // 🎮 Gamificação
+    { label: "Progresso", path: `/progresso/${usuario.id}` },
     { label: "Badges", path: `/badges/${usuario.id}` },
   ];
 
   return (
     <nav className="sidebar">
-      <div className="logo" onClick={() => navigate(`/dashboard/${usuario.id}`)}>
+      <div
+        className="logo"
+        onClick={() => navigate(`/dashboard/${usuario.id}`)}
+      >
         Gestão Pessoal
       </div>
 
