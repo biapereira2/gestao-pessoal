@@ -1,3 +1,5 @@
+/* --- Estilos base do Modal --- */
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -25,7 +27,47 @@
   border: none;
   background: transparent;
   cursor: pointer;
+  color: #666;
 }
+.btn-close-absolute:hover {
+    color: #333;
+}
+
+
+/* --- Estilos de Inputs e Labels --- */
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  /* Altura padrão ajustada para 40px */
+  height: 40px;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #1976d2;
+}
+
+textarea {
+    min-height: 80px;
+    height: auto; /* Remove altura fixa para textarea */
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary, #333);
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+/* --- Estilos de Botões Genéricos --- */
 
 .btn-block {
   width: 100%;
@@ -34,42 +76,107 @@
   cursor: pointer;
 }
 
+/* Botão Primário (Azul) - Usado para Salvar / Criar */
 .btn-primary-alerta {
-  background-color: #1976d2;
+  background-color: #1976d2; /* Cor primária */
   color: white;
   border: none;
-  padding: 12px 25px;
+  /* Altura ajustada para 40px (10px padding + 20px height) */
+  padding: 10px 25px;
   border-radius: 30px;
   cursor: pointer;
   font-weight: 600;
-  transition: opacity 0.2s ease-in-out; /* Adicionado transição para suavizar o hover */
+  transition: opacity 0.2s ease-in-out;
+  height: 40px; /* Garante que todos os botões no header tenham a mesma altura */
 }
 
 .btn-primary-alerta:hover {
   opacity: 0.9;
 }
 
-/* Alterado para incluir textarea */
-input, select, textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  outline: none;
-  resize: vertical; /* Permite redimensionamento vertical para textarea */
-  box-sizing: border-box; /* Garante que padding e border sejam incluídos no width */
+/* Botão de Contorno (Outline) - Usado para Ver / Editar / Gerenciar */
+.btn-outline {
+    background: none;
+    color: #1976d2;
+    border: 1px solid #1976d2;
+    /* Altura ajustada para harmonizar com os inputs (40px) */
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+    white-space: nowrap;
+    height: 40px; /* Garante que todos os botões no header tenham a mesma altura */
 }
 
-/* Adiciona um estilo específico para textarea, se necessário, mas o bloco acima já resolve */
-textarea {
-    min-height: 80px; /* Altura mínima para o campo de descrição */
+.btn-outline:hover {
+    background: #e3f2fd;
 }
 
-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-primary, #333);
+/* Botão de Perigo (Danger) - Usado para Apagar / Cancelar */
+.btn-danger {
+    background-color: #D32F2F; /* Cor de perigo (Vermelho) */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.btn-danger:hover {
+    opacity: 0.9;
+}
+
+
+/* --- Estilos de Lista de Alertas (Alertas.js) --- */
+
+.alertas-header-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+/* ESTILIZAÇÃO DO CAMPO DE BUSCA (Aprimorada) */
+.search-input-alerta {
+    flex-grow: 1;
+    max-width: 400px;
+    /* Ícone de busca (simulado com SVG) */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23999999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
+    background-repeat: no-repeat;
+    background-position: 12px center;
+    padding-left: 40px; /* Cria espaço para o ícone */
+}
+.search-input-alerta:focus {
+    border-color: #1976d2;
+}
+
+
+/* ESTILIZAÇÃO DO SELECT DE CATEGORIA (Aprimorada) */
+.select-filtro-categoria {
+    width: 200px;
+    flex-shrink: 0;
+    padding: 10px 12px;
+    height: 40px;
+}
+/* Estilização para a opção 'Todas as Categorias' (funciona no dropdown aberto) */
+.select-filtro-categoria option:first-child {
+    font-weight: 600;
+    color: #1976d2;
+    background-color: #f0f8ff; /* Fundo levemente azul para destaque */
+}
+
+
+/* Grupo de ações no canto direito */
+.alertas-actions-group {
+    display: flex;
+    gap: 15px;
+    margin-left: auto;
 }
 
 /* --- Estilos para AlertaCard (meta-card) --- */
@@ -79,7 +186,7 @@ label {
     border-radius: 12px;
     padding: 15px 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    border-left: 5px solid #1976d2; /* Uma borda para destacar */
+    border-left: 5px solid #1976d2;
     margin-bottom: 15px;
 }
 
@@ -97,6 +204,8 @@ label {
 .meta-meta {
     font-size: 12px;
     color: #666;
+    display: flex;
+    align-items: center;
 }
 
 .meta-separator {
@@ -108,62 +217,7 @@ label {
     vertical-align: middle;
 }
 
-.meta-actions button {
-    margin-left: 8px;
-}
-
-.btn-outline {
-    background: none;
-    color: #1976d2;
-    border: 1px solid #1976d2;
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 600;
-    transition: all 0.2s;
-}
-
-.btn-outline:hover {
-    background: #e3f2fd;
-}
-
-.btn-danger {
-    background-color: #D32F2F;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 600;
-    transition: opacity 0.2s;
-}
-
-.btn-danger:hover {
-    opacity: 0.9;
-}
-
-/* Adicionado ao alertas.css */
-
-.alertas-header-row {
+.meta-actions {
     display: flex;
-    gap: 15px; /* Espaçamento entre os elementos */
-    align-items: center; /* Alinha verticalmente */
-    margin-top: 20px;
-    margin-bottom: 25px;
-}
-
-/* Garante que o input de busca se expanda para ocupar o espaço */
-.search-input-alerta {
-    flex-grow: 1;
-    max-width: 400px; /* Limite o tamanho máximo para não dominar a tela */
-}
-
-/* Estilo específico para o dropdown de filtro */
-.select-filtro-categoria {
-    /* Herda o estilo base de input/select, mas ajustamos a largura */
-    width: 200px;
-    flex-shrink: 0; /* Impede que ele seja comprimido */
-    padding: 10px 12px;
+    gap: 8px;
 }

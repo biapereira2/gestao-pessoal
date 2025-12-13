@@ -1,12 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { habitoService } from '../../services/habitoService';  // Supondo que o caminho para o serviço seja esse
 
-const MetaCard = ({ meta, onRemover, onEditar, onVerDetalhes }) => {
+const MetaCard = ({ meta, onRemover, onEditar, onVerDetalhes, usuarioId }) => {
+  const [habitosUsuario, setHabitosUsuario] = useState([]);
+
+  useEffect(() => {
+    const fetchHabitos = async () => {
+      try {
+        const habitos = await habitoService.listarPorUsuario(usuarioId);
+        setHabitosUsuario(habitos);
+      } catch (error) {
+        console.error("Erro ao carregar hábitos:", error);
+      }
+    };
+
+    if (usuarioId) {
+      fetchHabitos();
+    }
+  }, [usuarioId]);
+
   if (!meta) return null;
 
+  // Verifique se o hábito foi cumprido
   const progresso = meta.quantidade > 0
     ? Math.round((meta.habitosCompletos / meta.quantidade) * 100)
     : 0;
 
+  const habitosCumpridos = habitosUsuario.filter(habito => {
+    // Aqui você pode verificar se o hábito foi concluído ou não. Adapte conforme sua lógica
+    return meta.habitos.some(metaHabito => metaHabito.id === habito.id && habito.completado);
+  }).length;
+
+  const progressoHabitos = Math.round((habitosCumpridos / meta.quantidade) * 100);
+
+  // Lógica do prazo e status
   const hoje = new Date();
   const prazo = meta.prazo ? new Date(meta.prazo) : null;
   const prazoTerminou = prazo && prazo < hoje;
@@ -79,23 +106,32 @@ const MetaCard = ({ meta, onRemover, onEditar, onVerDetalhes }) => {
 
         <div style={{ marginBottom: '10px' }}>
           <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-            {meta.habitosCompletos} de {meta.quantidade} hábitos ({progresso}%)
+            {meta.habitosCompletos} de {meta.quantidade} hábitos cumpridos (
+            {meta.quantidade > 0 ? Math.round((meta.habitosCompletos / meta.quantidade) * 100) : 0}%)
           </p>
+
+          {/* Barra de progresso */}
           <div
             style={{
-              height: '8px', width: '100%', backgroundColor: '#E0E0E0',
-              borderRadius: '4px', overflow: 'hidden', marginTop: '5px'
+              height: '8px',
+              width: '100%',
+              backgroundColor: '#E0E0E0',
+              borderRadius: '4px',
+              overflow: 'hidden',
+              marginTop: '5px'
             }}
           >
             <div
               style={{
-                width: `${progresso}%`, height: '100%',
-                backgroundColor: progresso === 100 ? '#2E7D32' : statusCor,
+                width: `${meta.quantidade > 0 ? (meta.habitosCompletos / meta.quantidade) * 100 : 0}%`,
+                height: '100%',
+                backgroundColor: '#333333', // verde, muda conforme quiser
                 transition: 'width 0.5s'
               }}
             ></div>
           </div>
         </div>
+
 
         {prazoMensagem && (
           <p style={{ fontSize: '12px', fontWeight: '600', color: statusCor }}>

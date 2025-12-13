@@ -37,7 +37,8 @@ const Metas = () => {
 
   useEffect(() => {
     carregarMetas();
-  }, [id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // roda só na montagem
 
   const carregarMetas = async () => {
     if (!id) {
@@ -48,10 +49,7 @@ const Metas = () => {
       setLoading(true);
       const data = await metaService.listarResumosExpandido(id);
       setMetas(data);
-
-      const completas = data.filter(m => m.quantidade > 0 && (m.habitosCompletos / m.quantidade) === 1).length;
-      setTotalCompletas(completas);
-      setProgressoMedio(calcularProgressoMedio(data));
+      atualizarEstatisticas(data);
     } catch (error) {
       console.error("Erro ao carregar metas:", error);
       toast.error("Erro ao carregar metas. Verifique a conexão com a API.");
@@ -60,13 +58,25 @@ const Metas = () => {
     }
   };
 
+  const atualizarEstatisticas = (data) => {
+    const completas = data.filter(m => m.quantidade > 0 && (m.habitosCompletos / m.quantidade) === 1).length;
+    setTotalCompletas(completas);
+    setProgressoMedio(calcularProgressoMedio(data));
+  };
+
+  // ================= CRUD =================
+
   const handleSalvarMeta = async (dadosForm) => {
     try {
       const dadosAjustados = { ...dadosForm, prazo: null, alertaProximoFalha: false };
-      await metaService.criar(dadosAjustados);
+      const novaMeta = await metaService.criar(dadosAjustados);
+
+      // Atualiza estado local sem recarregar tudo
+      setMetas(prev => [...prev, novaMeta]);
+      atualizarEstatisticas([...metas, novaMeta]);
+
       toast.success("Meta criada com sucesso!");
       setModalCriarAberto(false);
-      carregarMetas();
     } catch (error) {
       toast.error("Erro ao criar meta: " + error.message);
     }
@@ -75,10 +85,15 @@ const Metas = () => {
   const handleAtualizarMeta = async (metaId, dadosForm) => {
     try {
       const dadosAjustados = { ...dadosForm, prazo: null, alertaProximoFalha: false };
-      await metaService.atualizar(metaId, dadosAjustados);
+      const metaAtualizada = await metaService.atualizar(metaId, dadosAjustados);
+
+      // Atualiza apenas a meta no estado
+      const novasMetas = metas.map(m => m.id === metaId ? metaAtualizada : m);
+      setMetas(novasMetas);
+      atualizarEstatisticas(novasMetas);
+
       toast.success("Meta atualizada!");
       setModalEditar({ show: false, meta: null });
-      carregarMetas();
     } catch (error) {
       toast.error("Erro ao atualizar meta: " + error.message);
     }
@@ -88,7 +103,11 @@ const Metas = () => {
     if (!modalExclusao.meta) return;
     try {
       await metaService.remover(modalExclusao.meta.id);
-      setMetas(metas.filter(m => m.id !== modalExclusao.meta.id));
+
+      const novasMetas = metas.filter(m => m.id !== modalExclusao.meta.id);
+      setMetas(novasMetas);
+      atualizarEstatisticas(novasMetas);
+
       toast.info("Meta removida.");
       setModalExclusao({ show: false, meta: null });
     } catch (error) {
@@ -96,11 +115,11 @@ const Metas = () => {
     }
   };
 
+  // ================= FILTROS =================
   const metasFiltradas = metas.filter(m =>
     m.descricao && m.descricao.toLowerCase().includes(busca.toLowerCase())
   );
 
-  // ✅ Metas em andamento reais
   const metasEmAndamento = metas.filter(m => {
     const hoje = new Date();
     const prazo = m.prazo ? new Date(m.prazo) : null;
@@ -111,6 +130,7 @@ const Metas = () => {
 
   const totalMetas = metas.length;
 
+  // ================= RENDER =================
   return (
     <DashboardLayout>
       <div className="habitos-page" style={{ padding: '0 20px' }}>
@@ -125,7 +145,6 @@ const Metas = () => {
               borderBottom: '1px solid #E0E0E0', paddingBottom: '20px'
           }}>
 
-            {/* Total de Metas */}
             <div className="habito-card" style={{ flex: 1, minWidth: '200px', padding: '15px' }}>
               <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '5px' }}>Total de Metas</h3>
               <div style={{ fontSize: '28px', fontWeight: 800, color: 'var(--text-primary)' }}>
@@ -136,7 +155,6 @@ const Metas = () => {
               </p>
             </div>
 
-            {/* Progresso Médio */}
             <div className="habito-card" style={{ flex: 1, minWidth: '200px', padding: '15px' }}>
               <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '5px' }}>Progresso Médio</h3>
               <div style={{ fontSize: '28px', fontWeight: 800, color: 'var(--text-primary)' }}>
@@ -147,7 +165,6 @@ const Metas = () => {
               </p>
             </div>
 
-            {/* Metas em Andamento */}
             <div className="habito-card" style={{ flex: 1, minWidth: '200px', padding: '15px' }}>
               <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '5px' }}>Metas em Andamento</h3>
               <div style={{ fontSize: '28px', fontWeight: 800, color: 'var(--text-primary)' }}>

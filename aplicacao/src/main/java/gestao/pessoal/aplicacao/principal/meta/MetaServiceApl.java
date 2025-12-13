@@ -1,9 +1,12 @@
 package gestao.pessoal.aplicacao.principal.meta;
 
 import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioServiceApl;
+import gestao.pessoal.aplicacao.principal.habito.HabitoServiceApl;
 import gestao.pessoal.dominio.principal.princ.meta.Meta;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -13,12 +16,37 @@ public class MetaServiceApl {
 
     private final MetaRepositorioApl repositorio;
     private final UsuarioServiceApl usuarioService;
+    private final HabitoServiceApl habitoService;
 
-    public MetaServiceApl(MetaRepositorioApl repositorio, UsuarioServiceApl usuarioService) {
+    public MetaServiceApl(MetaRepositorioApl repositorio,
+                          UsuarioServiceApl usuarioService,
+                          @Lazy HabitoServiceApl habitoService) {
         this.repositorio = repositorio;
         this.usuarioService = usuarioService;
+        this.habitoService = habitoService;
     }
 
+    // 🔹 Atualiza o progresso das metas quando um hábito muda de status
+    public void atualizarMetasAssociadas(UUID habitoId, UUID usuarioId, LocalDate data) {
+        List<Meta> metasParaAtualizar = repositorio.buscarMetasPorHabitoIdEUsuarioId(habitoId, usuarioId);
+
+        for (Meta meta : metasParaAtualizar) {
+            // Conta quantos hábitos da meta foram concluídos no dia
+            int habitosCompletosNoDia = habitoService.contarHabitosConcluidosNoDia(
+                    meta.getHabitosIds(),
+                    usuarioId,
+                    data
+            );
+
+            meta.setHabitosCompletos(habitosCompletosNoDia);
+            meta.dispararAlertaSeNecessario();
+            repositorio.salvar(meta);
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // MÉTODOS EXISTENTES
+    // -----------------------------------------------------------------------
     public void criar(Meta meta) {
         if (usuarioService.buscarPorId(meta.getUsuarioId()).isEmpty()) {
             throw new IllegalArgumentException(
@@ -26,6 +54,7 @@ public class MetaServiceApl {
             );
         }
 
+        meta.setHabitosCompletos(0);
         repositorio.salvar(meta);
     }
 

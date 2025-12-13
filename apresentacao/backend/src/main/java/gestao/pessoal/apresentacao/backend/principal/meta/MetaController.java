@@ -7,6 +7,7 @@ import gestao.pessoal.dominio.principal.princ.meta.Meta;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -17,9 +18,6 @@ import java.util.UUID;
 public class MetaController {
 
     private final MetaServiceApl service;
-    // NOTA: Para uma arquitetura limpa, este Controller deve chamar o MetaService de domínio
-    // (gestao.pessoal.dominio.principal.princ.meta.MetaService) que contém a lógica de criação e validação
-    // dos hábitos, em vez de instanciar a Meta aqui.
 
     public MetaController(MetaServiceApl service) {
         this.service = service;
@@ -28,21 +26,26 @@ public class MetaController {
     @PostMapping
     public ResponseEntity<?> criar(@RequestBody MetaForm form) {
         try {
-            // CORREÇÃO: Usando o novo construtor da Meta
             Meta meta = new Meta(
                     form.getUsuarioId(),
                     form.getTipo(),
                     form.getDescricao(),
-                    form.getHabitosIds().size(), // Quantidade é o tamanho da lista
-                    form.getHabitosIds()         // Lista de IDs de Hábitos
+                    form.getHabitosIds().size(),
+                    form.getHabitosIds()
             );
-            service.criar(meta); // Isso deve acionar a validação do usuário (MetaServiceApl)
+
+            service.criar(meta);
+
+            // 🔹 Atualiza habitosCompletos imediatamente
+            for (UUID habitoId : meta.getHabitosIds()) {
+                service.atualizarMetasAssociadas(habitoId, meta.getUsuarioId(), LocalDate.now());
+            }
+
             return ResponseEntity.ok(meta);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<Meta> buscarPorId(@PathVariable UUID id) {
@@ -72,13 +75,16 @@ public class MetaController {
 
         Meta metaAtual = existente.get();
         metaAtual.setQuantidade(form.getQuantidade() != null ? form.getQuantidade() : metaAtual.getQuantidade());
-        metaAtual.setHabitosCompletos(form.getHabitosCompletos());
         metaAtual.setPrazo(form.getPrazo() != null ? form.getPrazo() : metaAtual.getPrazo());
         metaAtual.setAlertaProximoFalha(form.isAlertaProximoFalha());
 
         if (form.getHabitosIds() != null && !form.getHabitosIds().isEmpty()) {
             metaAtual.setHabitosIds(form.getHabitosIds());
             metaAtual.setQuantidade(form.getHabitosIds().size());
+
+            for (UUID habitoId : metaAtual.getHabitosIds()) {
+                service.atualizarMetasAssociadas(habitoId, metaAtual.getUsuarioId(), LocalDate.now());
+            }
         }
 
         service.atualizar(metaAtual);

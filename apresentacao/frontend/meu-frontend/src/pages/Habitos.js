@@ -1,6 +1,6 @@
-// Habitos.jsx (COM LÓGICA DE MOVIMENTO IMEDIATO)
+// Habitos.jsx (Versão com Coluna Única e Ordenação por Status)
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import DashboardLayout from '../components/DashboardLayout';
 import HabitoCard from '../components/Habitos/HabitoCard';
@@ -34,14 +34,14 @@ const Habitos = () => {
     try {
       setLoading(true);
 
-      // 1. BUSCA HÁBITOS CONCLUÍDOS (seu endpoint /com-checkin)
+      // 1. BUSCA HÁBITOS CONCLUÍDOS HOJE
       const habitosConcluidosHoje = await habitoService.listarPorUsuario(id);
       const idsConcluidos = new Set(habitosConcluidosHoje.map(h => h.id));
 
-      // 2. BUSCA TODOS OS HÁBITOS CADASTRADOS (usando o novo método)
+      // 2. BUSCA TODOS OS HÁBITOS CADASTRADOS
       const todosHabitos = await habitoService.listarTodosPorUsuario(id);
 
-      // 3. CRUZA OS DADOS: Mapeia todos os hábitos e adiciona a propriedade fezCheckinHoje
+      // 3. CRUZA OS DADOS: Adiciona a propriedade fezCheckinHoje
       const dadosCompletos = todosHabitos.map(habito => ({
           ...habito,
           fezCheckinHoje: idsConcluidos.has(habito.id)
@@ -59,13 +59,8 @@ const Habitos = () => {
   const handleSalvarHabito = async (dadosForm) => {
     try {
         const novoHabito = await habitoService.criar({...dadosForm, usuarioId: id});
-
-        // Novo hábito sempre começa como não feito.
         const habitoComStatus = { ...novoHabito, fezCheckinHoje: false };
-
-        // Atualiza o estado local de forma imutável para aparecer instantaneamente
         setHabitos(prev => [habitoComStatus, ...prev]);
-
         toast.success("Hábito criado com sucesso!");
         setModalCriarAberto(false);
     } catch (error) {
@@ -78,7 +73,10 @@ const Habitos = () => {
         await habitoService.atualizar(habitoId, dadosForm);
         toast.success("Hábito atualizado!");
         setModalEditar({ show: false, habito: null });
-        carregarHabitos();
+        // Atualiza a lista localmente
+        setHabitos(prev => prev.map(h =>
+          h.id === habitoId ? { ...h, ...dadosForm } : h
+        ));
     } catch (error) {
         toast.error("Erro ao atualizar hábito: " + error.message);
     }
@@ -90,7 +88,6 @@ const Habitos = () => {
         await habitoService.remover(modalExclusao.habito.id);
         toast.info("Hábito removido.");
         setModalExclusao({ show: false, habito: null });
-        // Otimização: Remove localmente
         setHabitos(prev => prev.filter(h => h.id !== modalExclusao.habito.id));
     } catch (error) {
         toast.error("Erro ao remover hábito: " + error.message);
@@ -107,10 +104,9 @@ const Habitos = () => {
           // 1. CHAMA O SERVICE: Registra o check-in no backend
           await habitoService.marcarCheckin(habitoId, id, hoje);
 
-          // 2. ATUALIZA ESTADO LOCAL: Dispara a re-renderização e move o card
+          // 2. ATUALIZA ESTADO LOCAL: Marca como feito (a reordenação é automática via useMemo)
           setHabitos(prev =>
             prev.map(h =>
-              // Se o ID for o mesmo, cria um NOVO OBJETO com o status alterado
               h.id === habitoId ? { ...h, fezCheckinHoje: true } : h
             )
           );
@@ -127,12 +123,21 @@ const Habitos = () => {
     carregarHabitos();
   }, [carregarHabitos]);
 
-  // Filtrar busca
-  const habitosFiltrados = habitos.filter(h => h.nome.toLowerCase().includes(busca.toLowerCase()));
+  // LÓGICA DE ORDENAÇÃO: Filtrar pela busca e ordenar (Não feito (false) antes de Feito (true))
+  const habitosOrdenados = useMemo(() => {
+    const filtrados = habitos.filter(h =>
+      h.nome.toLowerCase().includes(busca.toLowerCase())
+    );
 
-  // Separação em colunas: Depende do estado 'habitos' ser atualizado no handleToggleCheckin
-  const habitosNaoFeitos = habitosFiltrados.filter(h => !h.fezCheckinHoje);
-  const habitosFeitos = habitosFiltrados.filter(h => h.fezCheckinHoje);
+    // Se a.fezCheckinHoje é false (0) e b é true (1), (0 - 1) = -1. 'a' vem antes.
+    // Se a.fezCheckinHoje é true (1) e b é false (0), (1 - 0) = 1. 'b' vem antes (a vai para depois).
+    return filtrados.sort((a, b) =>
+      (a.fezCheckinHoje ? 1 : 0) - (b.fezCheckinHoje ? 1 : 0)
+    );
+  }, [habitos, busca]);
+
+  const totalNaoFeitos = habitosOrdenados.filter(h => !h.fezCheckinHoje).length;
+  const totalFeitos = habitosOrdenados.filter(h => h.fezCheckinHoje).length;
 
   return (
     <DashboardLayout>
@@ -156,32 +161,20 @@ const Habitos = () => {
         </div>
 
         {loading && <p>Carregando hábitos...</p>}
-        {!loading && habitosFiltrados.length === 0 && <p>Nenhum hábito encontrado.</p>}
+        {!loading && habitosOrdenados.length === 0 && <p>Nenhum hábito encontrado.</p>}
 
-        <div className="habitos-list-container">
-          <div className="habitos-coluna">
-            <h2>Hábitos a fazer ({habitosNaoFeitos.length})</h2>
-            {habitosNaoFeitos.map(habito => (
+        {/* ESTRUTURA DE COLUNA ÚNICA */}
+        <div className="habitos-list-container-unica">
+          <div className="habitos-coluna-unica">
+            <h2>
+              Rotina de hoje: {totalNaoFeitos} a fazer / {totalFeitos} concluídos
+            </h2>
+
+            {habitosOrdenados.map(habito => (
               <HabitoCard
                 key={habito.id}
                 habito={habito}
-                fezCheckinHoje={false}
-                onToggleCheckin={handleToggleCheckin}
-                isCheckinLoading={loadingCheckinId === habito.id}
-                onRemover={(h) => setModalExclusao({ show: true, habito: h })}
-                onEditar={(h) => setModalEditar({ show: true, habito: h })}
-                onVerDetalhes={(h) => setModalDetalhes({ show: true, habito: h })}
-              />
-            ))}
-          </div>
-
-          <div className="habitos-coluna">
-            <h2>Hábitos concluídos ({habitosFeitos.length})</h2>
-            {habitosFeitos.map(habito => (
-              <HabitoCard
-                key={habito.id}
-                habito={habito}
-                fezCheckinHoje={true}
+                fezCheckinHoje={habito.fezCheckinHoje}
                 onToggleCheckin={handleToggleCheckin}
                 isCheckinLoading={loadingCheckinId === habito.id}
                 onRemover={(h) => setModalExclusao({ show: true, habito: h })}

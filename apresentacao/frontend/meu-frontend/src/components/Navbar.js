@@ -19,7 +19,6 @@ const Navbar = () => {
     { label: "Metas", path: `/metas/${usuario.id}` },
     { label: "Hábitos", path: `/habitos/${usuario.id}` },
     { label: "Desafios", path: `/desafios/${usuario.id}` },
-    { label: "Check-ins", path: `/checkins/${usuario.id}` },
     { label: "Alertas", path: `/alertas/${usuario.id}` },
     { label: "Amigos", path: `/social/${usuario.id}` },
 

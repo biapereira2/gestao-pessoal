@@ -17,4 +17,6 @@ public interface MetaRepositorioApl {
     List<MetaResumoExpandido> listarResumosExpandidoPorUsuario(UUID usuarioId);
 
     void remover(UUID id);
+
+    List<Meta> buscarMetasPorHabitoIdEUsuarioId(UUID habitoId, UUID usuarioId);
 }
