@@ -11,20 +11,13 @@ Ajudar o usuário a estabelecer hábitos consistentes, monitorar seu progresso e
 
 ## ⚙ Funcionalidades
 
-- **Criação e personalização de hábitos**  
-  - Nome, descrição, categoria (saúde, estudo, finanças, lazer) e frequência (diária, semanal, mensal)
-- **Registro de cumprimento**  
-  - Calendário para marcar os dias de prática de cada hábito
-- **Acompanhamento de progresso**  
-  - Streaks (dias consecutivos), metas individuais, gráficos de evolução, médias e comparativos semanais/mensais
-- **Gamificação**  
-  - Pontos, medalhas e conquistas conforme o usuário cumpre hábitos
-- **Notas pessoais**  
-  - Adicionar aprendizados, sentimentos ou dificuldades relacionadas a cada hábito
-- **Interação social**  
-  - Conectar amigos, visualizar ranking de desempenho e compartilhar progresso
-- **Notificações e lembretes**  
-  - Alertas em horários configurados pelo usuário
+- **Criação e personalização de hábitos** - Nome, descrição, categoria (saúde, estudo, finanças, lazer) e frequência (diária, semanal, mensal)
+- **Registro de cumprimento** - Calendário para marcar os dias de prática de cada hábito
+- **Acompanhamento de progresso** - Streaks (dias consecutivos), metas individuais, gráficos de evolução, médias e comparativos semanais/mensais
+- **Gamificação** - Pontos, medalhas e conquistas conforme o usuário cumpre hábitos
+- **Notas pessoais** - Adicionar aprendizados, sentimentos ou dificuldades relacionadas a cada hábito
+- **Interação social** - Conectar amigos, visualizar ranking de desempenho e compartilhar progresso
+- **Notificações e lembretes** - Alertas em horários configurados pelo usuário
 
 ---
 
@@ -34,6 +27,18 @@ Ajudar o usuário a estabelecer hábitos consistentes, monitorar seu progresso e
 - **Banco de Dados:** SQLite / PostgreSQL  
 - **Testes:** Cucumber para BDD  
 - **Frontend:** React.js 
+
+---
+
+## 🌐 URLs da Aplicação
+
+Após iniciar o projeto localmente, os serviços estarão disponíveis nas seguintes URLs base:
+
+| Componente | URL Base | Descrição |
+| :--- | :--- | :--- |
+| **Frontend (Web)** | `http://localhost:3000` | Interface do usuário em React |
+| **Backend (API)** | `http://localhost:8080` | Servidor Spring Boot |
+| **Documentação API**| `http://localhost:8080/swagger-ui.html` | Swagger UI (caso esteja habilitado) |
 
 ---
 
