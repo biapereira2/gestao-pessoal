@@ -1,5 +1,3 @@
-// habitoService.js (Confirmado como OK)
-
 const API_URL = "http://localhost:8080/habitos";
 
 export const habitoService = {
@@ -16,7 +14,7 @@ export const habitoService = {
 
   listarTodosPorUsuario: async (usuarioId) => {
     try {
-      const response = await fetch(`${API_URL}/usuario/${usuarioId}`); 
+      const response = await fetch(`${API_URL}/usuario/${usuarioId}`);
       if (!response.ok) return [];
       return await response.json();
     } catch (error) {
@@ -71,4 +69,15 @@ export const habitoService = {
     if (!response.ok) throw new Error(await response.text() || "Erro ao marcar check-in.");
     return await response.json();
   },
+
+  obterResumoExpandido: async (id) => {
+    try {
+      const response = await fetch(`${API_URL}/${id}/resumo-expandido`);
+      if (!response.ok) throw new Error("Erro ao obter resumo expandido");
+      return await response.json();
+    } catch (error) {
+      console.error(`Erro ao obter resumo expandido do hábito ${id}:`, error);
+      return null;
+    }
+  }
 };

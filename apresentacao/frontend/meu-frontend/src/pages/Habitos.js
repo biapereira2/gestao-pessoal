@@ -73,7 +73,6 @@ const Habitos = () => {
         await habitoService.atualizar(habitoId, dadosForm);
         toast.success("Hábito atualizado!");
         setModalEditar({ show: false, habito: null });
-        // Atualiza a lista localmente
         setHabitos(prev => prev.map(h =>
           h.id === habitoId ? { ...h, ...dadosForm } : h
         ));
@@ -95,16 +94,13 @@ const Habitos = () => {
   };
 
   const handleToggleCheckin = async (habitoId, fezCheckinHoje) => {
-      // Impede check-in duplo
       if (fezCheckinHoje) return;
 
       setLoadingCheckinId(habitoId);
 
       try {
-          // 1. CHAMA O SERVICE: Registra o check-in no backend
           await habitoService.marcarCheckin(habitoId, id, hoje);
 
-          // 2. ATUALIZA ESTADO LOCAL: Marca como feito (a reordenação é automática via useMemo)
           setHabitos(prev =>
             prev.map(h =>
               h.id === habitoId ? { ...h, fezCheckinHoje: true } : h
@@ -123,14 +119,11 @@ const Habitos = () => {
     carregarHabitos();
   }, [carregarHabitos]);
 
-  // LÓGICA DE ORDENAÇÃO: Filtrar pela busca e ordenar (Não feito (false) antes de Feito (true))
   const habitosOrdenados = useMemo(() => {
     const filtrados = habitos.filter(h =>
       h.nome.toLowerCase().includes(busca.toLowerCase())
     );
 
-    // Se a.fezCheckinHoje é false (0) e b é true (1), (0 - 1) = -1. 'a' vem antes.
-    // Se a.fezCheckinHoje é true (1) e b é false (0), (1 - 0) = 1. 'b' vem antes (a vai para depois).
     return filtrados.sort((a, b) =>
       (a.fezCheckinHoje ? 1 : 0) - (b.fezCheckinHoje ? 1 : 0)
     );
@@ -163,7 +156,6 @@ const Habitos = () => {
         {loading && <p>Carregando hábitos...</p>}
         {!loading && habitosOrdenados.length === 0 && <p>Nenhum hábito encontrado.</p>}
 
-        {/* ESTRUTURA DE COLUNA ÚNICA */}
         <div className="habitos-list-container-unica">
           <div className="habitos-coluna-unica">
             <h2>
@@ -185,7 +177,6 @@ const Habitos = () => {
           </div>
         </div>
 
-        {/* MODAIS */}
         {modalCriarAberto && (
           <CriarHabitoModal
             onClose={() => setModalCriarAberto(false)}
