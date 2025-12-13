@@ -1,4 +1,4 @@
-package gestao.pessoal.apresentacao.backend.principal.social;
+package gestao.pessoal.apresentacao.backend.engajamento.social;
 
 import gestao.pessoal.aplicacao.principal.social.SocialServiceApl;
 import gestao.pessoal.dominio.principal.engajamento.amigo.AmigoDTO;

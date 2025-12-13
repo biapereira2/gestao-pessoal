@@ -12,7 +12,6 @@
   --accent-color: #030213;
 }
 
-
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
@@ -52,6 +51,12 @@ p {
   margin-bottom: 40px;
 }
 
+.sidebar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 .sidebar ul li {
   color: #CCCCCC;
   padding: 12px 16px;
@@ -60,9 +65,40 @@ p {
   transition: all 0.2s;
 }
 
-.sidebar ul li:hover, .sidebar ul li.active {
+.sidebar ul li:hover,
+.sidebar ul li.active {
   background-color: rgba(255, 255, 255, 0.1);
   color: #FFFFFF;
+}
+
+/* Botão de voltar */
+.sidebar .back-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto; /* fixa no final da sidebar */
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #CCCCCC;
+}
+
+.sidebar .back-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.sidebar .back-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-bottom: 8px;
 }
 
 .main-content {

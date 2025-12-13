@@ -1,4 +1,4 @@
-package gestao.pessoal.apresentacao.backend.principal.social;
+package gestao.pessoal.apresentacao.backend.engajamento.social;
 import java.util.UUID;
 
 public class SocialForm {

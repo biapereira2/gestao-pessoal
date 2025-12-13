@@ -36,23 +36,20 @@ public class MetaService {
             }
         }
 
-        // Cria a meta com a lista de IDs de Hábitos.
+        // Cria a meta com Strategy já configurada internamente
         Meta meta = new Meta(usuarioId, tipo, descricao, habitosIds.size(), habitosIds);
         repositorioMeta.salvar(meta);
     }
 
-
-
-
-    // --- Atualizar meta ---
+    // --- Atualizar quantidade da meta ---
     public void atualizar(UUID metaId, int novaQuantidade) {
         Meta meta = repositorioMeta.buscarPorId(metaId)
                 .orElseThrow(() -> new IllegalArgumentException("Meta com ID " + metaId + " não encontrada."));
-        meta.atualizarQuantidade(novaQuantidade);
+        meta.setQuantidade(novaQuantidade);
         repositorioMeta.salvar(meta);
     }
 
-    // NOVO: Adiciona a possibilidade de atualizar os hábitos associados
+    // --- Atualizar hábitos da meta ---
     public void atualizarHabitos(UUID metaId, List<UUID> novosHabitosIds) {
         Meta meta = repositorioMeta.buscarPorId(metaId)
                 .orElseThrow(() -> new IllegalArgumentException("Meta com ID " + metaId + " não encontrada."));
@@ -80,12 +77,11 @@ public class MetaService {
     }
 
     // --- Verificar alerta de uma meta específica ---
-    public void verificarAlerta(UUID metaId, String periodo) {
+    public void verificarAlerta(UUID metaId) {
         Meta meta = repositorioMeta.buscarPorId(metaId)
                 .orElseThrow(() -> new IllegalArgumentException("Meta com ID " + metaId + " não encontrada."));
 
-        // O próprio método da Meta agora imprime a mensagem detalhada
+        // Strategy já é chamada dentro da Meta
         meta.dispararAlertaSeNecessario();
     }
-
 }

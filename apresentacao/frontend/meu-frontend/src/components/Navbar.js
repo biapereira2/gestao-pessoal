@@ -12,7 +12,6 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname.startsWith(path) ? "active" : "";
 
-  // Usa o id da URL para todas as rotas
   const menuItems = [
     { label: "Rotinas", path: `/rotinas/${usuario.id}` },
     { label: "Metas", path: `/metas/${usuario.id}` },
@@ -42,20 +41,10 @@ const Navbar = () => {
         ))}
       </ul>
 
-      <div className="profile" onClick={() => navigate(`/perfil/${usuario.id}`)}>
-        <div style={{
-          width: '40px',
-          height: '40px',
-          borderRadius: '40%',
-          backgroundColor: '#2a2938',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontWeight: 'bold'
-        }}>
-          {usuario.nome.charAt(0).toUpperCase()}
-        </div>
-        <div>{usuario.nome}</div>
+      {/* Botão de voltar */}
+      <div className="back-button" onClick={() => navigate("/")}>
+        <div className="back-icon">←</div>
+        <div>Voltar</div>
       </div>
     </nav>
   );
