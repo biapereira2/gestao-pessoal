@@ -1,3 +1,5 @@
+/* --- ESTILOS GERAIS DE LAYOUT E BUSCA --- */
+
 .habitos-header-row {
   display: flex;
   gap: 15px;
@@ -42,6 +44,58 @@
   flex-direction: column;
   gap: 15px;
 }
+
+/* --- AJUSTE DE LAYOUT PARA COLUNA ÚNICA --- */
+
+/* 1. Esta classe era usada para criar o layout de duas colunas (display: flex).
+     Mantida para evitar erros se ainda estiver sendo referenciada, mas sem lógica flex.
+*/
+.habitos-list-container {
+  /* display: flex; REMOVIDO */
+  gap: 20px;
+  flex-wrap: wrap;
+  /* Apenas um container que envolve o conteúdo */
+}
+
+/* 2. Nova classe para o container principal da lista (Habitos.jsx).
+     Ocupa 100% da largura.
+*/
+.habitos-list-container-unica {
+  padding-top: 20px;
+}
+
+/* 3. Nova classe para a coluna (que é agora a lista única). 
+     Garante que o conteúdo interno (HabitoCard) ocupe a largura total.
+*/
+.habitos-coluna-unica {
+  width: 100%; /* Ocupa a largura total do container */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaçamento entre os cards */
+}
+
+.habitos-coluna-unica h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Estilo da coluna antiga (agora desnecessário para o novo layout) */
+.habitos-coluna {
+  /* flex: 1; REMOVIDO */
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.habitos-coluna h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* --- ESTILOS DO CARD --- */
 
 .habito-card {
   background-color: var(--bg-card);
@@ -129,6 +183,8 @@
   background-color: #d32f2f;
   color: #FFFFFF;
 }
+
+/* --- ESTILOS DO MODAL --- */
 
 .modal-content-creation {
   background-color: #FFFFFF;
@@ -227,24 +283,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.habitos-list-container {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.habitos-coluna {
-  flex: 1;
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.habitos-coluna h2 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 10px;
 }

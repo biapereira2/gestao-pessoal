@@ -1,4 +1,3 @@
-// src/components/Metas/DetalhesMetaModal.js
 import React, { useEffect, useState } from 'react';
 import { habitoService } from '../../services/habitoService';
 import { toast } from 'react-toastify';
@@ -17,10 +16,20 @@ const DetalhesMetaModal = ({ onClose, meta }) => {
 
       try {
         setLoading(true);
+        console.log("IDs dos hábitos:", meta.habitosIds);
+
         const dados = await Promise.all(
-          meta.habitosIds.map(id => habitoService.obterPorId(id))
+          meta.habitosIds.map(async id => {
+            try {
+              return await habitoService.obterPorId(id);
+            } catch {
+              return null;
+            }
+          })
         );
-        setHabitos(dados);
+
+        setHabitos(dados.filter(h => h)); // remove hábitos nulos
+        console.log("Hábitos carregados:", dados);
       } catch (error) {
         console.error("Erro ao carregar hábitos:", error);
         toast.error("Não foi possível carregar os hábitos associados.");

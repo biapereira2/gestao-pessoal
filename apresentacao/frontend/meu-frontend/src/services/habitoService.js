@@ -1,31 +1,38 @@
-// habitoService.js
+// habitoService.js (Confirmado como OK)
 
 const API_URL = "http://localhost:8080/habitos";
 
 export const habitoService = {
-  // FUNÇÃO ORIGINAL: Assume-se que esta retorna APENAS os hábitos CONCLUÍDOS hoje
   listarPorUsuario: async (usuarioId) => {
     try {
       const response = await fetch(`${API_URL}/usuario/${usuarioId}/com-checkin`);
       if (!response.ok) return [];
-      // Retorna APENAS os hábitos que fizeram check-in hoje
       return await response.json(); 
     } catch (error) {
       console.error("Erro ao listar hábitos concluídos:", error);
       return [];
     }
   },
-  
-  // **NOVA FUNÇÃO ADICIONADA:** Para buscar TODOS os hábitos cadastrados pelo usuário
+
   listarTodosPorUsuario: async (usuarioId) => {
     try {
-      // Assumindo um endpoint que retorna TODOS os hábitos do usuário
       const response = await fetch(`${API_URL}/usuario/${usuarioId}`); 
       if (!response.ok) return [];
       return await response.json();
     } catch (error) {
       console.error("Erro ao listar todos os hábitos:", error);
       return [];
+    }
+  },
+
+  obterPorId: async (id) => {
+    try {
+      const response = await fetch(`${API_URL}/${id}`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error(`Erro ao obter hábito ${id}:`, error);
+      return null;
     }
   },
 
@@ -62,7 +69,6 @@ export const habitoService = {
       body: JSON.stringify({ usuarioId, data }),
     });
     if (!response.ok) throw new Error(await response.text() || "Erro ao marcar check-in.");
-
-    return await response.json(); // Retorna hábito atualizado (provavelmente com fezCheckinHoje: true)
+    return await response.json();
   },
 };

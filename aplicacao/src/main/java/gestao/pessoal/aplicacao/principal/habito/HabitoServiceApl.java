@@ -1,6 +1,7 @@
 package gestao.pessoal.aplicacao.principal.habito;
 
 import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioServiceApl;
+import gestao.pessoal.aplicacao.principal.meta.MetaServiceApl;
 import gestao.pessoal.dominio.principal.princ.habito.*;
 import gestao.pessoal.dominio.principal.princ.habito.decorator.*;
 import org.springframework.stereotype.Service;
@@ -17,18 +18,69 @@ public class HabitoServiceApl {
     private final HabitoRepositorioApl repositorio;
     private final CheckinHabitoRepositorioApl checkinRepositorio;
     private final UsuarioServiceApl usuarioService;
+    private final MetaServiceApl metaService; // 👈 Injeção
 
     public HabitoServiceApl(HabitoRepositorioApl repositorio,
                             CheckinHabitoRepositorioApl checkinRepositorio,
-                            UsuarioServiceApl usuarioService) {
+                            UsuarioServiceApl usuarioService,
+                            MetaServiceApl metaService) {
         this.repositorio = repositorio;
         this.checkinRepositorio = checkinRepositorio;
         this.usuarioService = usuarioService;
+        this.metaService = metaService; // 👈 Atribuição
     }
 
-    // =======================================================
-    // MÉTODOS JÁ USADOS PELO CONTROLLER (Inalterados)
-    // =======================================================
+    // -----------------------------------------------------------------------
+    // MÉTODOS DE CHECK-IN/DESMARQUE (COM DISPARO PARA META)
+    // -----------------------------------------------------------------------
+
+    public void marcarCheckin(UUID habitoId, UUID usuarioId, LocalDate data) {
+        if (repositorio.buscarPorId(habitoId).isEmpty()) {
+            throw new IllegalArgumentException("Hábito não encontrado.");
+        }
+
+        if (checkinRepositorio.existsByHabitoIdAndUsuarioIdAndData(habitoId, usuarioId, data)) {
+            throw new IllegalStateException("Check-in para esta data já foi realizado.");
+        }
+
+        CheckInHabito checkin = new CheckInHabito(habitoId, usuarioId, data);
+        checkinRepositorio.save(checkin);
+
+        // 🎯 AÇÃO CRÍTICA: Notifica o serviço de metas para recalcular o progresso.
+        metaService.atualizarMetasAssociadas(habitoId, usuarioId, data);
+    }
+
+    public void desmarcarCheckin(UUID habitoId, UUID usuarioId, LocalDate data) {
+
+        Optional<CheckInHabito> checkinOptional = checkinRepositorio.findByHabitoIdAndUsuarioIdAndData(
+                habitoId, usuarioId, data
+        );
+
+        if (checkinOptional.isEmpty()) {
+            throw new IllegalArgumentException("Check-in não encontrado para desmarcar.");
+        }
+
+        checkinRepositorio.delete(checkinOptional.get());
+
+        // 🎯 AÇÃO CRÍTICA: Notifica o serviço de metas para recalcular o progresso.
+        metaService.atualizarMetasAssociadas(habitoId, usuarioId, data);
+    }
+
+    // -----------------------------------------------------------------------
+    // ✨ NOVO MÉTODO: Usado pelo MetaServiceApl para Recálculo
+    // -----------------------------------------------------------------------
+
+    /**
+     * Conta quantos dos hábitos fornecidos (IDs) fizeram check-in para o usuário no dia.
+     */
+    public int contarHabitosConcluidosNoDia(List<UUID> habitosIds, UUID usuarioId, LocalDate data) {
+        long count = checkinRepositorio.countByHabitoIdInAndUsuarioIdAndData(habitosIds, usuarioId, data);
+        return (int) count;
+    }
+
+    // -----------------------------------------------------------------------
+    // MÉTODOS DE CRUD, ETC. (Inalterados)
+    // -----------------------------------------------------------------------
 
     public void criar(Habito habito) {
         if (usuarioService.buscarPorId(habito.getUsuarioId()).isEmpty()) {
@@ -64,47 +116,6 @@ public class HabitoServiceApl {
     public void remover(UUID id) {
         repositorio.remover(id);
     }
-
-    // =======================================================
-    // MÉTODOS NOVOS PARA CHECK-IN/DESMARQUE (CORRIGIDOS)
-    // =======================================================
-
-    public void marcarCheckin(UUID habitoId, UUID usuarioId, LocalDate data) {
-        if (repositorio.buscarPorId(habitoId).isEmpty()) {
-            throw new IllegalArgumentException("Hábito não encontrado.");
-        }
-
-        // 1. Usando o método gerado pelo Spring Data JPA na interface
-        if (checkinRepositorio.existsByHabitoIdAndUsuarioIdAndData(habitoId, usuarioId, data)) {
-            throw new IllegalStateException("Check-in para esta data já foi realizado.");
-        }
-
-        // 2. Cria a entidade (Assumindo que CheckInHabito tem um construtor compatível)
-        CheckInHabito checkin = new CheckInHabito(habitoId, usuarioId, data);
-
-        // 3. Usa o método 'save' (herdado do JpaRepository)
-        checkinRepositorio.save(checkin);
-    }
-
-    public void desmarcarCheckin(UUID habitoId, UUID usuarioId, LocalDate data) {
-
-        // 1. Usando o método customizado findByHabitoIdAndUsuarioIdAndData definido na interface
-        Optional<CheckInHabito> checkinOptional = checkinRepositorio.findByHabitoIdAndUsuarioIdAndData(
-                habitoId, usuarioId, data
-        );
-
-        if (checkinOptional.isEmpty()) {
-            throw new IllegalArgumentException("Check-in não encontrado para desmarcar.");
-        }
-
-        // 2. Usa o método 'delete' (herdado do JpaRepository)
-        // Note: Se você usa o ID, pode usar deleteById, mas usar delete(entity) é mais comum.
-        checkinRepositorio.delete(checkinOptional.get());
-    }
-
-    // =========================
-    // ✨ MÉTODO NOVO COM DECORATOR
-    // =========================
 
     public int calcularPontosDecorados(UUID habitoId) {
         Habito habito = repositorio.buscarPorId(habitoId)
