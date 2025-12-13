@@ -21,3 +21,19 @@
 - EstrategiaAlertaMetaDiaria
 - EstrategiaAlertaMetaSemanal
 - EstrategiaAlertaMetaMensal
+
+---
+
+## Template Method
+
+### Classes modificadas:
+
+### Classes criadas:
+
+--- 
+
+## Decorator
+
+### Classes modificadas:
+
+### Classes criadas:
