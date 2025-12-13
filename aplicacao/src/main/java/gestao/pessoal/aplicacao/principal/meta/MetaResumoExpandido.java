@@ -1,5 +1,7 @@
 package gestao.pessoal.aplicacao.principal.meta;
 
+import gestao.pessoal.dominio.principal.princ.meta.Meta;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -14,10 +16,11 @@ public class MetaResumoExpandido {
     private LocalDate prazo;
     private boolean alertaProximoFalha;
     private List<UUID> habitosIds; // NOVO
+    private Meta.Tipo tipo;
 
     public MetaResumoExpandido(UUID id, UUID usuarioId, String descricao, int quantidade,
                                int habitosCompletos, LocalDate prazo, boolean alertaProximoFalha,
-                               List<UUID> habitosIds) {
+                               List<UUID> habitosIds, Meta.Tipo tipo) {
         this.id = id;
         this.usuarioId = usuarioId;
         this.descricao = descricao;
@@ -26,6 +29,7 @@ public class MetaResumoExpandido {
         this.prazo = prazo;
         this.alertaProximoFalha = alertaProximoFalha;
         this.habitosIds = habitosIds;
+        this.tipo = tipo;
     }
 
     // Getters e setters
@@ -52,4 +56,7 @@ public class MetaResumoExpandido {
 
     public List<UUID> getHabitosIds() { return habitosIds; }
     public void setHabitosIds(List<UUID> habitosIds) { this.habitosIds = habitosIds; }
+
+    public Meta.Tipo getTipo() { return tipo; }
+    public void setTipo(Meta.Tipo tipo) { this.tipo = tipo; }
 }

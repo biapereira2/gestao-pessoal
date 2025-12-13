@@ -47,7 +47,8 @@ public class JpaMapper extends ModelMapper {
                         source.getHabitosCompletos(),
                         source.getPrazo(),
                         source.isAlertaProximoFalha(),
-                        source.getHabitosIds() // <-- CORREÇÃO AQUI: Adicionado o novo campo
+                        source.getHabitosIds(),
+                        source.getTipo()// <-- CORREÇÃO AQUI: Adicionado o novo campo
                 );
             }
         });

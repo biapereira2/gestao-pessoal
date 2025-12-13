@@ -8,20 +8,22 @@ public class Badges {
         NIVEL,
         META_ATINGIDA,
         HABITO_CONSECUTIVO
-        // Adicionar outras categorias conforme o crescimento do sistema
     }
 
     private final UUID id;
     private final String nome;
     private final String descricao;
     private final Categoria categoria;
-    private final int valorRequerido; // Nível, quantidade de metas, dias, etc.
-    private final boolean desbloqueada;
-    private final UUID usuarioId; // Se a badge for específica de um usuário (conquistada)
+    private final int valorRequerido;
 
-    // Construtor para Badges (Modelos/Disponíveis)
+    private final boolean desbloqueada;
+    private final UUID usuarioId;
+
+    // ============================
+    // Construtor de CRIAÇÃO (modelo)
+    // ============================
     public Badges(String nome, String descricao, Categoria categoria, int valorRequerido) {
-        if (nome == null || nome.trim().isEmpty()) {
+        if (nome == null || nome.isBlank()) {
             throw new IllegalArgumentException("O nome da badge não pode ser vazio.");
         }
         if (valorRequerido <= 0) {
@@ -33,26 +35,69 @@ public class Badges {
         this.descricao = descricao;
         this.categoria = categoria;
         this.valorRequerido = valorRequerido;
+
         this.desbloqueada = false;
         this.usuarioId = null;
     }
 
-    // Construtor para Badges CONQUISTADAS por um Usuário
-    private Badges(UUID id, String nome, String descricao, Categoria categoria, int valorRequerido, UUID usuarioId) {
+    // ============================
+    // Construtor de REIDRATAÇÃO
+    // ============================
+    private Badges(
+            UUID id,
+            String nome,
+            String descricao,
+            Categoria categoria,
+            int valorRequerido,
+            boolean desbloqueada,
+            UUID usuarioId
+    ) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.categoria = categoria;
         this.valorRequerido = valorRequerido;
-        this.desbloqueada = true;
+        this.desbloqueada = desbloqueada;
         this.usuarioId = usuarioId;
     }
 
-    public static Badges conceder(Badges modelo, UUID usuarioId) {
-        return new Badges(modelo.id, modelo.nome, modelo.descricao, modelo.categoria, modelo.valorRequerido, usuarioId);
+    // ============================
+    // Fábricas explícitas
+    // ============================
+
+    public static Badges reidratarModelo(
+            UUID id,
+            String nome,
+            String descricao,
+            Categoria categoria,
+            int valorRequerido
+    ) {
+        return new Badges(id, nome, descricao, categoria, valorRequerido, false, null);
     }
 
-    // --- Getters ---
+    public static Badges reidratarConquistada(
+            UUID id,
+            String nome,
+            String descricao,
+            Categoria categoria,
+            int valorRequerido,
+            UUID usuarioId
+    ) {
+        return new Badges(id, nome, descricao, categoria, valorRequerido, true, usuarioId);
+    }
+
+    // ============================
+    // Comportamento de domínio
+    // ============================
+
+    public boolean pertenceAoUsuario(UUID usuarioId) {
+        return desbloqueada && this.usuarioId.equals(usuarioId);
+    }
+
+    // ============================
+    // Getters
+    // ============================
+
     public UUID getId() { return id; }
     public String getNome() { return nome; }
     public String getDescricao() { return descricao; }

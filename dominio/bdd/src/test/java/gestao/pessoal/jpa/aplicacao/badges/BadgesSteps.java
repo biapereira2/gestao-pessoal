@@ -117,7 +117,16 @@ public class BadgesSteps {
                     .findFirst()
                     .orElseThrow(() -> new IllegalStateException("Modelo de badge " + nome + " não encontrado."));
 
-            repositorioBadges.salvarConquista(Badges.conceder(modelo, usuarioId));
+            Badges badgeConquistada = Badges.reidratarConquistada(
+                    modelo.getId(),
+                    modelo.getNome(),
+                    modelo.getDescricao(),
+                    modelo.getCategoria(),
+                    modelo.getValorRequerido(),
+                    usuarioId
+            );
+
+            repositorioBadges.salvarConquista(badgeConquistada);
         }
     }
 

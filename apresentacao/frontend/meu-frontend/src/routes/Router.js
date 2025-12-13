@@ -13,7 +13,9 @@ import Desafios from '../pages/Desafios';
 import Checkins from '../pages/Checkins';
 import Alertas from '../pages/Alertas';
 import Amigos from '../pages/Amigos';
+import Badges from '../pages/Badges';
 import Perfil from '../pages/Perfil';
+import Progresso from '../pages/Progresso'; // NOVO
 
 const AppRouter = () => {
   return (
@@ -36,7 +38,7 @@ const AppRouter = () => {
         <Route path="/social/:id" element={<Amigos />} />
 
         {/* Gamificação */}
-        <Route path="/progressoUsuario/:id" element={<ProgressoUsuario />} /> {/* 🧠 */}
+        <Route path="/progresso/:id" element={<Progresso />} /> {/* 🧠 */}
         <Route path="/badges/:id" element={<Badges />} />
 
         <Route path="/perfil/:id" element={<Perfil />} />
