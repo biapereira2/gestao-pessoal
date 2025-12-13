@@ -20,14 +20,7 @@ const Desafios = () => {
 
   const [modalCriarAberto, setModalCriarAberto] = useState(false);
 
-  useEffect(() => {
-    if (usuarioId) {
-      carregarDados();
-    } else {
-      setLoading(false);
-    }
-  }, [usuarioId]);
-
+  // A função carregarDados é perfeita para ser usada como função de recarga!
   const carregarDados = async () => {
     setLoading(true);
     try {
@@ -50,6 +43,16 @@ const Desafios = () => {
       setLoading(false);
     }
   };
+
+
+  useEffect(() => {
+    if (usuarioId) {
+      carregarDados();
+    } else {
+      setLoading(false);
+    }
+  }, [usuarioId]);
+
 
   const handleCriarDesafio = async (dadosForm) => {
     try {
@@ -115,6 +118,7 @@ const Desafios = () => {
                 key={desafio.id}
                 desafio={desafio}
                 usuarioId={usuarioId}
+                onDesafioEncerrado={carregarDados} // <<< CORREÇÃO PRINCIPAL AQUI!
               />
             ))}
           </div>

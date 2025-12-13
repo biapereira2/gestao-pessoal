@@ -80,5 +80,36 @@ export const desafioService = {
       console.error("Erro de rede ao carregar progresso:", error);
       return null;
     }
-  }
+  },
+
+    // === 6. ENCERRAR DESAFIO (POST /desafios/{desafioId}/encerrar?criadorId={criadorId}) ===
+    encerrarDesafio: async (desafioId, criadorId) => {
+      // URL: http://localhost:8080/desafios/{desafioId}/encerrar?criadorId={criadorId}
+      const response = await fetch(`${API_URL}/${desafioId}/encerrar?criadorId=${criadorId}`, {
+        method: "POST", // A Controller espera um POST
+      });
+
+      if (!response.ok) {
+        // O backend retorna 400 se o usuário não for o criador, ou se houver outro erro
+        const errorText = await response.text();
+        // O erro 400 (Bad Request) deve ser capturado e relançado para o Front-end
+        throw new Error(errorText || `Erro ${response.status} ao encerrar desafio.`);
+      }
+      // Retorna true pois a Controller retorna ResponseEntity.ok().build() (que é um 200/204)
+      return true;
+    },
+
+    // === 7. NOVO: SAIR DO DESAFIO (Para uso futuro) ===
+    // Note: O endpoint DELETE é usado para sair do desafio
+    sairDoDesafio: async (desafioId, participanteId) => {
+      const response = await fetch(`${API_URL}/${desafioId}/sair?participanteId=${participanteId}`, {
+          method: "DELETE",
+      });
+
+      if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(errorText || `Erro ${response.status} ao sair do desafio.`);
+      }
+      return true;
+    }
 };

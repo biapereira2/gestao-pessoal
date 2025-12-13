@@ -7,12 +7,12 @@ import gestao.pessoal.dominio.principal.princ.desafio.Desafio.StatusDesafio;
 
 public class DesafioResumo {
 
-    private final UUID id;
-    private final String nome;
-    private final LocalDate dataInicio;
-    private final LocalDate dataFim;
-    private final StatusDesafio status;
-    private final int numParticipantes;
+    private UUID id;
+    private String nome;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
+    private StatusDesafio status;
+    private int numParticipantes;
 
     public DesafioResumo(UUID id, String nome, LocalDate dataInicio, LocalDate dataFim, StatusDesafio status, int numParticipantes) {
         this.id = id;
@@ -21,6 +21,9 @@ public class DesafioResumo {
         this.dataFim = dataFim;
         this.status = status;
         this.numParticipantes = numParticipantes;
+    }
+    public DesafioResumo() {
+        // Construtor vazio para Jackson
     }
 
     public UUID getId() { return id; }

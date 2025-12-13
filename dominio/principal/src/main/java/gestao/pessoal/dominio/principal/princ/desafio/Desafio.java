@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.UUID;
 
 public class Desafio {
-    private final UUID id;
-    private final UUID criadorId;
-    private final String nome;
-    private final List<UUID> habitosIds;
+    private UUID id;
+    private UUID criadorId;
+    private String nome;
+    private List<UUID> habitosIds;
     private List<UUID> participantesIds; // Inclui o criador
-    private final LocalDate dataInicio;
-    private final LocalDate dataFim;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
     private StatusDesafio status;
 
     public Desafio(UUID id, UUID criadorId, String nome, List<UUID> habitosIds, LocalDate dataInicio, LocalDate dataFim) {
@@ -24,6 +24,10 @@ public class Desafio {
         this.status = StatusDesafio.ATIVO;
         this.participantesIds = new java.util.ArrayList<>(List.of(criadorId)); // Criador é o primeiro participante
     }
+
+    public Desafio() {
+    }
+
     // Método para adicionar participante após aceitação de convite
     public void adicionarParticipante(UUID participanteId) {
         if (!participantesIds.contains(participanteId)) {

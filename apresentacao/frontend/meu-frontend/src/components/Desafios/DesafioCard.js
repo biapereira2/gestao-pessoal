@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { desafioService } from '../../services/desafioService';
+import { toast } from 'react-toastify'; // É crucial importar o toast aqui
 
-const DesafioCard = ({ desafio, usuarioId }) => {
+// Adicionamos 'onDesafioEncerrado' nas props para recarregar a lista principal
+const DesafioCard = ({ desafio, usuarioId, onDesafioEncerrado }) => {
   const [progressoData, setProgressoData] = useState(null);
   const [loadingProgresso, setLoadingProgresso] = useState(false);
   const [expandido, setExpandido] = useState(false);
@@ -20,9 +22,30 @@ const DesafioCard = ({ desafio, usuarioId }) => {
     }
   }, [desafio]);
 
+  // Função para encerrar o desafio (Teste 5)
+  const handleEncerrarDesafio = async () => {
+    if (!window.confirm("Tem certeza que deseja encerrar este desafio? Esta ação é irreversível.")) {
+        return;
+    }
+    try {
+      // Chamada para o Service: POST /desafios/{desafioId}/encerrar?criadorId={criadorId}
+      await desafioService.encerrarDesafio(desafio.id, usuarioId);
+      toast.success("Desafio encerrado com sucesso! A lista será atualizada.");
+
+      // Chama a função passada pelo componente pai (Desafios.js) para recarregar a lista
+      if (onDesafioEncerrado) {
+        onDesafioEncerrado();
+      }
+    } catch (error) {
+      console.error("Erro ao encerrar desafio:", error);
+      toast.error("Erro ao encerrar desafio: " + error.message);
+    }
+  };
+
+
   if (!desafio) return null;
 
-  // Lógica de progresso geral (soma de todos os participantes, se necessário)
+  // Lógica de progresso
   const meuProgresso = progressoData ? progressoData.find(p => p.participanteId === usuarioId) : null;
   const progressoPct = meuProgresso && meuProgresso.totalHabitos > 0
     ? Math.round((meuProgresso.habitosConcluidos / meuProgresso.totalHabitos) * 100)
@@ -97,13 +120,13 @@ const DesafioCard = ({ desafio, usuarioId }) => {
           {expandido ? 'Ocultar Detalhes' : 'Ver Progresso Completo'}
         </button>
 
-        {isCriador && desafio.status === 'ATIVO' && (
-          <button
-            className="btn-danger"
-            onClick={() => {/* Lógica para encerrar o desafio - Teste 5 */}}
-          >
-            Encerrar Desafio
-          </button>
+        {desafio.status === 'ATIVO' && (
+            <button
+                className="btn-danger"
+                onClick={handleEncerrarDesafio}
+            >
+                Encerrar Desafio (FORÇADO)
+            </button>
         )}
       </div>
     </div>
