@@ -2,150 +2,64 @@ package gestao.pessoal.dominio.principal.princ.desafio;
 
 import gestao.pessoal.dominio.principal.compartilhado.usuario.RepositorioUsuario;
 import gestao.pessoal.dominio.principal.compartilhado.usuario.Usuario;
+import gestao.pessoal.dominio.principal.princ.desafio.ConviteDesafio;
+import gestao.pessoal.dominio.principal.princ.desafio.Desafio;
+import gestao.pessoal.dominio.principal.princ.desafio.RepositorioDesafio;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
-public class DesafioService {
+/**
+ * Classe Abstrata que define o esqueleto (Template Method) para operações no Desafio.
+ * Delega a busca e validação da entidade (por nome ou por ID) para as subclasses.
+ */
+public abstract class DesafioService { // Agora é a classe abstrata de domínio
 
-    private final RepositorioDesafio repositorioDesafio;
-    private final RepositorioUsuario repositorioUsuario;
+    protected final RepositorioDesafio repositorioDesafio;
+    protected final RepositorioUsuario repositorioUsuario;
 
+    // CONSTRUTOR CORRIGIDO: Deve usar o nome da classe: DesafioService
     public DesafioService(RepositorioDesafio repositorioDesafio, RepositorioUsuario repositorioUsuario) {
         this.repositorioDesafio = repositorioDesafio;
         this.repositorioUsuario = repositorioUsuario;
     }
 
-    // --- MÉTODOS BASEADOS EM NOME (Originais, mantidos para compatibilidade) ---
+    // --- MÉTODOS PRIMITIVOS ABSTRATOS (O Hook do Template Method) ---
 
-    // Método para o Cenário 2: Aceitar Convite (BUSCA POR NOME)
-    public Desafio aceitarConvite(UUID convidadoId, String nomeDesafio) {
-        // ... sua lógica original (busca por nome) ...
-        List<ConviteDesafio> convitesPendentes = repositorioDesafio.buscarConvitesPendentes(convidadoId);
+    /**
+     * Busca e valida um Convite Desafio. Implementação varia (por nome ou ID).
+     * O 'identificador' pode ser String (nome) ou UUID (ID).
+     */
+    protected abstract ConviteDesafio buscarEValidarConviteParaResolucao(UUID convidadoId, Object identificador)
+            throws IllegalArgumentException, IllegalStateException;
 
-        Optional<ConviteDesafio> conviteOpt = convitesPendentes.stream()
-                .filter(c -> {
-                    Optional<Desafio> desafioOpt = repositorioDesafio.buscarPorId(c.getDesafioId());
-                    return desafioOpt.isPresent() && desafioOpt.get().getNome().equals(nomeDesafio);
-                })
-                .findFirst();
+    /**
+     * Busca e valida um Desafio para encerramento. Implementação varia (por nome ou ID).
+     */
+    protected abstract Desafio buscarEValidarDesafioParaEncerramento(UUID criadorId, Object identificador)
+            throws IllegalArgumentException;
 
-        if (conviteOpt.isEmpty()) {
-            throw new IllegalArgumentException("Convite não encontrado ou já resolvido.");
-        }
+    /**
+     * Busca e valida um Desafio para saída. Implementação varia (por nome ou ID).
+     */
+    protected abstract Desafio buscarEValidarDesafioParaSaida(UUID participanteId, Object identificador)
+            throws IllegalArgumentException, IllegalStateException;
 
-        ConviteDesafio convite = conviteOpt.get();
+    // --- MÉTODOS TEMPLATE (A Lógica Central, que é FIXA) ---
+
+    // Template para Aceitar Convite
+    public final Desafio aceitarConviteTemplate(UUID convidadoId, Object identificador) {
+        // 1. Passo Variável: Busca e valida o Convite (MÉTODO PRIMITIVO)
+        ConviteDesafio convite = buscarEValidarConviteParaResolucao(convidadoId, identificador);
+
+        // 2. Passos Fixos: Lógica Comum do Domínio
         convite.aceitar();
         repositorioDesafio.salvarConvite(convite);
 
         Desafio desafio = repositorioDesafio.buscarPorId(convite.getDesafioId())
-                .orElseThrow(() -> new IllegalStateException("Desafio não encontrado."));
-
-        desafio.adicionarParticipante(convidadoId);
-        repositorioDesafio.salvar(desafio);
-
-        return desafio;
-    }
-
-    // Método para o Cenário 3: Rejeitar Convite (BUSCA POR NOME)
-    public void rejeitarConvite(UUID convidadoId, String nomeDesafio) {
-        // ... sua lógica original (busca por nome) ...
-        List<ConviteDesafio> convitesPendentes = repositorioDesafio.buscarConvitesPendentes(convidadoId);
-
-        Optional<ConviteDesafio> conviteOpt = convitesPendentes.stream()
-                .filter(c -> {
-                    Optional<Desafio> desafioOpt = repositorioDesafio.buscarPorId(c.getDesafioId());
-                    return desafioOpt.isPresent() && desafioOpt.get().getNome().equals(nomeDesafio);
-                })
-                .findFirst();
-
-        if (conviteOpt.isEmpty()) {
-            throw new IllegalArgumentException("Convite não encontrado.");
-        }
-
-        ConviteDesafio convite = conviteOpt.get();
-        convite.rejeitar();
-        repositorioDesafio.salvarConvite(convite);
-    }
-
-    // Método para o Cenário 4: Encerrar Desafio (BUSCA POR NOME)
-    public void encerrarDesafio(UUID criadorId, String nomeDesafio) {
-        // ... sua lógica original (busca por nome) ...
-        Optional<Desafio> desafioOpt = repositorioDesafio.buscarTodosDoUsuario(criadorId).stream()
-                .filter(d -> d.getNome().equals(nomeDesafio) && d.getCriadorId().equals(criadorId))
-                .findFirst();
-
-        if (desafioOpt.isEmpty()) {
-            throw new IllegalArgumentException("Desafio não encontrado ou você não é o criador.");
-        }
-
-        Desafio desafio = desafioOpt.get();
-        desafio.encerrar();
-        repositorioDesafio.salvar(desafio);
-    }
-
-    // Método para o Cenário 5: Sair do Desafio (BUSCA POR NOME)
-    public void sairDoDesafio(UUID participanteId, String nomeDesafio) {
-        // ... sua lógica original (busca por nome) ...
-        Optional<Desafio> desafioOpt = repositorioDesafio.buscarTodosDoUsuario(participanteId).stream()
-                .filter(d -> d.getNome().equals(nomeDesafio) && d.getParticipantesIds().contains(participanteId))
-                .findFirst();
-
-        if (desafioOpt.isEmpty()) {
-            throw new IllegalArgumentException("Desafio não encontrado.");
-        }
-
-        Desafio desafio = desafioOpt.get();
-        if (desafio.getCriadorId().equals(participanteId)) {
-            throw new IllegalStateException("O criador não pode sair, deve encerrar o desafio.");
-        }
-
-        desafio.removerParticipante(participanteId);
-        repositorioDesafio.salvar(desafio);
-    }
-
-    // ... (restante dos métodos baseados em nome, como buscarDesafioPorNomeECriador e calcularProgressoTotal) ...
-
-
-    // --- NOVOS MÉTODOS BASEADOS EM ID (Necessários para a Camada de Aplicação) ---
-
-    // Método auxiliar para buscar convites (Necessário para DesafioServiceAplImpl)
-    // Assumimos que o RepositorioDesafioImpl pode buscar pelo ID do Convite,
-    // mas aqui simulamos a busca a partir da lista de pendentes para não alterar o RepositorioDesafio.
-    public Optional<ConviteDesafio> buscarConvitePorId(UUID conviteId) {
-        // Esta busca pode ser ineficiente, mas mantém a assinatura do RepositorioDesafio inalterada
-        // O ideal é que RepositorioDesafio tenha um método: Optional<ConviteDesafio> buscarConvitePorId(UUID id)
-
-        // Simulação de busca por ID em todos os convites (pendentes + resolvidos, o que é mais robusto)
-        // Como o RepositorioDesafio só expõe 'buscarConvitesPendentes', vamos buscar em todos os desafios:
-
-        // No mundo real, você faria: return repositorioDesafio.buscarConvitePorId(conviteId);
-
-        // Já que isso não existe, faremos uma busca mais ampla no repositório de convites.
-        // A maneira mais limpa é buscar por ID. Se o ConviteJpaRepositorio.findById() estiver disponível,
-        // a implementação do RepositorioDesafio deve expor:
-        return repositorioDesafio.buscarConvitesPendentes(null).stream()
-                .filter(c -> c.getId().equals(conviteId))
-                .findFirst();
-    }
-
-    // Novo: Aceitar Convite usando o ID do Convite (Método limpo para o Controller)
-    public Desafio aceitarConvitePorId(UUID conviteId) {
-        ConviteDesafio convite = buscarConvitePorId(conviteId)
-                .orElseThrow(() -> new IllegalArgumentException("Convite não encontrado ou já resolvido."));
-
-        if (convite.getStatus() != ConviteDesafio.StatusConvite.PENDENTE) {
-            throw new IllegalStateException("O convite não está pendente.");
-        }
-
-        convite.aceitar();
-        repositorioDesafio.salvarConvite(convite);
-
-        Desafio desafio = repositorioDesafio.buscarPorId(convite.getDesafioId())
-                .orElseThrow(() -> new IllegalStateException("Desafio não encontrado."));
+                .orElseThrow(() -> new IllegalStateException("Desafio não encontrado após aceitação."));
 
         desafio.adicionarParticipante(convite.getConvidadoId());
         repositorioDesafio.salvar(desafio);
@@ -153,63 +67,39 @@ public class DesafioService {
         return desafio;
     }
 
-    // Novo: Rejeitar Convite usando o ID do Convite (Método limpo para o Controller)
-    public void rejeitarConvitePorId(UUID conviteId) {
-        ConviteDesafio convite = buscarConvitePorId(conviteId)
-                .orElseThrow(() -> new IllegalArgumentException("Convite não encontrado."));
+    // Template para Rejeitar Convite
+    public final void rejeitarConviteTemplate(UUID convidadoId, Object identificador) {
+        // 1. Passo Variável: Busca e valida o Convite (MÉTODO PRIMITIVO)
+        ConviteDesafio convite = buscarEValidarConviteParaResolucao(convidadoId, identificador);
 
-        if (convite.getStatus() != ConviteDesafio.StatusConvite.PENDENTE) {
-            throw new IllegalStateException("O convite não está pendente.");
-        }
-
+        // 2. Passos Fixos: Lógica Comum do Domínio
         convite.rejeitar();
         repositorioDesafio.salvarConvite(convite);
     }
 
-    // Novo: Encerrar Desafio usando o ID do Desafio (Método limpo para o Controller)
-    public void encerrarDesafioPorId(UUID criadorId, UUID desafioId) {
-        Desafio desafio = repositorioDesafio.buscarPorId(desafioId)
-                .orElseThrow(() -> new IllegalArgumentException("Desafio não encontrado."));
+    // Template para Encerrar Desafio
+    public final void encerrarDesafioTemplate(UUID criadorId, Object identificador) {
+        // 1. Passo Variável: Busca e valida o Desafio (MÉTODO PRIMITIVO)
+        Desafio desafio = buscarEValidarDesafioParaEncerramento(criadorId, identificador);
 
-        if (!desafio.getCriadorId().equals(criadorId)) {
-            throw new IllegalArgumentException("Você não é o criador deste desafio e não pode encerrá-lo.");
-        }
-
+        // 2. Passos Fixos: Lógica Comum do Domínio
         desafio.encerrar();
         repositorioDesafio.salvar(desafio);
     }
 
-    // Novo: Sair do Desafio usando o ID do Desafio (Método limpo para o Controller)
-    public void sairDoDesafioPorId(UUID participanteId, UUID desafioId) {
-        Desafio desafio = repositorioDesafio.buscarPorId(desafioId)
-                .orElseThrow(() -> new IllegalArgumentException("Desafio não encontrado."));
+    // Template para Sair do Desafio
+    public final void sairDoDesafioTemplate(UUID participanteId, Object identificador) {
+        // 1. Passo Variável: Busca e valida o Desafio (MÉTODO PRIMITIVO)
+        Desafio desafio = buscarEValidarDesafioParaSaida(participanteId, identificador);
 
-        if (desafio.getCriadorId().equals(participanteId)) {
-            throw new IllegalStateException("O criador não pode sair, deve encerrar o desafio.");
-        }
-
-        if (!desafio.getParticipantesIds().contains(participanteId)) {
-            throw new IllegalArgumentException("Usuário não é participante deste desafio.");
-        }
-
+        // 2. Passos Fixos: Lógica Comum do Domínio
         desafio.removerParticipante(participanteId);
         repositorioDesafio.salvar(desafio);
     }
 
-    // Novo: Lista todos os desafios do usuário (usado pelo DesafioServiceAplImpl)
-    public List<Desafio> listarPorUsuario(UUID usuarioId) {
-        return repositorioDesafio.buscarTodosDoUsuario(usuarioId);
-    }
+    // --- MÉTODOS COMPARTILHADOS (Não fazem parte do Template Method, mas são necessários) ---
 
-    // Novo: Lista convites pendentes para um usuário (usado pelo DesafioServiceAplImpl)
-    public List<ConviteDesafio> listarConvitesPendentes(UUID convidadoId) {
-        return repositorioDesafio.buscarConvitesPendentes(convidadoId);
-    }
-
-
-    // --- MÉTODOS ORIGINAIS RESTANTES (Criar, Busca Por ID, etc.) ---
-
-    // Método para o Cenário 1: Criar Desafio e Enviar Convites (MANTIDO)
+    // Método para o Cenário 1: Criar Desafio e Enviar Convites
     public Desafio criarDesafio(UUID criadorId, String nome, List<UUID> habitosIds, LocalDate dataFim, List<String> emailsConvidados) {
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("O nome do desafio é obrigatório.");
@@ -231,23 +121,24 @@ public class DesafioService {
         return novoDesafio;
     }
 
-    // Método de Busca (para validações) (MANTIDO)
-    public Optional<Desafio> buscarDesafioPorNomeECriador(String nomeDesafio, UUID criadorId) {
-        return repositorioDesafio.buscarTodosDoUsuario(criadorId).stream()
-                .filter(d -> d.getNome().equals(nomeDesafio))
-                .findFirst();
+    // Métodos de Busca e Listagem
+    public Optional<Desafio> buscarPorId(UUID id) {
+        return repositorioDesafio.buscarPorId(id);
     }
 
-    // Simulação de Progresso (MANTIDA)
+    public List<Desafio> listarPorUsuario(UUID usuarioId) {
+        return repositorioDesafio.buscarTodosDoUsuario(usuarioId);
+    }
+
+    public List<ConviteDesafio> listarConvitesPendentes(UUID convidadoId) {
+        return repositorioDesafio.buscarConvitesPendentes(convidadoId);
+    }
+
+    // Simulação de Progresso
     public int calcularProgressoTotal(String nomeDesafio) {
         if (nomeDesafio.equals("Desafio de Leitura")) {
             return 8;
         }
         return 0;
-    }
-
-    // Busca por ID simples (MANTIDA)
-    public Optional<Desafio> buscarPorId(UUID id) {
-        return repositorioDesafio.buscarPorId(id);
     }
 }

@@ -2,7 +2,8 @@ package gestao.pessoal.aplicacao.principal.desafio;
 
 import gestao.pessoal.aplicacao.compartilhado.usuario.UsuarioServiceApl;
 import gestao.pessoal.dominio.principal.princ.desafio.Desafio;
-import gestao.pessoal.dominio.principal.princ.desafio.DesafioService;
+// NOTA: DesafioService agora é a classe abstrata.
+import gestao.pessoal.dominio.principal.princ.desafio.templateMethod.DesafioServicePorId; // << IMPORTANTE: Injetamos a implementação concreta por ID
 import gestao.pessoal.dominio.principal.princ.desafio.ConviteDesafio;
 import org.springframework.stereotype.Service;
 
@@ -15,15 +16,17 @@ import java.util.stream.Collectors;
 @Service
 public class DesafioServiceAplImpl implements DesafioServiceApl {
 
-    // Dependência do Serviço de Domínio para Lógica de Negócio
-    private final DesafioService desafioService;
+    // Dependência do Serviço de Domínio para Lógica de Negócio.
+    // Usamos a implementação PorId, pois esta camada de Aplicação trata de IDs (mais robusto para APIs).
+    private final DesafioServicePorId desafioServicePorId;
 
-    // Dependência para buscar informações do usuário (para DTOs/validações)
+    // Dependência para buscar informações do usuário
     private final UsuarioServiceApl usuarioService;
 
-    // Dentro de DesafioServiceAplImpl.java
-    public DesafioServiceAplImpl(DesafioService desafioService, UsuarioServiceApl usuarioService) {
-        this.desafioService = desafioService; // <-- Spring não achou este Bean!
+    // Construtor corrigido e adaptado para a implementação por ID
+    public DesafioServiceAplImpl(DesafioServicePorId desafioServicePorId, UsuarioServiceApl usuarioService) {
+        // Spring agora buscará o Bean DesafioServicePorId, que é concreto e injetável.
+        this.desafioServicePorId = desafioServicePorId;
         this.usuarioService = usuarioService;
     }
 
@@ -31,56 +34,48 @@ public class DesafioServiceAplImpl implements DesafioServiceApl {
 
     @Override
     public Desafio criarDesafio(UUID criadorId, String nome, List<UUID> habitosIds, LocalDate dataFim, List<String> emailsConvidados) {
-        // Delega a lógica de criação e envio de convites ao Serviço de Domínio
-        return desafioService.criarDesafio(criadorId, nome, habitosIds, dataFim, emailsConvidados);
+        // A lógica de criarDesafio está no DesafioServiceBase e é herdada por DesafioServicePorId
+        return desafioServicePorId.criarDesafio(criadorId, nome, habitosIds, dataFim, emailsConvidados);
     }
 
     @Override
     public void aceitarConvite(UUID convidadoId, UUID conviteId) {
-        // Delega a lógica de aceitação de convite e adição ao desafio.
-        // Nota: O DesafioService original utilizava o nome do desafio, aqui usamos o ID do convite para ser mais robusto.
-        // Assumimos que o DesafioService subjacente foi atualizado para usar o conviteId
-        // Para fins deste exemplo, estamos adaptando a chamada.
+        // Usamos o método limpo por ID da implementação concreta
+        // Não precisamos mais do Optional.buscarConvitePorId, pois a lógica de validação
+        // de pertencimento ao usuário foi encapsulada dentro do método aceitarConvitePorId (Template Method).
 
-        Optional<ConviteDesafio> conviteOpt = desafioService.buscarConvitePorId(conviteId);
-        if (conviteOpt.isEmpty() || !conviteOpt.get().getConvidadoId().equals(convidadoId)) {
-            throw new IllegalArgumentException("Convite inválido ou não pertence ao usuário.");
-        }
-
-        desafioService.aceitarConvitePorId(conviteId);
+        // Se a validação do Template Method falhar, ele lançará a exceção.
+        desafioServicePorId.aceitarConvitePorId(conviteId, convidadoId);
     }
 
     @Override
     public void rejeitarConvite(UUID convidadoId, UUID conviteId) {
-        Optional<ConviteDesafio> conviteOpt = desafioService.buscarConvitePorId(conviteId);
-        if (conviteOpt.isEmpty() || !conviteOpt.get().getConvidadoId().equals(convidadoId)) {
-            throw new IllegalArgumentException("Convite inválido ou não pertence ao usuário.");
-        }
-        desafioService.rejeitarConvitePorId(conviteId);
+        // Usamos o método limpo por ID da implementação concreta
+        desafioServicePorId.rejeitarConvitePorId(conviteId, convidadoId);
     }
 
     @Override
     public void encerrarDesafio(UUID criadorId, UUID desafioId) {
-        // Delega a lógica de encerramento, incluindo validação de criador, ao Domínio
-        desafioService.encerrarDesafioPorId(criadorId, desafioId);
+        // Delega para o método limpo por ID
+        desafioServicePorId.encerrarDesafioPorId(criadorId, desafioId);
     }
 
     @Override
     public void sairDoDesafio(UUID participanteId, UUID desafioId) {
-        // Delega a lógica de saída, incluindo validação se é o criador, ao Domínio
-        desafioService.sairDoDesafioPorId(participanteId, desafioId);
+        // Delega para o método limpo por ID
+        desafioServicePorId.sairDoDesafioPorId(participanteId, desafioId);
     }
 
     @Override
     public Optional<Desafio> buscarPorId(UUID id) {
-        // Delega a busca simples ao Domínio
-        return desafioService.buscarPorId(id);
+        // Método herdado do DesafioServiceBase
+        return desafioServicePorId.buscarPorId(id);
     }
 
     @Override
     public List<DesafioResumo> listarDesafiosDoUsuario(UUID usuarioId) {
-        // 1. Busca todos os objetos de Domínio (Desafio)
-        List<Desafio> desafios = desafioService.listarPorUsuario(usuarioId);
+        // 1. Busca todos os objetos de Domínio (Desafio) (Método herdado)
+        List<Desafio> desafios = desafioServicePorId.listarPorUsuario(usuarioId);
 
         // 2. Mapeia Desafio (Domínio) para DesafioResumo (DTO de Aplicação)
         return desafios.stream()
@@ -97,19 +92,20 @@ public class DesafioServiceAplImpl implements DesafioServiceApl {
 
     @Override
     public List<ConviteResumo> listarConvitesPendentes(UUID convidadoId) {
-        // 1. Busca todos os objetos de Domínio (ConviteDesafio)
-        List<ConviteDesafio> convites = desafioService.listarConvitesPendentes(convidadoId);
+        // 1. Busca todos os objetos de Domínio (ConviteDesafio) (Método herdado)
+        List<ConviteDesafio> convites = desafioServicePorId.listarConvitesPendentes(convidadoId);
 
         // 2. Mapeia ConviteDesafio para ConviteResumo (DTO de Aplicação)
         return convites.stream()
                 .map(convite -> {
                     // Busca o nome do desafio e o nome do criador para o DTO
-                    String nomeDesafio = desafioService.buscarPorId(convite.getDesafioId())
+                    String nomeDesafio = desafioServicePorId.buscarPorId(convite.getDesafioId())
                             .map(Desafio::getNome)
                             .orElse("Desafio Desconhecido");
 
+                    // NOTA: Assumindo que o UsuarioServiceApl retorna um objeto com getNome()
                     String nomeCriador = usuarioService.buscarPorId(convite.getCriadorId())
-                            .map(u -> u.getNome()) // Assumindo que Usuario possui getNome()
+                            .map(u -> u.getNome())
                             .orElse("Usuário Desconhecido");
 
                     return new ConviteResumo(
@@ -124,10 +120,8 @@ public class DesafioServiceAplImpl implements DesafioServiceApl {
 
     @Override
     public List<ProgressoParticipanteDTO> acompanharProgresso(UUID desafioId) {
-        // Este é um método de simulação complexo, pois depende da integração com a história de Hábito/Check-in.
-        // Aqui, simulamos o progresso. Em uma aplicação real, chamaria um serviço de Domínio (ex: ProgressoService).
 
-        Optional<Desafio> desafioOpt = desafioService.buscarPorId(desafioId);
+        Optional<Desafio> desafioOpt = desafioServicePorId.buscarPorId(desafioId);
         if (desafioOpt.isEmpty()) {
             throw new IllegalArgumentException("Desafio não encontrado.");
         }
@@ -151,3 +145,8 @@ public class DesafioServiceAplImpl implements DesafioServiceApl {
                 .collect(Collectors.toList());
     }
 }
+
+// NOTE: Para este código compilar e rodar, você precisará garantir que:
+// 1. DesafioServicePorId está marcado como @Service ou @Component para ser injetável.
+// 2. As classes DTOs (DesafioResumo, ConviteResumo, ProgressoParticipanteDTO) existem.
+// 3. A interface DesafioServiceApl existe.
