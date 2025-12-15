@@ -3,26 +3,28 @@
 ## 1. Observer
 
 ### Classes modificadas:
-- Alerta
-- AmizadeService
+- Alerta - Nanda
+- AmizadeService - Beatriz
+- Desafios.js - Ygor
+- DesafioCard.js - Ygor
 
 ### Classes criadas:
-- AlertaObserver
-- AlertaService
-- AmizadeCriadaEvent
+- AlertaObserver - Nanda
+- AlertaService - Nanda
+- AmizadeCriadaEvent - Beatriz
   
 ---
 
 ## 2. Strategy
 
 ### Classes modificadas:
-- Meta
+- Meta - Nanda
 
 ### Classes criadas:
-- EstrategiaAlertaMeta
-- EstrategiaAlertaMetaDiaria
-- EstrategiaAlertaMetaSemanal
-- EstrategiaAlertaMetaMensal
+- EstrategiaAlertaMeta - Nanda
+- EstrategiaAlertaMetaDiaria - Nanda
+- EstrategiaAlertaMetaSemanal - Nanda
+- EstrategiaAlertaMetaMensal- Nanda
 
 ---
 
@@ -37,10 +39,10 @@
 ## 4. Decorator
 
 ### Classes modificadas:
-- Habito
+- Habito - Beatriz, Nanda
 
 ### Classes criadas:
-- HabitoBase
-- HabitoComPontuacaoExtra
-- HabitoComRestricaoHorario
-- HabitoDecorator
+- HabitoBase - Beatriz, Nanda
+- HabitoComPontuacaoExtra - Beatriz, Nanda
+- HabitoComRestricaoHorario - Beatriz, Nanda
+- HabitoDecorator - Beatriz, Nanda
